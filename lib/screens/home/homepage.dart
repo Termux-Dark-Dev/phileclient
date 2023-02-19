@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/homepage/HomePageController.dart';
+import '../order/orderpage.dart';
 import 'ProfilePage.dart';
 import 'dashboard.dart';
 
@@ -13,7 +14,7 @@ class HomePage extends StatelessWidget {
       return Scaffold(
         body: IndexedStack(
           index: controller.tabIndex.value,
-          children: [DashBoard(), ProfilePage()],
+          children: [DashBoard(), OderHistoryPage(), ProfilePage()],
         ),
         bottomNavigationBar: Container(
           color: Colors.white,
@@ -29,7 +30,7 @@ class HomePage extends StatelessWidget {
               items: [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.person), label: "profile"),
+                    icon: Icon(Icons.shopping_bag), label: "OrderHistory"),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person), label: "profile")
               ],

@@ -14,6 +14,12 @@ class SARServices {
     }
   }
 
+  Future getUserId() async {
+    var prefs = await SharedPreferences.getInstance();
+    var id = prefs.getString("id");
+    return id;
+  }
+
   static Future isUserLoggedIn() async {
     var prefs = await SharedPreferences.getInstance();
     var res = prefs.getString("id");

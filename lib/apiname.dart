@@ -5,4 +5,6 @@ class APIENDPOINTNAME {
   static String LOGINUSER = HOME + "verifyuser/";
   static String GENERATEOTP = HOME + "generateotp/";
   static String VERIFYOTP = HOME + "verifyotp/";
+  static String STOREDETAILS = HOME + "getregisteredstores/";
+  static String GETORDERS = HOME + "getuserorderdetail/";
 }
