@@ -1,6 +1,5 @@
 import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -9,11 +8,15 @@ import 'package:phileclientapp/common/locationerror/locatnerrbox.dart';
 import '../../common/loader/loader.dart';
 import '../../common/snackbars/snackbars.dart';
 import '../../services/dashboard/getstoreservc.dart';
+import '../../services/getavailtimeofstore/getavailtimesrvc.dart';
 
 class DashBoardController extends GetxController {
+  var selectedDate = "Selcted Date Of Service".obs;
   GlobalKey<ExpandableBottomSheetState> key = GlobalKey();
   var expansionStatus = ExpansionStatus.contracted.obs;
   var searchctrl = TextEditingController();
+  var bookedtime = [].obs;
+  late var selectedstore;
   late String latitude, longitude;
   var listofstores = [].obs;
   @override
@@ -83,6 +86,29 @@ class DashBoardController extends GetxController {
           "Something Unexpected Occured", Icons.close, Colors.red[800]!);
     } else {
       listofstores.value = res!;
+    }
+  }
+
+  Future getAvailTime(String storeid, String date) async {
+    Getavailtimeservice obj = Getavailtimeservice();
+    Loader.showLoader(
+        animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
+        title: "Fetching Available Times");
+    var result = await obj.getAvailableTimeOfDay(storeid, date);
+    Loader.hideLoader();
+    print(result);
+    if (result == true) {
+      // todo empty list show all time to user no prev booked time
+    } else if (result == null) {
+      // todo exception occured
+      SnackBars.customsnack(
+          "Something Unexpected Occured", Icons.close, Colors.red[800]!);
+    } else if (result == false) {
+      // todo internal server err
+      SnackBars.customsnack(
+          "Something Unexpected Occured", Icons.close, Colors.red[800]!);
+    } else {
+      // todo ok add to list here
     }
   }
 }

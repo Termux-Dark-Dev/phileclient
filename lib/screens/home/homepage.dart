@@ -17,7 +17,6 @@ class HomePage extends StatelessWidget {
           children: [DashBoard(), OderHistoryPage(), ProfilePage()],
         ),
         bottomNavigationBar: Container(
-          color: Colors.white,
           child: Padding(
             padding: EdgeInsets.all(8),
             child: BottomNavigationBar(

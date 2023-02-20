@@ -112,7 +112,7 @@ class Login extends StatelessWidget {
                         ),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => Get.toNamed('/signup'),
+                              ..onTap = () => Get.offAllNamed('/signup'),
                             text: "Create Account",
                             style: TextStyle(
                               fontSize: 18.sp,

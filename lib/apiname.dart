@@ -7,4 +7,5 @@ class APIENDPOINTNAME {
   static String VERIFYOTP = HOME + "verifyotp/";
   static String STOREDETAILS = HOME + "getregisteredstores/";
   static String GETORDERS = HOME + "getuserorderdetail/";
+  static String GETAVAILTIME = HOME + "gettimesofday/";
 }

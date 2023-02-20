@@ -228,8 +228,24 @@ class DashBoard extends GetView {
                                                   //     DateAndTimeSheetSelector();
                                                   // obj.showDateAndTime(
                                                   //     context, size);
-                                                  controller.key.currentState!
-                                                      .expand();
+                                                  if (controller
+                                                          .key
+                                                          .currentState!
+                                                          .expansionStatus ==
+                                                      ExpansionStatus
+                                                          .contracted) {
+                                                    controller.selectedstore =
+                                                        controller
+                                                            .listofstores[index]
+                                                            .id;
+                                                    print(controller
+                                                        .selectedstore);
+                                                    controller.selectedDate
+                                                            .value =
+                                                        "Selcted Date Of Service";
+                                                    controller.key.currentState!
+                                                        .expand();
+                                                  }
                                                 },
                                                 icon: Icon(Icons.ads_click),
                                                 style: ElevatedButton.styleFrom(
@@ -256,7 +272,9 @@ class DashBoard extends GetView {
             ],
           ),
         ),
-        expandableContent: DateAndTimeSheet(),
+        expandableContent: DateAndTimeSheet(
+          controller: controller,
+        ),
       ),
     );
   }

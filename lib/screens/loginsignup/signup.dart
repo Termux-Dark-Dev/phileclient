@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:phileclientapp/controllers/login&signup/signupctrl.dart';
 
+import 'login.dart';
+
 class SignupPage extends StatelessWidget {
   SignupControl controller = Get.put(SignupControl());
   @override
@@ -146,7 +148,7 @@ class SignupPage extends StatelessWidget {
                                 color: Colors.black, fontSize: 18.sp)),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => Get.offNamed('/login'),
+                              ..onTap = () => Get.offAllNamed('/login'),
                             text: "Login",
                             style: TextStyle(
                               fontSize: 20.sp,
