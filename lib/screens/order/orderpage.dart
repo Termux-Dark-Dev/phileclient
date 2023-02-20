@@ -18,8 +18,10 @@ class OderHistoryPage extends StatelessWidget {
       body: Obx(() {
         if (controller.listoforder.length == 0) {
           return Center(
-              child: Lottie.asset('assets/lottieefiles/loading.json',
-                  width: 60.w, height: 60.h));
+              child: ElevatedButton(
+            child: Text("Get Order Details"),
+            onPressed: () => controller.getOrders(),
+          ));
         }
         if (controller.listoforder.length == 1) {
           return Center(

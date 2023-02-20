@@ -10,8 +10,11 @@ import 'package:phileclientapp/services/loginandsignup/sendotpsrvc.dart';
 class SignupControl extends GetxController {
   var ispassHidden = true.obs;
   GlobalKey<FormState> signupformkey = GlobalKey<FormState>();
-  late String email, password, phone;
-  late TextEditingController emailcontroller, passcontroller, phonecontroller;
+  late String email, password, phone, username;
+  late TextEditingController emailcontroller,
+      passcontroller,
+      phonecontroller,
+      usernamectrl;
   @override
   void onInit() {
     // TODO: implement onInit
@@ -19,6 +22,7 @@ class SignupControl extends GetxController {
     emailcontroller = TextEditingController();
     passcontroller = TextEditingController();
     phonecontroller = TextEditingController();
+    usernamectrl = TextEditingController();
   }
 
   @override
@@ -69,6 +73,18 @@ class SignupControl extends GetxController {
     return null;
   }
 
+  String? userNameValidator(String value) {
+    String pattern = r'^[a-zA-Z0-9_@]*$';
+    RegExp regExp = new RegExp(pattern);
+    if (value.length > 5 && value.length < 9) {
+      return null;
+    } else if (!regExp.hasMatch(value)) {
+      return "String Should Be AlphaNumeric eg:@user2_7";
+    } else {
+      return "Enter Valid Alphanumeric Username >=6 and <9";
+    }
+  }
+
   Future signup() async {
     bool isValid = signupformkey.currentState!.validate();
     if (isValid) {
@@ -80,13 +96,18 @@ class SignupControl extends GetxController {
       var res = await obj.sendOTP(email);
       Loader.hideLoader();
       if (res == true) {
-        Get.toNamed("/otp",
-            arguments: {"email": email, "password": password, "phone": phone});
+        Get.toNamed("/otp", arguments: {
+          "email": email,
+          "password": password,
+          "phone": phone,
+          "username": username
+        });
       } else if (res == false) {
         SnackBars.customsnack(
             "Internal Server Error", Icons.close, Colors.red[800]!);
       } else {
-        SnackBars.customsnack(res, Icons.close, Colors.red[800]!);
+        SnackBars.customsnack(
+            "Something Unexpected Occured", Icons.close, Colors.red[800]!);
       }
     }
   }

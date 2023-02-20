@@ -37,6 +37,7 @@ dependencies:
   anim_search_bar: ^2.0.3
   shared_preferences: ^2.0.17
   geolocator:
+  expandable_bottom_sheet: ^1.1.1+1
   
 
 

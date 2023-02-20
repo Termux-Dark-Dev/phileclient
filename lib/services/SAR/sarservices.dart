@@ -1,12 +1,14 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SARServices {
-  Future storeUserDetails(String email, String phone, String id) async {
+  Future storeUserDetails(
+      String email, String phone, String id, String Username) async {
     try {
       var prefs = await SharedPreferences.getInstance();
       prefs.setString("email", email);
       prefs.setString("id", id);
       prefs.setString("phone", phone);
+      prefs.setString("username", Username);
       return true;
     } on Exception catch (e) {
       // TODO

@@ -53,6 +53,23 @@ class SignupPage extends StatelessWidget {
                       height: 40.h,
                     ),
                     TextFormField(
+                      controller: controller.usernamectrl,
+                      validator: (value) =>
+                          controller.userNameValidator(value!),
+                      onSaved: (newValue) => controller.username = newValue!,
+                      decoration: InputDecoration(
+                        labelText: "Username",
+                        labelStyle: TextStyle(color: Colors.black),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    TextFormField(
                       controller: controller.phonecontroller,
                       validator: (value) => controller.phoneValidator(value!),
                       onSaved: (newValue) => controller.phone = newValue!,

@@ -17,7 +17,6 @@ class OrderController extends GetxController {
     super.onInit();
     obj = SARServices();
     id = await obj.getUserId();
-    await getOrders();
   }
 
   @override
@@ -39,8 +38,9 @@ class OrderController extends GetxController {
       SnackBars.customsnack(
           "Internal Server Error", Icons.close, Colors.red[800]!);
     } else if (res is String) {
-      listoforder.value = [res];
-      SnackBars.customsnack(res, Icons.close, Colors.red[800]!);
+      listoforder.value = ["Something Unexpected Occured"];
+      SnackBars.customsnack(
+          "Something Unexpected Occured", Icons.close, Colors.red[800]!);
     } else if (res == null) {
       listoforder.value = ["You Have Not Booked Any Services Yet"];
     } else {

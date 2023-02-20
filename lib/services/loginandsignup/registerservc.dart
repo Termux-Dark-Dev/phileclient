@@ -2,9 +2,12 @@ import 'package:http/http.dart' as http;
 import 'package:phileclientapp/apiname.dart';
 
 class RegisterService {
-  Future registeruser(String email, String password, String phone) async {
+  Future registeruser(
+      String email, String password, String phone, String Username) async {
     try {
       var response = await http.post(Uri.parse(APIENDPOINTNAME.CREATEUSER +
+          Username +
+          "/" +
           email +
           "/" +
           password +

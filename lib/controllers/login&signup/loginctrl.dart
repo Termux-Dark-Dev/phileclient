@@ -77,7 +77,8 @@ class LoginCtrl extends GetxController {
         SnackBars.customsnack(
             "Internal Server Error", Icons.close, Colors.red[800]!);
       } else {
-        SnackBars.customsnack(res, Icons.close, Colors.red[800]!);
+        SnackBars.customsnack(
+            "Something Unexpected Occured", Icons.close, Colors.red[800]!);
       }
     }
   }

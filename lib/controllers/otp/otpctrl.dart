@@ -11,7 +11,7 @@ class OTPController extends GetxController {
   final formkey = GlobalKey<FormState>();
   late String pin1, pin2, pin3, pin4;
   late TextEditingController test;
-  late String? useremail, password, otp, phonenum;
+  late String? useremail, password, otp, phonenum, username;
   @override
   void onInit() {
     // TODO: implement onInit
@@ -42,7 +42,8 @@ class OTPController extends GetxController {
       var res = await obj.verifyOTP(useremail!, otp!);
 
       if (res == true) {
-        var isAdded = await obj1.registeruser(useremail!, password!, phonenum!);
+        var isAdded = await obj1.registeruser(
+            useremail!, password!, phonenum!, username!);
         Loader.hideLoader();
         if (isAdded == true) {
           Future.delayed(Duration(seconds: 0), () {
@@ -51,9 +52,10 @@ class OTPController extends GetxController {
           }).whenComplete(() => Get.offAllNamed("/login"));
         } else if (isAdded == false) {
           SnackBars.customsnack(
-              "Something Unexpected Occured ", Icons.close, Colors.red[800]!);
+              "Internal Server Error", Icons.close, Colors.red[800]!);
         } else {
-          SnackBars.customsnack(isAdded, Icons.close, Colors.red[800]!);
+          SnackBars.customsnack(
+              "Something Unexpected Occured ", Icons.close, Colors.red[800]!);
         }
       } else if (res == false) {
         Loader.hideLoader();
@@ -69,7 +71,8 @@ class OTPController extends GetxController {
             "Internal Server Error", Icons.close, Colors.red[800]!);
       } else {
         Loader.hideLoader();
-        SnackBars.customsnack(res, Icons.close, Colors.red[800]!);
+        SnackBars.customsnack(
+            "Something Unnexpected Occured", Icons.close, Colors.red[800]!);
       }
     }
   }

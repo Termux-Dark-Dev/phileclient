@@ -15,6 +15,7 @@ class OTPPAGE extends StatelessWidget {
     controller.useremail = args["email"];
     controller.password = args["password"];
     controller.phonenum = args["phone"];
+    controller.username = args["username"];
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,

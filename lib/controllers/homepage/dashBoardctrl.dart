@@ -1,3 +1,4 @@
+import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
@@ -10,6 +11,8 @@ import '../../common/snackbars/snackbars.dart';
 import '../../services/dashboard/getstoreservc.dart';
 
 class DashBoardController extends GetxController {
+  GlobalKey<ExpandableBottomSheetState> key = GlobalKey();
+  var expansionStatus = ExpansionStatus.contracted.obs;
   var searchctrl = TextEditingController();
   late String latitude, longitude;
   var listofstores = [].obs;
@@ -74,9 +77,10 @@ class DashBoardController extends GetxController {
       SnackBars.customsnack(
           "Internal Server Error", Icons.close, Colors.red[800]!);
     } else if (res is String) {
-      listofstores.value = [res];
-      print(listofstores);
-      SnackBars.customsnack(res, Icons.close, Colors.red[800]!);
+      listofstores.value = ["Something Unexpected Occured"];
+
+      SnackBars.customsnack(
+          "Something Unexpected Occured", Icons.close, Colors.red[800]!);
     } else {
       listofstores.value = res!;
     }

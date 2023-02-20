@@ -13,8 +13,10 @@ class LoginService {
       if (response.statusCode == 200) {
         var usrid = jsonDecode(response.body)["id"].toString();
         var phonenumber = jsonDecode(response.body)["phonenumber"].toString();
+        var username = jsonDecode(response.body)["username"].toString();
         SARServices obj = SARServices();
-        var res = await obj.storeUserDetails(email, phonenumber, usrid);
+        var res =
+            await obj.storeUserDetails(email, phonenumber, usrid, username);
         if (res == true) {
           return true;
         } else {
