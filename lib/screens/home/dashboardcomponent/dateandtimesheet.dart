@@ -38,8 +38,8 @@ class DateAndTimeSheet extends StatelessWidget {
                         controller.selectedDate.value =
                             selectedDate.toString().substring(0, 11);
 
-                        await controller.getAvailTime(controller.selectedstore,
-                            controller.selectedDate.value);
+                        // await controller.getAvailTime(controller.selectedstore,
+                        //     controller.selectedDate.value);
                       }
                     },
                     child: CircleAvatar(

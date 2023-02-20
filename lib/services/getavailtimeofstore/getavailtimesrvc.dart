@@ -14,10 +14,12 @@ class Getavailtimeservice {
         if (response.body == "[]") {
           return true;
         } else {
-          print(response.body);
-          var list = Availtime.tojson(json.decode(response.body));
-          print(list);
-          return list;
+          var newlist = [];
+          var list = json.decode(response.body);
+          for (var item in list) {
+            newlist.add(item["ServiceTime"].toString());
+          }
+          return newlist;
         }
       } else {
         return false;
