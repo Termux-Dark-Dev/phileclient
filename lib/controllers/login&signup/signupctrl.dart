@@ -49,13 +49,12 @@ class SignupControl extends GetxController {
   }
 
   String? passValidator(String? value) {
-    RegExp regex =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+    RegExp regex = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,16}$');
     if (value!.isEmpty) {
       return "Enter password";
     } else {
       if (!regex.hasMatch(value)) {
-        return "Enter Valid Password";
+        return "Please Enter Alphanumeric Password Between 8 to 16";
       } else {
         return null;
       }
@@ -63,14 +62,13 @@ class SignupControl extends GetxController {
   }
 
   String? phoneValidator(String value) {
-    String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-    RegExp regExp = new RegExp(patttern);
-    if (value.length == 0) {
-      return 'Please enter mobile number';
-    } else if (!regExp.hasMatch(value)) {
-      return 'Please enter valid mobile number';
+    var pattern = r'^[6789]\d{9}$';
+    var regex = RegExp(pattern);
+    if (value.length == 10 && regex.hasMatch(value)) {
+      return null;
+    } else {
+      return 'Please enter 10 digit mobile';
     }
-    return null;
   }
 
   String? userNameValidator(String value) {

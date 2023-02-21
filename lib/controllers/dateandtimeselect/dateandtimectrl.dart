@@ -47,8 +47,7 @@ class DateAndTimeController extends GetxController {
   var bookedtime = [].obs;
   var date_selected = "Select A Date".obs;
   var time_selected = "";
-  GlobalKey<ExpandableBottomSheetState> key = GlobalKey();
-  var expansionStatus = ExpansionStatus.contracted;
+  var btncolor = Colors.grey.obs;
   Future getAvailTime(String storeid, String date) async {
     print(storeid);
     Getavailtimeservice obj = Getavailtimeservice();
@@ -80,6 +79,7 @@ class DateAndTimeController extends GetxController {
   void CheckandselectTime(index) {
     if (timings[index]["isselected"] == true) {
       timings[index]["isselected"] = false;
+      btncolor.value = Colors.grey;
     } else {
       for (var i in timings) {
         if (i == timings[index]) {
@@ -89,6 +89,7 @@ class DateAndTimeController extends GetxController {
           i["isselected"] = false;
         }
       }
+      btncolor.value = Colors.teal;
     }
   }
 

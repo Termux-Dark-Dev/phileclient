@@ -23,10 +23,7 @@ class SignupPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 45.h,
-                    ),
-                    SizedBox(
-                      height: 60.h,
+                      height: 30.h,
                     ),
                     Text(
                       "Signup",
@@ -72,6 +69,7 @@ class SignupPage extends StatelessWidget {
                       height: 40.h,
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: controller.phonecontroller,
                       validator: (value) => controller.phoneValidator(value!),
                       onSaved: (newValue) => controller.phone = newValue!,
@@ -135,6 +133,10 @@ class SignupPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8.sp))),
                           onPressed: () async {
                             await controller.signup();
+                            controller.emailcontroller.clear();
+                            controller.passcontroller.clear();
+                            controller.phonecontroller.clear();
+                            controller.usernamectrl.clear();
                           },
                         )),
                     SizedBox(
