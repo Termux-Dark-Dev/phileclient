@@ -53,6 +53,11 @@ class OTPController extends GetxController {
         } else if (isAdded == false) {
           SnackBars.customsnack(
               "Internal Server Error", Icons.close, Colors.red[800]!);
+        } else if (isAdded == null) {
+          Future.delayed(Duration(seconds: 0), () {
+            SnackBars.customsnack(
+                "User with same details exists", Icons.close, Colors.red);
+          }).whenComplete(() => Get.offAllNamed("/signup"));
         } else {
           SnackBars.customsnack(
               "Something Unexpected Occured ", Icons.close, Colors.red[800]!);

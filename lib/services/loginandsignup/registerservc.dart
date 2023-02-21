@@ -17,6 +17,8 @@ class RegisterService {
       print(response.body);
       if (response.statusCode == 201) {
         return true;
+      } else if (response.statusCode == 401) {
+        return null;
       } else {
         return false;
       }
