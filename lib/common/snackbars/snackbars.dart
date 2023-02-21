@@ -21,7 +21,7 @@ class SnackBars {
           child: Icon(
             size: 15,
             uploadicon,
-            color: Colors.green[100],
+            color: colur == Colors.red ? Colors.white : Colors.green[100],
           ),
         ),
       ),
