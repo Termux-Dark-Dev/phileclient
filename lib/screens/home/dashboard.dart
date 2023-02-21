@@ -11,7 +11,6 @@ import 'package:phileclientapp/screens/home/dashboardcomponent/dateandtimesheet.
 
 class DashBoard extends GetView {
   DashBoardController controller = Get.put(DashBoardController());
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -32,13 +31,22 @@ class DashBoard extends GetView {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    "Hello, Vishal",
-                    style: TextStyle(
-                        fontSize: 25.sp,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  FutureBuilder(
+                      future: controller.sobj.getUserName(),
+                      builder: (ctx, snp) {
+                        if (snp.hasData) {
+                          var username = snp.data as String;
+                          return Text(
+                            "Hello, $username",
+                            style: TextStyle(
+                                fontSize: 25.sp,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          );
+                        } else {
+                          return CircularProgressIndicator();
+                        }
+                      }),
 
                   // CircleAvatar(
                   //   radius: 25,

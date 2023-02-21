@@ -41,6 +41,7 @@ class DateAndTimeController extends GetxController {
     {"date": "9:00 PM", "isselected": false},
     {"date": "9:30 PM", "isselected": false},
   ];
+  var isVisible = false.obs;
   var changedtiming = false.obs;
   late String store_id, userid;
   var bookedtime = [].obs;

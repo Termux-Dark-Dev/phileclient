@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       builder: (BuildContext context, child) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         getPages: RouterClass.routes,
         title: 'Flutter Demo',
         theme: ThemeData(

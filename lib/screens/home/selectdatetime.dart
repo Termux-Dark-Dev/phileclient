@@ -43,7 +43,7 @@ class SelectDateAndTime extends StatelessWidget {
                           if (selectedDate != null) {
                             controller.date_selected.value =
                                 selectedDate.toString().substring(0, 11);
-
+                            controller.isVisible.value = true;
                             await controller.getAvailTime(controller.store_id,
                                 controller.date_selected.value);
                           }
@@ -77,15 +77,18 @@ class SelectDateAndTime extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  height: 50.h,
-                  width: size.width,
-                  child: Text(
-                    "Select Your Preffered Time Slot : ",
-                    style: TextStyle(fontSize: 20.sp),
-                  ),
-                ),
+                Obx(() => Visibility(
+                      visible: controller.isVisible.value,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        height: 50.h,
+                        width: size.width,
+                        child: Text(
+                          "Select Your Preffered Time Slot : ",
+                          style: TextStyle(fontSize: 20.sp),
+                        ),
+                      ),
+                    )),
                 Container(
                   height: 500.h,
                   width: size.width,
@@ -362,13 +365,16 @@ class SelectDateAndTime extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 20.sp),
                       ),
-                      Text(
-                        controller.date_selected.toString(),
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.sp),
-                      )
+                      Obx(() {
+                        print(controller.changedtiming.value);
+                        return Text(
+                          controller.date_selected.toString(),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.sp),
+                        );
+                      })
                     ],
                   ),
                 )),
