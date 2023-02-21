@@ -234,7 +234,10 @@ class DashBoard extends GetView {
                                               Get.toNamed("/booktimeslot",
                                                   arguments: {
                                                     "userid": controller.userid,
-                                                    "storeid": storeid
+                                                    "storeid": storeid,
+                                                    "storename": controller
+                                                        .listofstores[index]
+                                                        .name
                                                   });
                                               // DateAndTimeSheetSelector obj =
                                               //     DateAndTimeSheetSelector();

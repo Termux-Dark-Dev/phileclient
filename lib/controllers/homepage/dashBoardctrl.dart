@@ -39,8 +39,8 @@ class DashBoardController extends GetxController {
       print("longitude : " + value.longitude.toString());
       latitude = value.latitude.toString();
       longitude = value.longitude.toString();
-      await getStoreData(latitude, longitude);
     });
+    await getStoreData(latitude, longitude);
   }
 
   Future<Position> _getCurrentLocation() async {

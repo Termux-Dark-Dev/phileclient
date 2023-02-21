@@ -69,7 +69,7 @@ class LoginCtrl extends GetxController {
         Future.delayed(Duration(seconds: 0), () {
           SnackBars.customsnack(
               "Login Successful", Icons.done, Colors.teal[800]!);
-        }).whenComplete(() => Get.offAllNamed("/home"));
+        }).whenComplete(() => Get.offAndToNamed("/home"));
       } else if (res == false) {
         SnackBars.customsnack(
             "Wrong Email Or Password", Icons.close, Colors.red[800]!);

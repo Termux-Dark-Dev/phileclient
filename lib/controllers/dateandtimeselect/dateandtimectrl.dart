@@ -43,13 +43,12 @@ class DateAndTimeController extends GetxController {
   ];
   var isVisible = false.obs;
   var changedtiming = false.obs;
-  late String store_id, userid;
+  late String store_id, userid, storename;
   var bookedtime = [].obs;
-  var date_selected = "Select A Date".obs;
+  var date_selected = "Select Date Of Appointment".obs;
   var time_selected = "";
   var btncolor = Colors.grey.obs;
   Future getAvailTime(String storeid, String date) async {
-    print(storeid);
     Getavailtimeservice obj = Getavailtimeservice();
     Loader.showLoader(
         animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
