@@ -4,6 +4,7 @@ import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:phileclientapp/common/snackbars/snackbars.dart';
 
 import '../../controllers/dateandtimeselect/dateandtimectrl.dart';
@@ -129,6 +130,7 @@ class SelectDateAndTime extends StatelessWidget {
                   width: size.width,
                   // color: Colors.amber,
                   child: Obx(() {
+                    print(controller.changedtiming.value);
                     if (controller.bookedtime.length == 0) {
                       return Visibility(
                           visible: false,
@@ -195,7 +197,10 @@ class SelectDateAndTime extends StatelessWidget {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Icon(
-                                          controller.timings[index]["date"]
+                                          DateFormat('h:mm a')
+                                                  .format(
+                                                      controller.timings[index]
+                                                          ["date"] as DateTime)
                                                   .toString()
                                                   .contains("AM")
                                               ? Icons.sunny
@@ -213,7 +218,9 @@ class SelectDateAndTime extends StatelessWidget {
                                           width: 3.w,
                                         ),
                                         Text(
-                                          controller.timings[index]["date"]
+                                          DateFormat('h:mm a')
+                                              .format(controller.timings[index]
+                                                  ["date"] as DateTime)
                                               .toString(),
                                           style: TextStyle(
                                             fontSize: 14.sp,
@@ -260,7 +267,9 @@ class SelectDateAndTime extends StatelessWidget {
                               return InkWell(
                                 onTap: () {
                                   if (controller.bookedtime.contains(
-                                      controller.timings[index]["date"])) {
+                                      DateFormat('h:mm a').format(
+                                          controller.timings[index]["date"]
+                                              as DateTime))) {
                                   } else {
                                     if (controller.timings[index]
                                             ["isselected"] ==
@@ -289,8 +298,9 @@ class SelectDateAndTime extends StatelessWidget {
                                       ),
                                       decoration: BoxDecoration(
                                         color: controller.bookedtime.contains(
-                                                controller.timings[index]
-                                                    ["date"])
+                                                DateFormat('h:mm a').format(
+                                                    controller.timings[index]
+                                                        ["date"] as DateTime))
                                             ? Colors.grey
                                             : controller.timings[index]
                                                         ["isselected"] ==
@@ -312,13 +322,18 @@ class SelectDateAndTime extends StatelessWidget {
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Icon(
-                                            controller.timings[index]["date"]
+                                            DateFormat('h:mm a')
+                                                    .format(controller
+                                                            .timings[index]
+                                                        ["date"] as DateTime)
                                                     .toString()
                                                     .contains("AM")
                                                 ? Icons.sunny
-                                                : int.parse(controller
-                                                            .timings[index]
-                                                                ["date"]
+                                                : int.parse(DateFormat('h:mm a')
+                                                            .format(controller
+                                                                        .timings[
+                                                                    index]["date"]
+                                                                as DateTime)
                                                             .toString()
                                                             .substring(0, 1)) >
                                                         6
@@ -327,8 +342,9 @@ class SelectDateAndTime extends StatelessWidget {
                                             color: Colors.white,
                                           ),
                                           Text(
-                                            controller.timings[index]["date"]
-                                                .toString(),
+                                            DateFormat('h:mm a').format(
+                                                controller.timings[index]
+                                                    ["date"] as DateTime),
                                             style: TextStyle(
                                               fontSize: 14.sp,
                                               color: Colors.white,
@@ -354,7 +370,8 @@ class SelectDateAndTime extends StatelessWidget {
                     onTap: () {
                       if (controller.btncolor.value == Colors.grey) {
                       } else {
-                        print("OK");
+                        print(controller.time_selected);
+                        print(controller.date_selected);
                       }
                     },
                     child: Obx(() => Container(

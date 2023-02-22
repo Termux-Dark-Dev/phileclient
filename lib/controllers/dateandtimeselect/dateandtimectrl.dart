@@ -4,6 +4,7 @@ import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../common/loader/loader.dart';
@@ -12,34 +13,146 @@ import '../../services/getavailtimeofstore/getavailtimesrvc.dart';
 
 class DateAndTimeController extends GetxController {
   var timings = [
-    {"date": "08:00 AM", "isselected": false},
-    {"date": "08:30 AM", "isselected": false},
-    {"date": "09:00 AM", "isselected": false},
-    {"date": "09:30 AM", "isselected": false},
-    {"date": "10:00 AM", "isselected": false},
-    {"date": "10:30 AM", "isselected": false},
-    {"date": "11:00 AM", "isselected": false},
-    {"date": "11:30 AM", "isselected": false},
-    {"date": "12:00 PM", "isselected": false},
-    {"date": "12:30 PM", "isselected": false},
-    {"date": "1:00 PM", "isselected": false},
-    {"date": "1:30 PM", "isselected": false},
-    {"date": "2:00 PM", "isselected": false},
-    {"date": "2:30 PM", "isselected": false},
-    {"date": "3:00 PM", "isselected": false},
-    {"date": "3:30 PM", "isselected": false},
-    {"date": "4:00 PM", "isselected": false},
-    {"date": "4:30 PM", "isselected": false},
-    {"date": "5:00 PM", "isselected": false},
-    {"date": "5:30 PM", "isselected": false},
-    {"date": "6:00 PM", "isselected": false},
-    {"date": "6:30 PM", "isselected": false},
-    {"date": "7:00 PM", "isselected": false},
-    {"date": "7:30 PM", "isselected": false},
-    {"date": "8:00 PM", "isselected": false},
-    {"date": "8:30 PM", "isselected": false},
-    {"date": "9:00 PM", "isselected": false},
-    {"date": "9:30 PM", "isselected": false},
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 8, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 8, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 9, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 9, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 10, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 10, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 11, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 11, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 12, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 12, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 13, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 13, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 14, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 14, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 15, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 15, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 16, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 16, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 17, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 17, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 18, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 18, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 19, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 19, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 20, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 20, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 21, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 21, 30),
+      "isselected": false
+    },
   ];
   var isVisible = false.obs;
   var changedtiming = false.obs;
@@ -55,10 +168,15 @@ class DateAndTimeController extends GetxController {
         title: "Fetching Available Times");
     var result = await obj.getAvailableTimeOfDay(storeid, date);
     Loader.hideLoader();
-    print(result);
+
     if (result == true) {
       // todo empty list show all time to user no prev booked time
-      bookedtime.value = [1];
+      if (date == DateTime.now().toString().substring(0, 11)) {
+        var list = Extratime();
+        bookedtime.value = list;
+      } else {
+        bookedtime.value = [1];
+      }
     } else if (result == null) {
       // todo exception occured
       bookedtime.value = [2];
@@ -71,7 +189,13 @@ class DateAndTimeController extends GetxController {
           "Something Unexpected Occured", Icons.close, Colors.red[800]!);
     } else {
       // todo ok add to list here
-      bookedtime.value = result;
+      if (date == DateTime.now().toString().substring(0, 11)) {
+        print("OK");
+        var list = Extratime();
+        bookedtime.value = result + list;
+      } else {
+        bookedtime.value = result;
+      }
     }
   }
 
@@ -83,7 +207,7 @@ class DateAndTimeController extends GetxController {
       for (var i in timings) {
         if (i == timings[index]) {
           i["isselected"] = true;
-          time_selected = i["date"].toString();
+          time_selected = DateFormat('h:mm a').format(i["date"] as DateTime);
         } else {
           i["isselected"] = false;
         }
@@ -98,5 +222,17 @@ class DateAndTimeController extends GetxController {
     } else {
       return true;
     }
+  }
+
+  List Extratime() {
+    var list = [];
+    var currenttime = DateTime.now();
+    for (var i in timings) {
+      if (currenttime.isAfter(i["date"] as DateTime)) {
+        list.add(DateFormat('h:mm a').format(i["date"] as DateTime));
+      } else {}
+    }
+    print(list);
+    return list;
   }
 }
