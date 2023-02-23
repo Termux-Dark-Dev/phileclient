@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:phileclientapp/screens/home/profile.dart';
 
 import '../../controllers/homepage/HomePageController.dart';
 import '../order/orderpage.dart';
-import 'ProfilePage.dart';
+
 import 'dashboard.dart';
 
 class HomePage extends StatelessWidget {

@@ -37,4 +37,24 @@ class SARServices {
       return false;
     }
   }
+
+  Future getUserDetails() async {
+    try {
+      var prefs = await SharedPreferences.getInstance();
+      var email = prefs.getString("email");
+      var id = prefs.getString("id");
+      var phone = prefs.getString("phone");
+      var username = prefs.getString("username");
+      return {"id": id, "email": email, "phone": phone, "username": username};
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future logoutUser() async {
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    return true;
+  }
 }

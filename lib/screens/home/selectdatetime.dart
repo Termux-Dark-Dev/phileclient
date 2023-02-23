@@ -181,7 +181,7 @@ class SelectDateAndTime extends StatelessWidget {
                                                   ["isselected"] ==
                                               false
                                           ? Colors.teal
-                                          : Colors.tealAccent,
+                                          : Colors.teal[800],
                                       borderRadius: BorderRadius.circular(8),
                                       boxShadow: [
                                         BoxShadow(
@@ -241,7 +241,7 @@ class SelectDateAndTime extends StatelessWidget {
                       return Container(
                         height: 50,
                         width: 50,
-                        color: Colors.teal,
+                        color: Colors.white,
                         child: Center(
                           child: Text(
                             "Something Unexpected Occured",
@@ -288,6 +288,7 @@ class SelectDateAndTime extends StatelessWidget {
                                 child: Container(
                                   child: Center(
                                     child: Container(
+                                      height: 50.h,
                                       margin: EdgeInsets.symmetric(
                                         horizontal: 8.w,
                                         vertical: 5.h,
@@ -306,7 +307,7 @@ class SelectDateAndTime extends StatelessWidget {
                                                         ["isselected"] ==
                                                     false
                                                 ? Colors.teal
-                                                : Colors.tealAccent,
+                                                : Colors.teal[800],
                                         borderRadius: BorderRadius.circular(8),
                                         boxShadow: [
                                           BoxShadow(
@@ -368,8 +369,7 @@ class SelectDateAndTime extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      if (controller.btncolor.value == Colors.grey) {
-                      } else {
+                      if (controller.btncolor.value != Colors.grey) {
                         print(controller.time_selected);
                         print(controller.date_selected);
                       }
