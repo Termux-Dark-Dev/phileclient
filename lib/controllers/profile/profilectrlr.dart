@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:phileclientapp/common/loader/loader.dart';
+import 'package:phileclientapp/common/snackbars/snackbars.dart';
 import 'package:phileclientapp/services/SAR/sarservices.dart';
+
+import '../../services/updates/passupdateservc.dart';
 
 class ProfilePageController extends GetxController {
   late String phone, email, usrname, id;
@@ -66,10 +72,8 @@ class ProfilePageController extends GetxController {
               SizedBox(
                 height: 20.h,
               ),
-              TextFormField(
+              TextField(
                 controller: currpassctrlr,
-                // validator: (value) => controller.emailValidator(value),
-                // onSaved: (newValue) => controller.email = newValue!,
                 decoration: InputDecoration(
                   labelText: "Current Password",
                   labelStyle: TextStyle(color: Colors.black),
@@ -82,10 +86,8 @@ class ProfilePageController extends GetxController {
               SizedBox(
                 height: 10.h,
               ),
-              TextFormField(
+              TextField(
                 controller: newpassctrlr,
-                // validator: (value) =>,
-                // onSaved: (newValue) =>,
                 decoration: InputDecoration(
                   labelText: "New Password",
                   labelStyle: TextStyle(color: Colors.black),
@@ -105,6 +107,8 @@ class ProfilePageController extends GetxController {
                       style:
                           ElevatedButton.styleFrom(backgroundColor: Colors.red),
                       onPressed: () {
+                        currpassctrlr.clear();
+                        newpassctrlr.clear();
                         Get.back();
                       },
                       icon: Icon(Icons.close),
@@ -112,7 +116,21 @@ class ProfilePageController extends GetxController {
                         "Cancel",
                       )),
                   ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () async {
+                        SystemChannels.textInput.invokeMethod('TextInput.hide');
+                        var currpass = currpassctrlr.text;
+                        var newpass = newpassctrlr.text;
+                        var res = passChecker(newpass);
+                        if (res == null) {
+                          // todo update pass
+
+                          await updatePass(currpass, newpass);
+                        } else {
+                          currpassctrlr.clear();
+                          newpassctrlr.clear();
+                          SnackBars.customsnack(res, Icons.close, Colors.red);
+                        }
+                      },
                       icon: Icon(Icons.send),
                       label: Text("Submit")),
                 ],
@@ -248,5 +266,33 @@ class ProfilePageController extends GetxController {
         ),
       ),
     ));
+  }
+
+  Future updatePass(String currpass, String newpass) async {
+    UpdatePassService obj = UpdatePassService();
+    Loader.showLoader(
+        animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
+        title: "Updating Your Password");
+    var res = await obj.updateUserPass(email, currpass, newpass);
+    Loader.hideLoader();
+    if (res == true) {
+      currpassctrlr.clear();
+      newpassctrlr.clear();
+      Get.back();
+      SnackBars.customsnack(
+          "Password Updated Successfully", Icons.done, Colors.teal);
+    } else if (res == false) {
+      currpassctrlr.clear();
+      newpassctrlr.clear();
+      Get.back();
+      SnackBars.customsnack(
+          "Current Password Dosent Match", Icons.close, Colors.red);
+    } else {
+      currpassctrlr.clear();
+      newpassctrlr.clear();
+      Get.back();
+      SnackBars.customsnack(
+          "Something Unexpected Occured", Icons.close, Colors.red);
+    }
   }
 }

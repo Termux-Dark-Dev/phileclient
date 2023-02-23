@@ -8,4 +8,5 @@ class APIENDPOINTNAME {
   static String STOREDETAILS = HOME + "getregisteredstores/";
   static String GETORDERS = HOME + "getuserorderdetail/";
   static String GETAVAILTIME = HOME + "gettimesofday/";
+  static String UPDATEUSERPASS = HOME + "updateruserpass/";
 }
