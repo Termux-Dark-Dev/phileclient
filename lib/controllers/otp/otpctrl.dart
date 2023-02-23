@@ -10,7 +10,6 @@ import 'package:phileclientapp/services/loginandsignup/verifyotpservice.dart';
 class OTPController extends GetxController {
   final formkey = GlobalKey<FormState>();
   late String pin1, pin2, pin3, pin4;
-  late TextEditingController test;
   late String? useremail, password, otp, phonenum, username;
   @override
   void onInit() {

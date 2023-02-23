@@ -57,4 +57,16 @@ class SARServices {
     await prefs.clear();
     return true;
   }
+
+  Future upDateUserEmail(String email) async {
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setString("email", email);
+    return true;
+  }
+
+  Future upDateUserPhone(String phonenum) async {
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setString("phone", phonenum);
+    return true;
+  }
 }

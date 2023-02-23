@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:phileclientapp/common/loader/loader.dart';
 import 'package:phileclientapp/common/snackbars/snackbars.dart';
 import 'package:phileclientapp/services/SAR/sarservices.dart';
+import 'package:phileclientapp/services/loginandsignup/sendotpsrvc.dart';
 
 import '../../services/updates/passupdateservc.dart';
 
@@ -48,6 +49,16 @@ class ProfilePageController extends GetxController {
       } else {
         return null;
       }
+    }
+  }
+
+  String? phoneValidator(String value) {
+    var pattern = r'^[6789]\d{9}$';
+    var regex = RegExp(pattern);
+    if (value.length == 10 && regex.hasMatch(value)) {
+      return null;
+    } else {
+      return 'Please enter 10 digit mobile';
     }
   }
 
@@ -164,9 +175,8 @@ class ProfilePageController extends GetxController {
                 height: 20.h,
               ),
               TextFormField(
-                controller: currpassctrlr,
-                // validator: (value) => controller.emailValidator(value),
-                // onSaved: (newValue) => controller.email = newValue!,
+                keyboardType: TextInputType.number,
+                controller: phonenumctrlr,
                 decoration: InputDecoration(
                   labelText: "New Phone Number",
                   labelStyle: TextStyle(color: Colors.black),
@@ -193,7 +203,34 @@ class ProfilePageController extends GetxController {
                         "Cancel",
                       )),
                   ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () async {
+                        SystemChannels.textInput.invokeMethod('TextInput.hide');
+                        var newphonenum = phonenumctrlr.text;
+                        var isProper = phoneValidator(newphonenum);
+                        if (isProper == null) {
+                          phonenumctrlr.clear();
+                          Get.back();
+
+                          var isOtpSent = await sendOtpToNewMail(email);
+                          if (isOtpSent) {
+                            Get.offAllNamed('/phoneupdateotp', arguments: {
+                              "phonenum": newphonenum,
+                              "email": email
+                            });
+                          } else {
+                            emailctrlr.clear();
+                            Get.back();
+                            SnackBars.customsnack(
+                                "Something Unexpected Occured",
+                                Icons.close,
+                                Colors.red);
+                          }
+                        } else {
+                          phonenumctrlr.clear();
+                          SnackBars.customsnack(
+                              isProper, Icons.close, Colors.red);
+                        }
+                      },
                       icon: Icon(Icons.send),
                       label: Text("Submit")),
                 ],
@@ -227,9 +264,7 @@ class ProfilePageController extends GetxController {
                 height: 20.h,
               ),
               TextFormField(
-                controller: currpassctrlr,
-                // validator: (value) => controller.emailValidator(value),
-                // onSaved: (newValue) => controller.email = newValue!,
+                controller: emailctrlr,
                 decoration: InputDecoration(
                   labelText: "New Email",
                   labelStyle: TextStyle(color: Colors.black),
@@ -249,6 +284,7 @@ class ProfilePageController extends GetxController {
                       style:
                           ElevatedButton.styleFrom(backgroundColor: Colors.red),
                       onPressed: () {
+                        emailctrlr.clear();
                         Get.back();
                       },
                       icon: Icon(Icons.close),
@@ -256,7 +292,31 @@ class ProfilePageController extends GetxController {
                         "Cancel",
                       )),
                   ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () async {
+                        SystemChannels.textInput.invokeMethod('TextInput.hide');
+                        var newemail = emailctrlr.text;
+                        if (!GetUtils.isEmail(newemail)) {
+                          SnackBars.customsnack(
+                              "Enter Valid Email", Icons.close, Colors.red);
+                        } else {
+                          Get.back();
+                          emailctrlr.clear();
+                          var isOtpSent = await sendOtpToNewMail(newemail);
+                          if (isOtpSent) {
+                            Get.offAllNamed('/emailupdateotp', arguments: {
+                              "userid": id,
+                              "newemail": newemail
+                            });
+                          } else {
+                            emailctrlr.clear();
+                            Get.back();
+                            SnackBars.customsnack(
+                                "Something Unexpected Occured",
+                                Icons.close,
+                                Colors.red);
+                          }
+                        }
+                      },
                       icon: Icon(Icons.send),
                       label: Text("Submit")),
                 ],
@@ -293,6 +353,26 @@ class ProfilePageController extends GetxController {
       Get.back();
       SnackBars.customsnack(
           "Something Unexpected Occured", Icons.close, Colors.red);
+    }
+  }
+
+  Future sendOtpToNewMail(String newmail) async {
+    try {
+      SendOtpService obj = SendOtpService();
+      Loader.showLoader(
+          animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
+          title: "Sending Otp");
+      var res = await obj.sendOTP(newmail);
+      Loader.hideLoader();
+      if (res == true) {
+        return true;
+      } else {
+        return false;
+      }
+    } on Exception catch (e) {
+      // TODO
+
+      return false;
     }
   }
 }

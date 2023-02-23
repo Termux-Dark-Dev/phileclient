@@ -3,18 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:phileclientapp/controllers/otp/otpctrl.dart';
+import 'package:phileclientapp/controllers/otp/emailupdateotpctrlr.dart';
 
-class OTPPAGE extends StatelessWidget {
-  OTPController controller = Get.put(OTPController());
+import '../../controllers/otp/phoneupdateotpctrlr.dart';
+
+class PhoneUpdateOTP extends StatelessWidget {
+  PhoneUpdateOTPCtrl controller = Get.put(PhoneUpdateOTPCtrl());
   var args = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    var email = args["email"];
-    controller.useremail = args["email"];
-    controller.password = args["password"];
-    controller.phonenum = args["phone"];
-    controller.username = args["username"];
+    controller.newphonenum = args["phonenum"];
+    controller.email = args["email"];
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -39,7 +38,7 @@ class OTPPAGE extends StatelessWidget {
                 height: 5.h,
               ),
               Text(
-                  'Enter OTP You Recieved On Your Email ${email.toString().substring(0, 4) + "******" + email.toString().substring(email.toString().length - 3, email.toString().length)}'),
+                  'Enter OTP You Recieved On Your Email ${controller.email.toString().substring(0, 4) + "******" + controller.email.toString().substring(controller.email.toString().length - 3, controller.email.toString().length)}'),
               SizedBox(
                 height: 50.h,
               ),
@@ -47,7 +46,7 @@ class OTPPAGE extends StatelessWidget {
                 width: 400.w,
                 height: 40.h,
                 child: Form(
-                  key: controller.formkey,
+                  key: controller.mynewformkey,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -213,7 +212,7 @@ class OTPPAGE extends StatelessWidget {
                   width: 300.w,
                   child: ElevatedButton(
                       onPressed: () async {
-                        await controller.verifyOtp();
+                        await controller.verifyOtpAndUpdatePhone();
                       },
                       child: Text('Continue')))
             ],
