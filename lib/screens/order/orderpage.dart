@@ -15,31 +15,39 @@ class OderHistoryPage extends StatelessWidget {
         backgroundColor: Colors.teal[600],
         title: Text("Your Order"),
       ),
-      body: Obx(() {
-        if (controller.listoforder.length == 0) {
-          return Center(
-              child: ElevatedButton(
-            child: Text("Get Order Details"),
-            onPressed: () => controller.getOrders(),
-          ));
-        }
-        if (controller.listoforder.length == 1) {
-          return Center(
-            child: Text(controller.listoforder[0].toString()),
-          );
-        }
-
-        return ListView.builder(
-            itemCount: controller.listoforder.length,
-            itemBuilder: (context, index) {
-              return MyOrders(
-                date: controller.listoforder[index].servicedate,
-                orderdate: controller.listoforder[index].orderdate,
-                shopname: controller.listoforder[index].storename,
-                serviceopted: controller.listoforder[index].servicesopted,
+      body: RefreshIndicator(
+        onRefresh: controller.getOrders,
+        child: Container(
+          child: Obx(() {
+            if (controller.listoforder.length == 0) {
+              return Center(
+                  child: ElevatedButton(
+                child: Text("Get Order Details"),
+                onPressed: () => controller.getOrders(),
+              ));
+            }
+            if (controller.listoforder[0] == "Something Unexpected Occured" ||
+                controller.listoforder[0] ==
+                    "You Have Not Booked Any Services Yet" ||
+                controller.listoforder[0] == "Internal Server Error") {
+              return Center(
+                child: Text(controller.listoforder[0].toString()),
               );
-            });
-      }),
+            }
+
+            return ListView.builder(
+                itemCount: controller.listoforder.length,
+                itemBuilder: (context, index) {
+                  return MyOrders(
+                    date: controller.listoforder[index].servicedate,
+                    orderdate: controller.listoforder[index].orderdate,
+                    shopname: controller.listoforder[index].storename,
+                    serviceopted: controller.listoforder[index].servicesopted,
+                  );
+                });
+          }),
+        ),
+      ),
       backgroundColor: Color(0xFFf7f7f7),
     );
   }
@@ -157,7 +165,7 @@ class MyOrders extends StatelessWidget {
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14.sp),
-                              maxLines: 3,
+                              maxLines: 4,
                             ),
                           ),
                           SizedBox(

@@ -7,6 +7,7 @@ import 'package:phileclientapp/screens/loginsignup/signup.dart';
 import 'package:phileclientapp/screens/otp/emailupdateotp.dart';
 import 'package:phileclientapp/screens/otp/otp.dart';
 import 'package:phileclientapp/screens/otp/phoneupdateotp.dart';
+import 'package:phileclientapp/screens/services/services.dart';
 
 import '../screens/order/orderpage.dart';
 
@@ -20,6 +21,7 @@ class RouterClass {
     GetPage(name: '/orderhistory', page: () => OderHistoryPage()),
     GetPage(name: '/booktimeslot', page: () => SelectDateAndTime()),
     GetPage(name: '/emailupdateotp', page: () => EmailUpdateOTP()),
-    GetPage(name: '/phoneupdateotp', page: () => PhoneUpdateOTP())
+    GetPage(name: '/phoneupdateotp', page: () => PhoneUpdateOTP()),
+    GetPage(name: '/services', page: () => ServicePage())
   ];
 }

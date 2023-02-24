@@ -372,6 +372,12 @@ class SelectDateAndTime extends StatelessWidget {
                       if (controller.btncolor.value != Colors.grey) {
                         print(controller.time_selected);
                         print(controller.date_selected);
+                        Get.toNamed("/services", arguments: {
+                          "storeid": controller.store_id,
+                          "userid": controller.userid,
+                          "selecteddate": controller.date_selected.value,
+                          "selectedtime": controller.time_selected
+                        });
                       }
                     },
                     child: Obx(() => Container(

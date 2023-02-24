@@ -173,7 +173,11 @@ class DateAndTimeController extends GetxController {
       // todo empty list show all time to user no prev booked time
       if (date == DateTime.now().toString().substring(0, 11)) {
         var list = Extratime();
-        bookedtime.value = list;
+        if (list.isEmpty) {
+          bookedtime.value = [1];
+        } else {
+          bookedtime.value = list;
+        }
       } else {
         bookedtime.value = [1];
       }
