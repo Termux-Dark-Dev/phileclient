@@ -25,6 +25,16 @@ class ProfilePageController extends GetxController {
       phone = userdetails["phone"];
       email = userdetails["email"];
       id = userdetails["id"];
+
+      var x = usrname;
+      var s = "";
+      for (var i in x.split(" ")) {
+        var z = i.trim();
+        if (z.length > 1) {
+          s = s + z + " ";
+        }
+      }
+      usrname = s;
       return true;
     } else {
       return false;
@@ -35,7 +45,7 @@ class ProfilePageController extends GetxController {
     SARServices obj = SARServices();
     var res = await obj.logoutUser();
     if (res == true) {
-      Get.offAndToNamed('/login');
+      Get.offAllNamed("/login");
     }
   }
 

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
+import 'package:marquee/marquee.dart';
 import 'package:phileclientapp/common/snackbars/snackbars.dart';
 
 import '../../controllers/dateandtimeselect/dateandtimectrl.dart';
@@ -18,6 +20,7 @@ class SelectDateAndTime extends StatelessWidget {
     controller.store_id = args["storeid"];
     controller.userid = args["userid"];
     controller.storename = args["storename"];
+    controller.storeaddr = args["addr"];
 
     return SafeArea(
       child: Scaffold(
@@ -39,13 +42,25 @@ class SelectDateAndTime extends StatelessWidget {
                 Container(
                   height: 100.h,
                   width: size.width,
-                  child: Center(
-                    child: Text(
-                      controller.storename.toString(),
-                      style: TextStyle(fontSize: 20.sp),
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        controller.storename.toString(),
+                        style: TextStyle(fontSize: 20.sp),
+                      ),
+                      Expanded(
+                        child: Marquee(
+                          text: controller.storeaddr.toString(),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                Divider(),
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 10.w),
@@ -76,30 +91,47 @@ class SelectDateAndTime extends StatelessWidget {
                                 controller.date_selected.value);
                           }
                         },
-                        child: CircleAvatar(
-                          backgroundColor: Colors.teal,
-                          radius: 30.sp,
-                          child: Icon(
-                            size: 30.sp,
-                            Icons.calendar_today,
-                            color: Colors.white,
-                          ),
+                        child: Container(
+                          height: 100.h,
+                          width: 150.w,
+                          padding: EdgeInsets.only(left: 10.w),
+                          // color: Colors.black,
+                          alignment: Alignment.center,
+                          child: Stack(alignment: Alignment.center, children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.teal,
+                              radius: 40.sp,
+                              child: Icon(
+                                size: 40.sp,
+                                Icons.calendar_today,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Lottie.asset("assets/lottieefiles/click.json"),
+                          ]),
                         ),
                       ),
                       Obx(() {
                         return Visibility(
                           visible: controller.isVisible.value,
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 30.w),
-                            child: Container(
-                              width: 200.w,
-                              height: 50.h,
-                              color: Colors.teal,
-                              child: Center(
-                                child: Text(
-                                  controller.date_selected.toString(),
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20.sp),
+                          child: Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.teal[400],
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8))),
+                                width: 200.w,
+                                height: 50.h,
+                                child: Center(
+                                  child: Text(
+                                    controller.date_selected.toString(),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20.sp,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
                             ),
@@ -143,8 +175,8 @@ class SelectDateAndTime extends StatelessWidget {
                         shrinkWrap: true,
                         physics: ScrollPhysics(),
                         itemCount: controller.timings.length,
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
                             mainAxisSpacing: 0,
                             mainAxisExtent: 90),
                         itemBuilder: (context, index) {
@@ -257,8 +289,8 @@ class SelectDateAndTime extends StatelessWidget {
                           physics: ScrollPhysics(),
                           itemCount: controller.timings.length,
                           gridDelegate:
-                              SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 150,
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
                                   mainAxisSpacing: 0,
                                   mainAxisExtent: 90),
                           itemBuilder: (context, index) {
@@ -383,7 +415,10 @@ class SelectDateAndTime extends StatelessWidget {
                     child: Obx(() => Container(
                           height: 50.h,
                           width: size.width,
-                          color: controller.btncolor.value,
+                          margin: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              color: controller.btncolor.value,
+                              borderRadius: BorderRadius.circular(8)),
                           child: Center(
                             child: Text(
                               "Continue",

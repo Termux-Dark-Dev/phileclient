@@ -156,7 +156,7 @@ class DateAndTimeController extends GetxController {
   ];
   var isVisible = false.obs;
   var changedtiming = false.obs;
-  late String store_id, userid, storename;
+  late String store_id, userid, storename, storeaddr;
   var bookedtime = [].obs;
   var date_selected = "Select Date Of Appointment".obs;
   var time_selected = "";
@@ -236,7 +236,7 @@ class DateAndTimeController extends GetxController {
         list.add(DateFormat('h:mm a').format(i["date"] as DateTime));
       } else {}
     }
-    print(list);
+
     return list;
   }
 }

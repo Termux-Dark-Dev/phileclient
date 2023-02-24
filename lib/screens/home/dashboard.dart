@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:marquee/marquee.dart';
 import 'package:phileclientapp/controllers/homepage/dashBoardctrl.dart';
 import 'package:phileclientapp/screens/home/dashboardcomponent/dateandtimesheet.dart';
 
@@ -81,7 +82,7 @@ class DashBoard extends GetView {
               padding: EdgeInsets.only(left: 10),
               height: 40.h,
               width: size.width,
-              child: Text("Search the service you want",
+              child: Text("Please select the store for booking",
                   style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.grey[800],
@@ -114,10 +115,28 @@ class DashBoard extends GetView {
                   child: Obx(() {
                     if (controller.listofstores.length == 0) {
                       return Center(
-                          child: Lottie.asset(
-                              'assets/lottieefiles/loading.json',
-                              width: 60.w,
-                              height: 60.h));
+                        child: Container(
+                          width: size.width * 0.7,
+                          height: 300.h,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Lottie.asset('assets/lottieefiles/loading.json',
+                                  width: 150.w, height: 150.h),
+                              Text(
+                                "Searching Stores Near You",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              )
+                            ],
+                          ),
+                        ),
+                      );
                     }
                     if (controller.listofstores.length == 1) {
                       return Container(
@@ -130,7 +149,7 @@ class DashBoard extends GetView {
                             ),
                             ElevatedButton(
                                 onPressed: () async {
-                                  await controller.getStoreData(
+                                  await controller.getStoreDataWithPopUP(
                                       controller.latitude,
                                       controller.longitude);
                                 },
@@ -153,7 +172,8 @@ class DashBoard extends GetView {
                                   "userid": controller.userid,
                                   "storeid": storeid,
                                   "storename":
-                                      controller.listofstores[index].name
+                                      controller.listofstores[index].name,
+                                  "addr": controller.listofstores[index].address
                                 });
                               },
                               child: Card(
@@ -227,15 +247,14 @@ class DashBoard extends GetView {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Expanded(
-                                            child: Container(
-                                          margin:
-                                              EdgeInsets.fromLTRB(5, 0, 0, 5),
-                                          child: SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: Text(
-                                                'Addr : ${controller.listofstores[index].address}'),
-                                          ),
-                                        )),
+                                          child: Container(
+                                              width: 100.w,
+                                              height: 50.h,
+                                              child: Marquee(
+                                                text:
+                                                    ' Addr : ${controller.listofstores[index].address}     ',
+                                              )),
+                                        ),
                                         SizedBox(
                                           width: 20,
                                         ),
@@ -251,7 +270,22 @@ class DashBoard extends GetView {
                                           ),
                                           child: Center(
                                             child: ElevatedButton.icon(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                var storeid = controller
+                                                    .listofstores[index].id;
+                                                Get.toNamed("/booktimeslot",
+                                                    arguments: {
+                                                      "userid":
+                                                          controller.userid,
+                                                      "storeid": storeid,
+                                                      "storename": controller
+                                                          .listofstores[index]
+                                                          .name,
+                                                      "addr": controller
+                                                          .listofstores[index]
+                                                          .address
+                                                    });
+                                              },
                                               icon: Icon(Icons.ads_click),
                                               style: ElevatedButton.styleFrom(
                                                   primary: Colors.green),

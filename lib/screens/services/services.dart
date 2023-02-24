@@ -97,18 +97,18 @@ class ServicePage extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 15.h),
               child: Obx(() {
                 if (controller.isOK.value == true) {
-                  return Container(
-                    height: 50.h,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    color: Colors.teal,
-                    child: GestureDetector(
-                      onTap: () async {
-                        var bookedlist = controller.bookServices();
-                        await controller.bookService(bookedlist);
-                      },
+                  return GestureDetector(
+                    onTap: () async {
+                      var bookedlist = controller.bookServices();
+                      await controller.bookService(bookedlist);
+                    },
+                    child: Container(
+                      height: 50.h,
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      color: Colors.teal,
                       child: Center(
                         child: Text(
-                          "Book",
+                          "Book Order",
                           style:
                               TextStyle(fontSize: 25.sp, color: Colors.white),
                         ),

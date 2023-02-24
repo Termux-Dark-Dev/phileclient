@@ -72,10 +72,10 @@ class SignupControl extends GetxController {
   }
 
   String? userNameValidator(String value) {
-    if (value.length > 5 && value.length < 20) {
+    if (value.length > 2 && value.length < 20) {
       return null;
     } else {
-      return "Enter Your Full Name Upto 20 Characters";
+      return "Please Enter Name Between 3 to 20 Characters";
     }
   }
 

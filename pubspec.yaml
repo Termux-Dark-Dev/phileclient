@@ -39,6 +39,7 @@ dependencies:
   geolocator:
   expandable_bottom_sheet: ^1.1.1+1
   intl: ^0.18.0
+  marquee: ^2.2.3
   
 
 
