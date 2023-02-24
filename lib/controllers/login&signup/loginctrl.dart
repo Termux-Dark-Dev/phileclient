@@ -36,7 +36,7 @@ class LoginCtrl extends GetxController {
     if (GetUtils.isEmail(value!)) {
       return null;
     } else {
-      return "Enter Valid Email";
+      return "Please Enter Valid Email";
     }
   }
 
@@ -44,10 +44,10 @@ class LoginCtrl extends GetxController {
     RegExp regex =
         RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (value!.isEmpty) {
-      return "Enter password";
+      return "Please Enter Valid password";
     } else {
       if (!regex.hasMatch(value)) {
-        return "Enter Valid Password";
+        return "Please Enter Valid Password";
       } else {
         return null;
       }

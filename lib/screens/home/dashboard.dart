@@ -35,7 +35,15 @@ class DashBoard extends GetView {
                       future: controller.sobj.getUserName(),
                       builder: (ctx, snp) {
                         if (snp.hasData) {
-                          var username = snp.data as String;
+                          var x = snp.data as String;
+                          var username = "";
+                          for (var i in x.split(" ")) {
+                            var z = i.trim();
+                            if (z.length > 1) {
+                              username = username + i;
+                              break;
+                            }
+                          }
                           return Text(
                             "Hello, $username",
                             style: TextStyle(
@@ -61,7 +69,7 @@ class DashBoard extends GetView {
                       textController: controller.searchctrl,
                       onSuffixTap: () {},
                       onSubmitted: (value) {},
-                      helpText: "Search For Your Fav Stores",
+                      helpText: "Please select the store for booking",
                       color: Colors.teal,
                       searchIconColor: Colors.white,
                     ),
@@ -138,127 +146,128 @@ class DashBoard extends GetView {
                           return Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 3, horizontal: 12),
-                            child: Card(
-                              elevation: 8,
-                              shadowColor: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.only(
-                                            left: 8,
-                                            top: 5.0,
-                                            bottom: 5.0,
-                                            right: 8),
-                                        height: 200.0,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.83,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Color.fromARGB(
-                                              255, 255, 255, 255),
-                                          image: DecorationImage(
-                                            image: NetworkImage(controller
-                                                        .listofstores[index]
-                                                        .storeimage ==
-                                                    ""
-                                                ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU'
-                                                : controller.listofstores[index]
-                                                    .storeimage),
-                                            fit: BoxFit.cover,
+                            child: GestureDetector(
+                              onTap: () {
+                                var storeid = controller.listofstores[index].id;
+                                Get.toNamed("/booktimeslot", arguments: {
+                                  "userid": controller.userid,
+                                  "storeid": storeid,
+                                  "storename":
+                                      controller.listofstores[index].name
+                                });
+                              },
+                              child: Card(
+                                elevation: 8,
+                                shadowColor: Colors.black,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              left: 8,
+                                              top: 5.0,
+                                              bottom: 5.0,
+                                              right: 8),
+                                          height: 200.0,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.83,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            image: DecorationImage(
+                                              image: NetworkImage(controller
+                                                          .listofstores[index]
+                                                          .storeimage ==
+                                                      ""
+                                                  ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU'
+                                                  : controller
+                                                      .listofstores[index]
+                                                      .storeimage),
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          height: 80,
-                                          width: 100,
-                                          child: Center(
-                                            child: Text(
-                                              controller
-                                                  .listofstores[index].name,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18.0,
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            height: 80,
+                                            width: 100,
+                                            child: Center(
+                                              child: Text(
+                                                controller
+                                                    .listofstores[index].name,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18.0,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Expanded(
-                                          child: Container(
-                                        margin: EdgeInsets.fromLTRB(5, 0, 0, 5),
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          child: Text(
-                                              'Addr : ${controller.listofstores[index].address}'),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Expanded(
+                                            child: Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(5, 0, 0, 5),
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Text(
+                                                'Addr : ${controller.listofstores[index].address}'),
+                                          ),
+                                        )),
+                                        SizedBox(
+                                          width: 20,
                                         ),
-                                      )),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.only(
-                                            bottom: 5.0, top: 5),
-                                        width: 130.0,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(9.0)),
-                                        ),
-                                        child: Center(
-                                          child: ElevatedButton.icon(
-                                            onPressed: () {
-                                              var storeid = controller
-                                                  .listofstores[index].id;
-                                              Get.toNamed("/booktimeslot",
-                                                  arguments: {
-                                                    "userid": controller.userid,
-                                                    "storeid": storeid,
-                                                    "storename": controller
-                                                        .listofstores[index]
-                                                        .name
-                                                  });
-                                              // DateAndTimeSheetSelector obj =
-                                              //     DateAndTimeSheetSelector();
-                                              // obj.showDateAndTime(
-                                              //     context, size);
-                                            },
-                                            icon: Icon(Icons.ads_click),
-                                            style: ElevatedButton.styleFrom(
-                                                primary: Colors.green),
-                                            label: Text(
-                                              "Book Now",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12.sp),
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              bottom: 5.0, top: 5),
+                                          width: 130.0,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(9.0)),
+                                          ),
+                                          child: Center(
+                                            child: ElevatedButton.icon(
+                                              onPressed: () {},
+                                              icon: Icon(Icons.ads_click),
+                                              style: ElevatedButton.styleFrom(
+                                                  primary: Colors.green),
+                                              label: Text(
+                                                "Book Now",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12.sp),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           );

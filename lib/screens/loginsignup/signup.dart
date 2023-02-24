@@ -35,29 +35,14 @@ class SignupPage extends StatelessWidget {
                     SizedBox(
                       height: 30.h,
                     ),
-                    TextFormField(
-                      controller: controller.emailcontroller,
-                      validator: (value) => controller.emailValidator(value),
-                      onSaved: (newValue) => controller.email = newValue!,
-                      decoration: InputDecoration(
-                        labelText: "Email",
-                        labelStyle: TextStyle(color: Colors.black),
-                        border: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40.h,
-                    ),
+                    // username
                     TextFormField(
                       controller: controller.usernamectrl,
                       validator: (value) =>
                           controller.userNameValidator(value!),
                       onSaved: (newValue) => controller.username = newValue!,
                       decoration: InputDecoration(
-                        labelText: "Username",
+                        labelText: "Name",
                         labelStyle: TextStyle(color: Colors.black),
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
@@ -68,6 +53,7 @@ class SignupPage extends StatelessWidget {
                     SizedBox(
                       height: 40.h,
                     ),
+                    //phone
                     TextFormField(
                       keyboardType: TextInputType.number,
                       controller: controller.phonecontroller,
@@ -85,6 +71,24 @@ class SignupPage extends StatelessWidget {
                     SizedBox(
                       height: 40.h,
                     ),
+                    //email
+                    TextFormField(
+                      controller: controller.emailcontroller,
+                      validator: (value) => controller.emailValidator(value),
+                      onSaved: (newValue) => controller.email = newValue!,
+                      decoration: InputDecoration(
+                        labelText: "Email",
+                        labelStyle: TextStyle(color: Colors.black),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    //password
                     Obx(() => TextFormField(
                           obscureText: controller.ispassHidden.value,
                           controller: controller.passcontroller,
@@ -122,7 +126,7 @@ class SignupPage extends StatelessWidget {
                             minWidth: MediaQuery.of(context).size.width * 0.90),
                         child: ElevatedButton(
                           child: Text(
-                            "Continue",
+                            "Submit",
                             style:
                                 TextStyle(fontSize: 18.sp, color: Colors.white),
                           ),
@@ -133,10 +137,6 @@ class SignupPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8.sp))),
                           onPressed: () async {
                             await controller.signup();
-                            controller.emailcontroller.clear();
-                            controller.passcontroller.clear();
-                            controller.phonecontroller.clear();
-                            controller.usernamectrl.clear();
                           },
                         )),
                     SizedBox(
@@ -145,7 +145,7 @@ class SignupPage extends StatelessWidget {
                     RichText(
                       text: TextSpan(children: [
                         TextSpan(
-                            text: "old user ? ,",
+                            text: "Existing user ? ,",
                             style: TextStyle(
                                 color: Colors.black, fontSize: 18.sp)),
                         TextSpan(

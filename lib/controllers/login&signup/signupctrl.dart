@@ -44,14 +44,14 @@ class SignupControl extends GetxController {
     if (GetUtils.isEmail(value!)) {
       return null;
     } else {
-      return "Enter Valid Email";
+      return "Please Enter Valid Email Id";
     }
   }
 
   String? passValidator(String? value) {
     RegExp regex = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,16}$');
     if (value!.isEmpty) {
-      return "Enter password";
+      return "Please Enter Alphanumeric Password Between 8 to 16";
     } else {
       if (!regex.hasMatch(value)) {
         return "Please Enter Alphanumeric Password Between 8 to 16";
@@ -72,14 +72,10 @@ class SignupControl extends GetxController {
   }
 
   String? userNameValidator(String value) {
-    String pattern = r'^[a-zA-Z0-9_@]*$';
-    RegExp regExp = new RegExp(pattern);
-    if (value.length > 5 && value.length < 9) {
+    if (value.length > 5 && value.length < 20) {
       return null;
-    } else if (!regExp.hasMatch(value)) {
-      return "String Should Be AlphaNumeric eg:@user2_7";
     } else {
-      return "Enter Valid Alphanumeric Username >=6 and <9";
+      return "Enter Your Full Name Upto 20 Characters";
     }
   }
 
@@ -88,6 +84,10 @@ class SignupControl extends GetxController {
     if (isValid) {
       signupformkey.currentState!.save();
       SendOtpService obj = SendOtpService();
+      emailcontroller.clear();
+      passcontroller.clear();
+      phonecontroller.clear();
+      usernamectrl.clear();
       Loader.showLoader(
           animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
           title: "Sending OTP");

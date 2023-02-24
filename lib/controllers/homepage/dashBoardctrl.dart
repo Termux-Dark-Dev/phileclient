@@ -34,9 +34,6 @@ class DashBoardController extends GetxController {
     // TODO: implement onReady
     super.onReady();
     await _getCurrentLocation().then((value) async {
-      print(value.accuracy);
-      print("latitude : " + value.latitude.toString());
-      print("longitude : " + value.longitude.toString());
       latitude = value.latitude.toString();
       longitude = value.longitude.toString();
     });
@@ -52,7 +49,12 @@ class DashBoardController extends GetxController {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
+      // LocationErrur.locatinodeniedForever();
       if (permission == LocationPermission.deniedForever) {
+        LocationErrur.locatinodeniedForever();
+        return Future.error('Location Permission are forever denied');
+      }
+      if (permission == LocationPermission.denied) {
         LocationErrur.locatinodeniedForever();
         return Future.error('Location Permission are forever denied');
       }

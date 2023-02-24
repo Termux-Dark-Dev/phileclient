@@ -106,7 +106,7 @@ class Login extends StatelessWidget {
                     RichText(
                       text: TextSpan(children: [
                         TextSpan(
-                          text: "i am new user ,  ",
+                          text: "New User ? , ",
                           style:
                               TextStyle(color: Colors.black, fontSize: 15.sp),
                         ),
