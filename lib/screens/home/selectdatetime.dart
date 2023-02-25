@@ -1,13 +1,10 @@
 import 'dart:ui';
-
-import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee/marquee.dart';
-import 'package:phileclientapp/common/snackbars/snackbars.dart';
 
 import '../../controllers/dateandtimeselect/dateandtimectrl.dart';
 
@@ -44,67 +41,77 @@ class SelectDateAndTime extends StatelessWidget {
                   Container(
                     height: 100.h,
                     width: size.width,
+                    // color: Colors.teal,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        SizedBox(
-                          height: 10.h,
-                        ),
+                       
                         Expanded(
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 80.h,
-                                  width: 100.h,
-                                  child: Center(
-                                    child: Text(
-                                      "Name : ",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black,
-                                          fontSize: 20.sp),
+                          child: Card(
+                            color: Colors.teal,
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 80.h,
+                                    width: 100.h,
+                                    child: Center(
+                                      child: Text(
+                                        "Name : ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            fontSize: 20.sp),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    child: Marquee(
-                                      text: controller.storename.toString() +
-                                          "                                                     ",
+                                  Expanded(
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Container(
+                                          child: Text(
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                              controller.storename.toString())),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         Expanded(
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 80.h,
-                                  width: 100.h,
-                                  child: Center(
-                                    child: Text(
-                                      "Address : ",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black,
-                                          fontSize: 20.sp),
+                          child: Card(
+                            color: Colors.teal,
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 80.h,
+                                    width: 100.h,
+                                    child: Center(
+                                      child: Text(
+                                        "Address : ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            fontSize: 20.sp),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    child: Marquee(
-                                      text: controller.storeaddr.toString() +
-                                          "                                                     ",
+                                  Expanded(
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Container(
+                                          child: Text(
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                              controller.storeaddr.toString())),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -115,12 +122,13 @@ class SelectDateAndTime extends StatelessWidget {
                   Container(
                     alignment: Alignment.topLeft,
                     padding: EdgeInsets.only(left: 10.w),
-                    height: 100.h,
+                    height: 40.h,
                     width: size.width,
                     child: Text("Select Date Of Appointment",
-                        style: TextStyle(fontSize: 20.sp)),
+                        style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold)),
                   ),
                   Container(
+                    // color: Colors.amber,
                     height: 100.h,
                     width: size.width,
                     child: Row(
@@ -160,7 +168,8 @@ class SelectDateAndTime extends StatelessWidget {
                                   color: Colors.white,
                                 ),
                               ),
-                              Lottie.asset("assets/lottieefiles/click.json"),
+                              Lottie.asset("assets/lottieefiles/click.json",
+                                  height: 200, width: 200),
                             ]),
                           ),
                         ),

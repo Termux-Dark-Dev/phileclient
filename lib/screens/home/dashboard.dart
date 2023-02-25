@@ -63,18 +63,20 @@ class DashBoard extends GetView {
                   //   foregroundImage: NetworkImage(
                   //       "https://img.icons8.com/material-two-tone/256/search.png"),
                   // )
-                  Expanded(
-                    child: AnimSearchBar(
-                      rtl: true,
-                      width: size.width * 0.95,
-                      textController: controller.searchctrl,
-                      onSuffixTap: () {},
-                      onSubmitted: (value) {},
-                      helpText: "Please select the store for booking",
-                      color: Colors.teal,
-                      searchIconColor: Colors.white,
-                    ),
-                  )
+
+                  //search bar
+                  // Expanded(
+                  //   child: AnimSearchBar(
+                  //     rtl: true,
+                  //     width: size.width * 0.95,
+                  //     textController: controller.searchctrl,
+                  //     onSuffixTap: () {},
+                  //     onSubmitted: (value) {},
+                  //     helpText: "Please select the store for booking",
+                  //     color: Colors.teal,
+                  //     searchIconColor: Colors.white,
+                  //   ),
+                  // )
                 ],
               ),
             ),
@@ -164,7 +166,7 @@ class DashBoard extends GetView {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: 3, horizontal: 12),
+                                vertical: 3.h, horizontal: 8.w),
                             child: GestureDetector(
                               onTap: () {
                                 var storeid = controller.listofstores[index].id;
@@ -203,7 +205,7 @@ class DashBoard extends GetView {
                                               0.83,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(10.0),
+                                                BorderRadius.circular(8.0),
                                             color: Color.fromARGB(
                                                 255, 255, 255, 255),
                                             image: DecorationImage(
@@ -248,15 +250,35 @@ class DashBoard extends GetView {
                                       children: [
                                         Expanded(
                                           child: Container(
-                                              width: 100.w,
+                                              width: 120.w,
                                               height: 50.h,
-                                              child: Marquee(
-                                                text:
-                                                    ' Addr : ${controller.listofstores[index].address}     ',
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    alignment: Alignment.center,
+                                                    width: 62.w,
+                                                    child: Text(
+                                                      "Address:",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color:
+                                                              Colors.teal[900],
+                                                          fontSize: 15.sp),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                      child: Container(
+                                                    child: Marquee(
+                                                      text:
+                                                          '${controller.listofstores[index].address}            ',
+                                                    ),
+                                                  ))
+                                                ],
                                               )),
                                         ),
                                         SizedBox(
-                                          width: 20,
+                                          width: 2.w,
                                         ),
                                         Container(
                                           margin: EdgeInsets.only(

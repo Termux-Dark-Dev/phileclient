@@ -12,87 +12,116 @@ class OrderDonePage extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 160.h,
-              width: size.width,
-              child: Center(
-                  child: Lottie.asset('assets/lottieefiles/bokked.json',
-                      height: 200.h, width: 200.w)),
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Container(
-              child: Text(
-                "Booking Succesful",
-                style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Container(
-              child: Text(
-                "Please Visit Below Store To Avail Your Service",
-                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                " Name : ${storename.toString()}",
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.teal,
-                    fontSize: 16.sp),
-              ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              alignment: Alignment.center,
-              child: Text(
-                "Address : ${storeaddr.toString()}",
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.teal,
-                    fontSize: 16.sp),
-              ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Container(
-              height: 200.h,
-              width: size.width,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          minimumSize: Size(size.width * 0.7, 60.h)),
-                      onPressed: () {
-                        Get.offAllNamed("/home");
-                      },
-                      child: Text(
-                        "Go Back To HomePage",
-                        style: TextStyle(
-                          wordSpacing: 1,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Card(
+                child: Container(
+                    height: 400.h,
+                    width: size.width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                            child: Lottie.asset(
+                                'assets/lottieefiles/bokked.json',
+                                height: 180.h,
+                                width: 180.w,
+                                repeat: true)),
+                        Container(
+                          child: Text(
+                            "Booking Succesful",
+                            style: TextStyle(
+                                fontSize: 25.sp, fontWeight: FontWeight.bold),
+                          ),
                         ),
-                      )),
-                ],
+                        SizedBox(
+                          height: 30.h,
+                        ),
+                        Container(
+                          child: Text(
+                            "Please Visit Below Store To Avail Your Service",
+                            style: TextStyle(
+                                fontSize: 16.sp, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    )),
               ),
-            )
-          ],
+              SizedBox(
+                height: 30.h,
+              ),
+              SizedBox(
+                height: 30.h,
+              ),
+              SizedBox(
+                height: 30.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Card(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    alignment: Alignment.center,
+                    color: Colors.teal[400],
+                    child: Text(
+                      " Name : ${storename.toString()}",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontSize: 16.sp),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Card(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    color: Colors.teal[400],
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Address : ${storeaddr.toString()}",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontSize: 16.sp),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Container(
+                height: 200.h,
+                width: size.width,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size(size.width * 0.7, 60.h)),
+                        onPressed: () {
+                          Get.offAllNamed("/home");
+                        },
+                        child: Text(
+                          "Go Back To HomePage",
+                          style: TextStyle(
+                            wordSpacing: 1,
+                          ),
+                        )),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

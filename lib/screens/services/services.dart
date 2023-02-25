@@ -63,9 +63,11 @@ class ServicePage extends StatelessWidget {
                                   .toString(),
                               style: TextStyle(
                                   fontSize: 18.sp,
-                                  color: Colors
-                                      .white //controller.servicesList[index]["isSelected"] ==true? Colors.white: Colors.white
-                                  ),
+                                  color: controller.servicesList[index]
+                                              ["isSelected"] ==
+                                          true
+                                      ? Colors.black
+                                      : Colors.white),
                             ),
                             onPressed: () {
                               if (controller.servicesList[index]

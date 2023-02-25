@@ -55,11 +55,6 @@ class ServicesController extends GetxController {
       "isSelected": false
     },
     {
-      "serviceName": "Waxing",
-      "icons": 'assets/icon/waxing.jpg',
-      "isSelected": false
-    },
-    {
       "serviceName": "Combing",
       "icons": 'assets/icon/combing.jpg',
       "isSelected": false

@@ -49,10 +49,10 @@ class LoginCtrl extends GetxController {
   String? passValidator(String? value) {
     RegExp regex = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,16}$');
     if (value!.isEmpty) {
-      return "Please Enter Valid Alphanumeric Password Between 8 to 16";
+      return "Please Enter Valid Alphanumeric Password Between 8 - 16";
     } else {
       if (!regex.hasMatch(value)) {
-        return "Please Enter Valid Alphanumeric Password Between 8 to 16";
+        return "Please Enter Valid Alphanumeric Password Between 8 - 16";
       } else {
         return null;
       }

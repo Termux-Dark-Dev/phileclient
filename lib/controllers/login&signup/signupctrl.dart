@@ -51,10 +51,10 @@ class SignupControl extends GetxController {
   String? passValidator(String? value) {
     RegExp regex = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,16}$');
     if (value!.isEmpty) {
-      return "Please Enter Alphanumeric Password Between 8 to 16";
+      return "Please Enter Alphanumeric Password Between 8 - 16";
     } else {
       if (!regex.hasMatch(value)) {
-        return "Please Enter Alphanumeric Password Between 8 to 16";
+        return "Please Enter Alphanumeric Password Between 8 - 16";
       } else {
         return null;
       }
@@ -72,10 +72,10 @@ class SignupControl extends GetxController {
   }
 
   String? userNameValidator(String value) {
-    if (value.length > 2 && value.length < 20) {
+    if (value.length > 2 && value.length < 21) {
       return null;
     } else {
-      return "Please Enter Name Between 3 to 20 Characters";
+      return "Please Enter Name Between 3 - 20 Characters";
     }
   }
 
