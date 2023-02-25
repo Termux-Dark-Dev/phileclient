@@ -17,6 +17,7 @@ class OrderController extends GetxController {
     super.onInit();
     obj = SARServices();
     id = await obj.getUserId();
+    await getOrders();
   }
 
   @override
@@ -27,12 +28,35 @@ class OrderController extends GetxController {
 
   Future getOrders() async {
     UserOrderService obj1 = UserOrderService();
+    // Loader.showLoader(
+    //     animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
+    //     title: "Fetching Your Orders");
+    var res = await obj1.getOrderdetails(id);
+    // Loader.hideLoader();
+    // print(res);
+    if (res == false) {
+      listoforder.value = ["Internal Server Error"];
+      SnackBars.customsnack(
+          "Internal Server Error", Icons.close, Colors.red[800]!);
+    } else if (res is String) {
+      listoforder.value = ["Something Unexpected Occured"];
+      SnackBars.customsnack(
+          "Something Unexpected Occured", Icons.close, Colors.red[800]!);
+    } else if (res == null) {
+      listoforder.value = ["You Have Not Booked Any Services Yet"];
+    } else {
+      listoforder.value = res!;
+    }
+  }
+
+  Future getOrdersWithPopUp() async {
+    UserOrderService obj1 = UserOrderService();
     Loader.showLoader(
         animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
         title: "Fetching Your Orders");
     var res = await obj1.getOrderdetails(id);
     Loader.hideLoader();
-    print(res);
+    // print(res);
     if (res == false) {
       listoforder.value = ["Internal Server Error"];
       SnackBars.customsnack(

@@ -40,28 +40,23 @@ class ServicePage extends StatelessWidget {
                             backgroundColor: controller.servicesList[index]
                                         ["isSelected"] ==
                                     true
-                                ? Colors.white
-                                : Colors.teal,
+                                ? Colors.teal
+                                : Colors.teal[300],
                             avatar: Icon(
                               controller.servicesList[index]["icons"]
                                   as IconData,
                               size: 20.sp,
-                              color: controller.servicesList[index]
-                                          ["isSelected"] ==
-                                      true
-                                  ? Colors.teal
-                                  : Colors.white,
+                              color: Colors
+                                  .white, //controller.servicesList[index]["isSelected"] ==true? Colors.white: Colors.white
                             ),
                             label: Text(
                               controller.servicesList[index]["serviceName"]
                                   .toString(),
                               style: TextStyle(
                                   fontSize: 18.sp,
-                                  color: controller.servicesList[index]
-                                              ["isSelected"] ==
-                                          true
-                                      ? Colors.teal
-                                      : Colors.white),
+                                  color: Colors
+                                      .white //controller.servicesList[index]["isSelected"] ==true? Colors.white: Colors.white
+                                  ),
                             ),
                             onPressed: () {
                               if (controller.servicesList[index]
@@ -103,9 +98,11 @@ class ServicePage extends StatelessWidget {
                       await controller.bookService(bookedlist);
                     },
                     child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.teal,
+                          borderRadius: BorderRadius.circular(8)),
                       height: 50.h,
                       width: MediaQuery.of(context).size.width * 0.8,
-                      color: Colors.teal,
                       child: Center(
                         child: Text(
                           "Book Order",
@@ -117,14 +114,16 @@ class ServicePage extends StatelessWidget {
                   );
                 } else {
                   return Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(8)),
                     height: 50.h,
                     width: MediaQuery.of(context).size.width * 0.8,
-                    color: Colors.grey,
                     child: GestureDetector(
                       onTap: () {},
                       child: Center(
                         child: Text(
-                          "Book",
+                          "Book Order",
                           style:
                               TextStyle(fontSize: 25.sp, color: Colors.white),
                         ),

@@ -48,13 +48,62 @@ class SelectDateAndTime extends StatelessWidget {
                       SizedBox(
                         height: 10.h,
                       ),
-                      Text(
-                        controller.storename.toString(),
-                        style: TextStyle(fontSize: 20.sp),
+                      Expanded(
+                        child: Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 80.h,
+                                width: 100.h,
+                                child: Center(
+                                  child: Text(
+                                    "Name : ",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                        fontSize: 20.sp),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: Marquee(
+                                    text: controller.storename.toString() +
+                                        "                                                     ",
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                       Expanded(
-                        child: Marquee(
-                          text: controller.storeaddr.toString(),
+                        child: Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 80.h,
+                                width: 100.h,
+                                child: Center(
+                                  child: Text(
+                                    "Address : ",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                        fontSize: 20.sp),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: Marquee(
+                                    text: controller.storeaddr.toString() +
+                                        "                                                     ",
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -70,7 +119,7 @@ class SelectDateAndTime extends StatelessWidget {
                       style: TextStyle(fontSize: 20.sp)),
                 ),
                 Container(
-                  height: 200.h,
+                  height: 100.h,
                   width: size.width,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -157,152 +206,37 @@ class SelectDateAndTime extends StatelessWidget {
                         ),
                       ),
                     )),
-                Container(
-                  height: 500.h,
-                  width: size.width,
-                  // color: Colors.amber,
-                  child: Obx(() {
-                    print(controller.changedtiming.value);
-                    if (controller.bookedtime.length == 0) {
-                      return Visibility(
-                          visible: false,
-                          child: SizedBox(
-                            height: 1,
-                          ));
-                    } else if (controller.bookedtime[0] == 1) {
-                      // todo show all times
-                      return GridView.builder(
-                        shrinkWrap: true,
-                        physics: ScrollPhysics(),
-                        itemCount: controller.timings.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 0,
-                            mainAxisExtent: 90),
-                        itemBuilder: (context, index) {
-                          return Obx(() {
-                            print(controller.changedtiming.value);
-                            return GestureDetector(
-                              onTap: () {
-                                if (controller.timings[index]["isselected"] ==
-                                    true) {
-                                  controller.timings[index]["isselected"] =
-                                      false;
-                                  controller.time_selected = "";
-                                  controller.btncolor.value = Colors.grey;
-                                } else {
-                                  controller.CheckandselectTime(index);
-                                }
-                                controller.changedtiming.value =
-                                    !controller.changedtiming.value;
-                              },
-                              child: Container(
-                                child: Center(
-                                  child: Container(
-                                    height: 50.h,
-                                    margin: EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                      vertical: 5,
-                                    ),
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 5,
-                                      horizontal: 18,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: controller.timings[index]
-                                                  ["isselected"] ==
-                                              false
-                                          ? Colors.teal
-                                          : Colors.teal[800],
-                                      borderRadius: BorderRadius.circular(8),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color.fromARGB(
-                                              255, 223, 223, 223),
-                                          blurRadius: 2,
-                                          spreadRadius: 1,
-                                        ),
-                                      ],
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Icon(
-                                          DateFormat('h:mm a')
-                                                  .format(
-                                                      controller.timings[index]
-                                                          ["date"] as DateTime)
-                                                  .toString()
-                                                  .contains("AM")
-                                              ? Icons.sunny
-                                              : int.parse(controller
-                                                          .timings[index]
-                                                              ["date"]
-                                                          .toString()
-                                                          .substring(0, 1)) >
-                                                      6
-                                                  ? Icons.nightlight
-                                                  : Icons.sunny,
-                                          color: Colors.white,
-                                        ),
-                                        SizedBox(
-                                          width: 3.w,
-                                        ),
-                                        Text(
-                                          DateFormat('h:mm a')
-                                              .format(controller.timings[index]
-                                                  ["date"] as DateTime)
-                                              .toString(),
-                                          style: TextStyle(
-                                            fontSize: 14.sp,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          });
-                        },
-                      );
-                    } else if (controller.bookedtime[0] == 2) {
-                      // todo show error in fetching time
-                      return Container(
-                        height: 50,
-                        width: 50,
-                        color: Colors.white,
-                        child: Center(
-                          child: Text(
-                            "Something Unexpected Occured",
-                            style:
-                                TextStyle(fontSize: 20.sp, color: Colors.grey),
-                          ),
-                        ),
-                      );
-                    } else {
-                      // show avail times and disable booked times
-                      return GridView.builder(
-                          shrinkWrap: true,
-                          physics: ScrollPhysics(),
-                          itemCount: controller.timings.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  mainAxisSpacing: 0,
-                                  mainAxisExtent: 90),
-                          itemBuilder: (context, index) {
-                            return Obx(() {
-                              print(controller.changedtiming.value);
-                              return InkWell(
-                                onTap: () {
-                                  if (controller.bookedtime.contains(
-                                      DateFormat('h:mm a').format(
-                                          controller.timings[index]["date"]
-                                              as DateTime))) {
-                                  } else {
+                Obx(() {
+                  return Visibility(
+                    visible: controller.isVisible.value,
+                    child: Container(
+                      height: 500.h,
+                      width: size.width,
+                      // color: Colors.amber,
+                      child: Obx(() {
+                        print(controller.changedtiming.value);
+                        if (controller.bookedtime.length == 0) {
+                          return Visibility(
+                              visible: false,
+                              child: SizedBox(
+                                height: 1,
+                              ));
+                        } else if (controller.bookedtime[0] == 1) {
+                          // todo show all times
+                          return GridView.builder(
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
+                            itemCount: controller.timings.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                    mainAxisSpacing: 0,
+                                    mainAxisExtent: 90),
+                            itemBuilder: (context, index) {
+                              return Obx(() {
+                                print(controller.changedtiming.value);
+                                return GestureDetector(
+                                  onTap: () {
                                     if (controller.timings[index]
                                             ["isselected"] ==
                                         true) {
@@ -315,84 +249,219 @@ class SelectDateAndTime extends StatelessWidget {
                                     }
                                     controller.changedtiming.value =
                                         !controller.changedtiming.value;
-                                  }
-                                },
-                                child: Container(
-                                  child: Center(
-                                    child: Container(
-                                      height: 50.h,
-                                      margin: EdgeInsets.symmetric(
-                                        horizontal: 8.w,
-                                        vertical: 5.h,
-                                      ),
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 5.h,
-                                        horizontal: 18.w,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: controller.bookedtime.contains(
-                                                DateFormat('h:mm a').format(
-                                                    controller.timings[index]
-                                                        ["date"] as DateTime))
-                                            ? Colors.grey
-                                            : controller.timings[index]
-                                                        ["isselected"] ==
-                                                    false
-                                                ? Colors.teal
-                                                : Colors.teal[800],
-                                        borderRadius: BorderRadius.circular(8),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Color.fromARGB(
-                                                255, 223, 223, 223),
-                                            blurRadius: 2,
-                                            spreadRadius: 1,
-                                          ),
-                                        ],
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Icon(
-                                            DateFormat('h:mm a')
-                                                    .format(controller
-                                                            .timings[index]
-                                                        ["date"] as DateTime)
-                                                    .toString()
-                                                    .contains("AM")
-                                                ? Icons.sunny
-                                                : int.parse(DateFormat('h:mm a')
-                                                            .format(controller
-                                                                        .timings[
-                                                                    index]["date"]
-                                                                as DateTime)
-                                                            .toString()
-                                                            .substring(0, 1)) >
-                                                        6
-                                                    ? Icons.nightlight
-                                                    : Icons.sunny,
-                                            color: Colors.white,
-                                          ),
-                                          Text(
-                                            DateFormat('h:mm a').format(
-                                                controller.timings[index]
-                                                    ["date"] as DateTime),
-                                            style: TextStyle(
-                                              fontSize: 14.sp,
+                                  },
+                                  child: Container(
+                                    child: Center(
+                                      child: Container(
+                                        height: 50.h,
+                                        margin: EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 5,
+                                        ),
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: 5,
+                                          horizontal: 18,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: controller.timings[index]
+                                                      ["isselected"] ==
+                                                  false
+                                              ? Colors.teal[300]
+                                              : Colors.teal[800],
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Color.fromARGB(
+                                                  255, 223, 223, 223),
+                                              blurRadius: 2,
+                                              spreadRadius: 1,
+                                            ),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Icon(
+                                              DateFormat('h:mm a')
+                                                      .format(controller
+                                                              .timings[index]
+                                                          ["date"] as DateTime)
+                                                      .toString()
+                                                      .contains("AM")
+                                                  ? Icons.sunny
+                                                  : int.parse(controller
+                                                              .timings[index]
+                                                                  ["date"]
+                                                              .toString()
+                                                              .substring(
+                                                                  0, 1)) >
+                                                          6
+                                                      ? Icons.nightlight
+                                                      : Icons.sunny,
                                               color: Colors.white,
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              width: 3.w,
+                                            ),
+                                            Text(
+                                              DateFormat('h:mm a')
+                                                  .format(
+                                                      controller.timings[index]
+                                                          ["date"] as DateTime)
+                                                  .toString(),
+                                              style: TextStyle(
+                                                fontSize: 14.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            });
-                          });
-                    }
-                  }),
+                                );
+                              });
+                            },
+                          );
+                        } else if (controller.bookedtime[0] == 2) {
+                          // todo show error in fetching time
+                          return Container(
+                            height: 50,
+                            width: 50,
+                            color: Colors.white,
+                            child: Center(
+                              child: Text(
+                                "Something Unexpected Occured",
+                                style: TextStyle(
+                                    fontSize: 20.sp, color: Colors.grey),
+                              ),
+                            ),
+                          );
+                        } else {
+                          // show avail times and disable booked times
+                          return GridView.builder(
+                              shrinkWrap: true,
+                              physics: ScrollPhysics(),
+                              itemCount: controller.timings.length,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      mainAxisSpacing: 0,
+                                      mainAxisExtent: 90),
+                              itemBuilder: (context, index) {
+                                return Obx(() {
+                                  print(controller.changedtiming.value);
+                                  return InkWell(
+                                    onTap: () {
+                                      if (controller.bookedtime.contains(
+                                          DateFormat('h:mm a').format(
+                                              controller.timings[index]["date"]
+                                                  as DateTime))) {
+                                      } else {
+                                        if (controller.timings[index]
+                                                ["isselected"] ==
+                                            true) {
+                                          controller.timings[index]
+                                              ["isselected"] = false;
+                                          controller.time_selected = "";
+                                          controller.btncolor.value =
+                                              Colors.grey;
+                                        } else {
+                                          controller.CheckandselectTime(index);
+                                        }
+                                        controller.changedtiming.value =
+                                            !controller.changedtiming.value;
+                                      }
+                                    },
+                                    child: Container(
+                                      child: Center(
+                                        child: Container(
+                                          height: 50.h,
+                                          margin: EdgeInsets.symmetric(
+                                            horizontal: 8.w,
+                                            vertical: 5.h,
+                                          ),
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: 5.h,
+                                            horizontal: 18.w,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: controller.bookedtime
+                                                    .contains(DateFormat(
+                                                            'h:mm a')
+                                                        .format(controller
+                                                                    .timings[
+                                                                index]["date"]
+                                                            as DateTime))
+                                                ? Colors.grey
+                                                : controller.timings[index]
+                                                            ["isselected"] ==
+                                                        false
+                                                    ? Colors.teal[300]
+                                                    : Colors.teal[800],
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color.fromARGB(
+                                                    255, 223, 223, 223),
+                                                blurRadius: 2,
+                                                spreadRadius: 1,
+                                              ),
+                                            ],
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Icon(
+                                                DateFormat('h:mm a')
+                                                        .format(controller
+                                                                .timings[index][
+                                                            "date"] as DateTime)
+                                                        .toString()
+                                                        .contains("AM")
+                                                    ? Icons.sunny
+                                                    : int.parse(DateFormat(
+                                                                    'h:mm a')
+                                                                .format(controller
+                                                                            .timings[index]
+                                                                        ["date"]
+                                                                    as DateTime)
+                                                                .toString()
+                                                                .substring(
+                                                                    0, 1)) >
+                                                            6
+                                                        ? Icons.nightlight
+                                                        : Icons.sunny,
+                                                color: Colors.white,
+                                              ),
+                                              Text(
+                                                DateFormat('h:mm a').format(
+                                                    controller.timings[index]
+                                                        ["date"] as DateTime),
+                                                style: TextStyle(
+                                                  fontSize: 14.sp,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                });
+                              });
+                        }
+                      }),
+                    ),
+                  );
+                }),
+                SizedBox(
+                  height: 30.h,
                 ),
                 Padding(
                   padding: EdgeInsets.only(

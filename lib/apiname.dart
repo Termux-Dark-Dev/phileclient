@@ -12,4 +12,5 @@ class APIENDPOINTNAME {
   static String UPDATEUSERPHONE = HOME + "updateuserphonenum/";
   static String UPDATEUSEREMAIL = HOME + "updateuseremail/";
   static String ORDERSERVICE = HOME + "addorder/";
+  static String FORGOTPASS = HOME + "forgotpass/";
 }

@@ -16,14 +16,24 @@ class OderHistoryPage extends StatelessWidget {
         title: Text("Your Order"),
       ),
       body: RefreshIndicator(
-        onRefresh: controller.getOrders,
+        onRefresh: controller.getOrdersWithPopUp,
         child: Container(
           child: Obx(() {
             if (controller.listoforder.length == 0) {
               return Center(
-                  child: ElevatedButton(
-                child: Text("Get Order Details"),
-                onPressed: () => controller.getOrders(),
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset("assets/lottieefiles/loading.json",
+                      height: 200.h, width: 200.w),
+                  SizedBox(
+                    height: 50.h,
+                  ),
+                  Text(
+                    "Getting Your Booked Order",
+                    style: TextStyle(color: Colors.black, fontSize: 25.sp),
+                  )
+                ],
               ));
             }
             if (controller.listoforder[0] == "Something Unexpected Occured" ||
@@ -31,7 +41,20 @@ class OderHistoryPage extends StatelessWidget {
                     "You Have Not Booked Any Services Yet" ||
                 controller.listoforder[0] == "Internal Server Error") {
               return Center(
-                child: Text(controller.listoforder[0].toString()),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(controller.listoforder[0].toString()),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    ElevatedButton(
+                        onPressed: () async {
+                          await controller.getOrdersWithPopUp();
+                        },
+                        child: Text("Refresh"))
+                  ],
+                ),
               );
             }
 
@@ -93,6 +116,10 @@ class MyOrders extends StatelessWidget {
                         height: 150.h,
                         width: 100.w,
                         color: Colors.teal,
+                        child: Image.network(
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU",
+                          fit: BoxFit.fill,
+                        ),
                       ),
                       SizedBox(
                         width: 20.w,
