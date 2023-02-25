@@ -51,9 +51,10 @@ class ServicesController extends GetxController {
     Loader.hideLoader();
 
     if (res == true) {
-      Future.delayed(Duration(seconds: 0), () {
-        SnackBars.customsnack("Ordered Successfully", Icons.done, Colors.teal);
-      }).whenComplete(() => Get.offAllNamed('/home'));
+      // Future.delayed(Duration(seconds: 0), () {
+      //   SnackBars.customsnack("Ordered Successfully", Icons.done, Colors.teal);
+      // }).whenComplete(() => Get.offAllNamed('/home'));
+      Get.offAllNamed('/orderdone');
     } else {
       SnackBars.customsnack(
           "Something Unexpected Occured", Icons.close, Colors.red);

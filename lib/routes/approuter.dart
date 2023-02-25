@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:phileclientapp/screens/bookedanim/booked.dart';
 import 'package:phileclientapp/screens/forgotpass/ForgotPassPage.dart';
 import 'package:phileclientapp/screens/home/homepage.dart';
 import 'package:phileclientapp/screens/home/profile.dart';
@@ -26,6 +27,7 @@ class RouterClass {
     GetPage(name: '/phoneupdateotp', page: () => PhoneUpdateOTP()),
     GetPage(name: '/services', page: () => ServicePage()),
     GetPage(name: '/forgotpassotp', page: () => ForgotPassOTP()),
-    GetPage(name: '/forgotpasspage', page: () => ForgotPassPage())
+    GetPage(name: '/forgotpasspage', page: () => ForgotPassPage()),
+    GetPage(name: '/orderdone', page: () => OrderDonePage()),
   ];
 }

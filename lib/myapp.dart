@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:phileclientapp/routes/approuter.dart';
+import 'package:phileclientapp/screens/bookedanim/booked.dart';
 import 'package:phileclientapp/screens/forgotpass/ForgotPassPage.dart';
 import 'package:phileclientapp/screens/home/homepage.dart';
 import 'package:phileclientapp/services/SAR/sarservices.dart';
