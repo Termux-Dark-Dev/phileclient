@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
+import 'package:phileclientapp/screens/forgotpass/ForgotPassPage.dart';
 import 'package:phileclientapp/screens/home/homepage.dart';
 import 'package:phileclientapp/screens/home/profile.dart';
 import 'package:phileclientapp/screens/home/selectdatetime.dart';
 import 'package:phileclientapp/screens/loginsignup/login.dart';
 import 'package:phileclientapp/screens/loginsignup/signup.dart';
 import 'package:phileclientapp/screens/otp/emailupdateotp.dart';
+import 'package:phileclientapp/screens/otp/forgotpassotp.dart';
 import 'package:phileclientapp/screens/otp/otp.dart';
 import 'package:phileclientapp/screens/otp/phoneupdateotp.dart';
 import 'package:phileclientapp/screens/services/services.dart';
@@ -22,6 +24,8 @@ class RouterClass {
     GetPage(name: '/booktimeslot', page: () => SelectDateAndTime()),
     GetPage(name: '/emailupdateotp', page: () => EmailUpdateOTP()),
     GetPage(name: '/phoneupdateotp', page: () => PhoneUpdateOTP()),
-    GetPage(name: '/services', page: () => ServicePage())
+    GetPage(name: '/services', page: () => ServicePage()),
+    GetPage(name: '/forgotpassotp', page: () => ForgotPassOTP()),
+    GetPage(name: '/forgotpasspage', page: () => ForgotPassPage())
   ];
 }

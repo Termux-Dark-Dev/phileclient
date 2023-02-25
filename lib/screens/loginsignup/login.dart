@@ -9,6 +9,7 @@ class Login extends StatelessWidget {
   LoginCtrl controller = Get.put(LoginCtrl());
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: SafeArea(
@@ -100,6 +101,22 @@ class Login extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8.sp))),
                           onPressed: () => controller.login(),
                         )),
+                    Container(
+                      height: 70.h,
+                      width: size.width,
+                      alignment: Alignment.centerRight,
+                      child: RichText(
+                          text: TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap =
+                                    () => controller.showForgotPassDialog(),
+                              text: "Forgot Password?",
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                color: Colors.teal[800],
+                                decoration: TextDecoration.underline,
+                              ))),
+                    ),
                     SizedBox(
                       height: 250.h,
                     ),
