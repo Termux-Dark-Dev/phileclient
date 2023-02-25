@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:phileclientapp/screens/bookedanim/booked.dart';
 import 'package:phileclientapp/screens/forgotpass/ForgotPassPage.dart';
+import 'package:phileclientapp/screens/home/dashboard.dart';
 import 'package:phileclientapp/screens/home/homepage.dart';
 import 'package:phileclientapp/screens/home/profile.dart';
 import 'package:phileclientapp/screens/home/selectdatetime.dart';
@@ -16,6 +17,7 @@ import '../screens/order/orderpage.dart';
 
 class RouterClass {
   static List<GetPage> routes = [
+    GetPage(name: '/dash', page: () => DashBoard()),
     GetPage(name: '/login', page: () => Login()),
     GetPage(name: '/signup', page: () => SignupPage()),
     GetPage(name: '/home', page: () => HomePage()),

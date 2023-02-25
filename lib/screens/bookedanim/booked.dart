@@ -4,8 +4,11 @@ import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderDonePage extends StatelessWidget {
+  var args = Get.arguments;
   @override
   Widget build(BuildContext context) {
+    var storename = args["storename"];
+    var storeaddr = args["storeaddress"];
     var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -25,16 +28,45 @@ class OrderDonePage extends StatelessWidget {
             Container(
               child: Text(
                 "Booking Succesful",
-                style: TextStyle(fontSize: 25.w, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
               height: 30.h,
             ),
-            // Container(
-            //   height: 110.w,
-            //   child: Text(" Details of Service boooked"),
-            // ),
+            Container(
+              child: Text(
+                "Please Visit Below Store To Avail Your Service",
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              height: 30.h,
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                " Name : ${storename.toString()}",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.teal,
+                    fontSize: 16.sp),
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              alignment: Alignment.center,
+              child: Text(
+                "Address : ${storeaddr.toString()}",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.teal,
+                    fontSize: 16.sp),
+              ),
+            ),
             SizedBox(
               height: 20.h,
             ),

@@ -19,7 +19,7 @@ class OrderModel {
   static List<OrderModel> tojson(List<dynamic> data) {
     List<OrderModel> ordermodelobjlist = [];
 
-    for (var item in data) {
+    for (var item in data.reversed) {
       ordermodelobjlist.add(OrderModel(
           storename: item["StoreName"].toString(),
           address: item["Address"].toString(),

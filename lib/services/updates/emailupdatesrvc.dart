@@ -11,6 +11,8 @@ class UpdateEmailService {
         return true;
       } else if (res.statusCode == 400) {
         return false;
+      } else if (res.statusCode == 401) {
+        return "User With Same Email Exists";
       } else {
         return null;
       }

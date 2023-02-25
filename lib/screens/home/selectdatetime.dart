@@ -25,194 +25,195 @@ class SelectDateAndTime extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(),
-        body: Container(
-          color: Colors.white,
-          child: SingleChildScrollView(
-            physics: ScrollPhysics(),
-            child: Column(
-              children: [
-                Container(
-                  height: 300.h,
-                  width: size.width,
-                  child: Image.network(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU",
-                    fit: BoxFit.cover,
+        body: Stack(alignment: Alignment.bottomCenter, children: [
+          Container(
+            height: size.height,
+            color: Colors.white,
+            child: SingleChildScrollView(
+              physics: ScrollPhysics(),
+              child: Column(
+                children: [
+                  Container(
+                    height: 300.h,
+                    width: size.width,
+                    child: Image.network(
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU",
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                Container(
-                  height: 100.h,
-                  width: size.width,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Expanded(
-                        child: Container(
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 80.h,
-                                width: 100.h,
-                                child: Center(
-                                  child: Text(
-                                    "Name : ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                        fontSize: 20.sp),
+                  Container(
+                    height: 100.h,
+                    width: size.width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Expanded(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 80.h,
+                                  width: 100.h,
+                                  child: Center(
+                                    child: Text(
+                                      "Name : ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                          fontSize: 20.sp),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  child: Marquee(
-                                    text: controller.storename.toString() +
-                                        "                                                     ",
+                                Expanded(
+                                  child: Container(
+                                    child: Marquee(
+                                      text: controller.storename.toString() +
+                                          "                                                     ",
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 80.h,
-                                width: 100.h,
-                                child: Center(
-                                  child: Text(
-                                    "Address : ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                        fontSize: 20.sp),
+                        Expanded(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 80.h,
+                                  width: 100.h,
+                                  child: Center(
+                                    child: Text(
+                                      "Address : ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                          fontSize: 20.sp),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  child: Marquee(
-                                    text: controller.storeaddr.toString() +
-                                        "                                                     ",
+                                Expanded(
+                                  child: Container(
+                                    child: Marquee(
+                                      text: controller.storeaddr.toString() +
+                                          "                                                     ",
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Divider(),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 10.w),
-                  height: 100.h,
-                  width: size.width,
-                  child: Text("Select Date Of Appointment",
-                      style: TextStyle(fontSize: 20.sp)),
-                ),
-                Container(
-                  height: 100.h,
-                  width: size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () async {
-                          var selectedDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime.now(),
-                              lastDate: DateTime.now().add(Duration(days: 10)));
+                  Divider(),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.only(left: 10.w),
+                    height: 100.h,
+                    width: size.width,
+                    child: Text("Select Date Of Appointment",
+                        style: TextStyle(fontSize: 20.sp)),
+                  ),
+                  Container(
+                    height: 100.h,
+                    width: size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            var selectedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate:
+                                    DateTime.now().add(Duration(days: 10)));
 
-                          if (selectedDate != null) {
-                            controller.date_selected.value =
-                                selectedDate.toString().substring(0, 11);
-                            controller.isVisible.value = true;
-                            await controller.getAvailTime(controller.store_id,
-                                controller.date_selected.value);
-                          }
-                        },
-                        child: Container(
-                          height: 100.h,
-                          width: 150.w,
-                          padding: EdgeInsets.only(left: 10.w),
-                          // color: Colors.black,
-                          alignment: Alignment.center,
-                          child: Stack(alignment: Alignment.center, children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.teal,
-                              radius: 40.sp,
-                              child: Icon(
-                                size: 40.sp,
-                                Icons.calendar_today,
-                                color: Colors.white,
+                            if (selectedDate != null) {
+                              controller.date_selected.value =
+                                  selectedDate.toString().substring(0, 11);
+                              controller.isVisible.value = true;
+                              await controller.getAvailTime(controller.store_id,
+                                  controller.date_selected.value);
+                            }
+                          },
+                          child: Container(
+                            height: 100.h,
+                            width: 150.w,
+                            padding: EdgeInsets.only(left: 10.w),
+                            // color: Colors.black,
+                            alignment: Alignment.center,
+                            child:
+                                Stack(alignment: Alignment.center, children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.teal,
+                                radius: 40.sp,
+                                child: Icon(
+                                  size: 40.sp,
+                                  Icons.calendar_today,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                            Lottie.asset("assets/lottieefiles/click.json"),
-                          ]),
+                              Lottie.asset("assets/lottieefiles/click.json"),
+                            ]),
+                          ),
                         ),
-                      ),
-                      Obx(() {
-                        return Visibility(
-                          visible: controller.isVisible.value,
-                          child: Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.teal[400],
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8))),
-                                width: 200.w,
-                                height: 50.h,
-                                child: Center(
-                                  child: Text(
-                                    controller.date_selected.toString(),
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.sp,
-                                        fontWeight: FontWeight.bold),
+                        Obx(() {
+                          return Visibility(
+                            visible: controller.isVisible.value,
+                            child: Expanded(
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.only(left: 10.w, right: 10.w),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.teal[400],
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8))),
+                                  width: 200.w,
+                                  height: 50.h,
+                                  child: Center(
+                                    child: Text(
+                                      controller.date_selected.toString(),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      })
-                    ],
+                          );
+                        })
+                      ],
+                    ),
                   ),
-                ),
-                Divider(),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Obx(() => Visibility(
-                      visible: controller.isVisible.value,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        height: 50.h,
-                        width: size.width,
-                        child: Text(
-                          "Select Your Preffered Time Slot : ",
-                          style: TextStyle(fontSize: 20.sp),
+                  Divider(),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Obx(() => Visibility(
+                        visible: controller.isVisible.value,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          height: 50.h,
+                          width: size.width,
+                          child: Text(
+                            "Select Your Preffered Time Slot : ",
+                            style: TextStyle(fontSize: 20.sp),
+                          ),
                         ),
-                      ),
-                    )),
-                Obx(() {
-                  return Visibility(
-                    visible: controller.isVisible.value,
-                    child: Container(
-                      height: 500.h,
-                      width: size.width,
-                      // color: Colors.amber,
+                      )),
+                  Obx(() {
+                    return Visibility(
+                      visible: controller.isVisible.value,
                       child: Obx(() {
                         print(controller.changedtiming.value);
                         if (controller.bookedtime.length == 0) {
@@ -328,8 +329,8 @@ class SelectDateAndTime extends StatelessWidget {
                         } else if (controller.bookedtime[0] == 2) {
                           // todo show error in fetching time
                           return Container(
-                            height: 50,
-                            width: 50,
+                            height: 50.h,
+                            width: size.width,
                             color: Colors.white,
                             child: Center(
                               child: Text(
@@ -457,51 +458,53 @@ class SelectDateAndTime extends StatelessWidget {
                               });
                         }
                       }),
-                    ),
-                  );
-                }),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 30.w,
-                    right: 30.w,
+                    );
+                  }),
+                  SizedBox(
+                    height: 30.h,
                   ),
-                  child: GestureDetector(
-                    onTap: () {
-                      if (controller.btncolor.value != Colors.grey) {
-                        print(controller.time_selected);
-                        print(controller.date_selected);
-                        Get.toNamed("/services", arguments: {
-                          "storeid": controller.store_id,
-                          "userid": controller.userid,
-                          "selecteddate": controller.date_selected.value,
-                          "selectedtime": controller.time_selected
-                        });
-                      }
-                    },
-                    child: Obx(() => Container(
-                          height: 50.h,
-                          width: size.width,
-                          margin: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              color: controller.btncolor.value,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Center(
-                            child: Text(
-                              "Continue",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 20.sp),
-                            ),
-                          ),
-                        )),
-                  ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
-        ),
+          Container(
+            padding: EdgeInsets.only(
+              left: 30.w,
+              right: 30.w,
+            ),
+            color: Colors.white,
+            child: GestureDetector(
+              onTap: () {
+                if (controller.btncolor.value != Colors.grey) {
+                  print(controller.time_selected);
+                  print(controller.date_selected);
+                  Get.toNamed("/services", arguments: {
+                    "storeid": controller.store_id,
+                    "userid": controller.userid,
+                    "selecteddate": controller.date_selected.value,
+                    "selectedtime": controller.time_selected,
+                    "storename": controller.storename,
+                    "storeaddress": controller.storeaddr
+                  });
+                }
+              },
+              child: Obx(() => Container(
+                    height: 50.h,
+                    width: size.width,
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: controller.btncolor.value,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Center(
+                      child: Text(
+                        "Continue",
+                        style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                      ),
+                    ),
+                  )),
+            ),
+          )
+        ]),
       ),
     );
   }

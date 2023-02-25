@@ -66,6 +66,7 @@ class OderHistoryPage extends StatelessWidget {
                     orderdate: controller.listoforder[index].orderdate,
                     shopname: controller.listoforder[index].storename,
                     serviceopted: controller.listoforder[index].servicesopted,
+                    srvctime: controller.listoforder[index].servicetime,
                   );
                 });
           }),
@@ -77,12 +78,13 @@ class OderHistoryPage extends StatelessWidget {
 }
 
 class MyOrders extends StatelessWidget {
-  late String date, serviceopted, shopname, orderdate;
+  late String date, serviceopted, shopname, orderdate, srvctime;
   MyOrders(
       {required this.date,
       required this.orderdate,
       required this.shopname,
-      required this.serviceopted});
+      required this.serviceopted,
+      required this.srvctime});
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -102,36 +104,32 @@ class MyOrders extends StatelessWidget {
             height: 10.h,
           ),
           Container(
-              height: 265.h,
-              width: size.width * 0.95,
               color: Colors.white,
               padding:
                   EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
               child: Column(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 150.h,
-                        width: 100.w,
-                        color: Colors.teal,
-                        child: Image.network(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU",
-                          fit: BoxFit.fill,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 150.h,
+                          width: 120.w,
+                          color: Colors.teal,
+                          child: Image.network(
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU",
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 20.w,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 30.h,
-                            width: 265.w,
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
+                        SizedBox(
+                          width: 20.w,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
                               child: Row(
                                 children: [
                                   Text(
@@ -151,56 +149,83 @@ class MyOrders extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          Container(
-                            height: 30.h,
-                            width: 265.w,
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Service date : ",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14.sp),
-                                  ),
-                                  Text(
-                                    "$date",
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold,
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Container(
+                              height: 30.h,
+                              width: 265.w,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Service date : ",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14.sp),
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      "$date",
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          Container(
-                            height: 65.h,
-                            width: 265.w,
-                            child: Text(
-                              "Service Asked : $serviceopted",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp),
-                              maxLines: 4,
+                            SizedBox(
+                              height: 15.h,
                             ),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          )
-                        ],
-                      )
-                    ],
+                            Container(
+                              height: 30.h,
+                              width: 265.w,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Service time : ",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14.sp),
+                                    ),
+                                    Text(
+                                      "$srvctime",
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Container(
+                              width: 350.w, //
+                              child: Text(
+                                "Service Asked : $serviceopted",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.sp),
+                                maxLines: 4,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                   Divider(),
                   SizedBox(

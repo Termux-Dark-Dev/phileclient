@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -141,15 +140,22 @@ class ProfilePageController extends GetxController {
                         SystemChannels.textInput.invokeMethod('TextInput.hide');
                         var currpass = currpassctrlr.text;
                         var newpass = newpassctrlr.text;
-                        var res = passChecker(newpass);
-                        if (res == null) {
-                          // todo update pass
-
-                          await updatePass(currpass, newpass);
+                        if (currpass == newpass) {
+                          SnackBars.customsnack(
+                              "Current And New Password Cannot Be Same",
+                              Icons.close,
+                              Colors.red);
                         } else {
-                          currpassctrlr.clear();
-                          newpassctrlr.clear();
-                          SnackBars.customsnack(res, Icons.close, Colors.red);
+                          var res = passChecker(newpass);
+                          if (res == null) {
+                            // todo update pass
+
+                            await updatePass(currpass, newpass);
+                          } else {
+                            currpassctrlr.clear();
+                            newpassctrlr.clear();
+                            SnackBars.customsnack(res, Icons.close, Colors.red);
+                          }
                         }
                       },
                       icon: Icon(Icons.send),
@@ -309,21 +315,26 @@ class ProfilePageController extends GetxController {
                           SnackBars.customsnack(
                               "Enter Valid Email", Icons.close, Colors.red);
                         } else {
-                          Get.back();
-                          emailctrlr.clear();
-                          var isOtpSent = await sendOtpToNewMail(newemail);
-                          if (isOtpSent) {
-                            Get.offAllNamed('/emailupdateotp', arguments: {
-                              "userid": id,
-                              "newemail": newemail
-                            });
-                          } else {
-                            emailctrlr.clear();
-                            Get.back();
+                          if (newemail == email) {
                             SnackBars.customsnack(
-                                "Something Unexpected Occured",
-                                Icons.close,
-                                Colors.red);
+                                "Same Email Entered", Icons.close, Colors.red);
+                          } else {
+                            Get.back();
+                            emailctrlr.clear();
+                            var isOtpSent = await sendOtpToNewMail(newemail);
+                            if (isOtpSent) {
+                              Get.offAllNamed('/emailupdateotp', arguments: {
+                                "userid": id,
+                                "newemail": newemail
+                              });
+                            } else {
+                              emailctrlr.clear();
+                              Get.back();
+                              SnackBars.customsnack(
+                                  "Something Unexpected Occured",
+                                  Icons.close,
+                                  Colors.red);
+                            }
                           }
                         }
                       },

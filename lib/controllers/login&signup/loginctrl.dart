@@ -71,10 +71,12 @@ class LoginCtrl extends GetxController {
       var res = await obj.Login(email, password);
       Loader.hideLoader();
       if (res == true) {
+        emailcontroller.clear();
+        passcontroller.clear();
         Future.delayed(Duration(seconds: 0), () {
           SnackBars.customsnack(
               "Login Successful", Icons.done, Colors.teal[800]!);
-        }).whenComplete(() => Get.offAndToNamed("/home"));
+        }).whenComplete(() => Get.offAllNamed("/home"));
       } else if (res == false) {
         SnackBars.customsnack(
             "Wrong Email Or Password", Icons.close, Colors.red[800]!);
@@ -146,6 +148,7 @@ class LoginCtrl extends GetxController {
                               await checkUserExistsToForgotPass(newmail);
                           if (result == true) {
                             forgotpassemailctrlr.clear();
+                            Get.back();
                             Get.toNamed("/forgotpassotp",
                                 arguments: {"useremail": newmail});
                           } else if (result == false) {

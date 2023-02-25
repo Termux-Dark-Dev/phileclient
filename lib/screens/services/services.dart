@@ -12,6 +12,8 @@ class ServicePage extends StatelessWidget {
     controller.userid = args["userid"];
     controller.selecteddate = args["selecteddate"];
     controller.selectedtime = args["selectedtime"];
+    controller.storename = args["storename"];
+    controller.storeaddress = args["storeaddress"];
 
     return Scaffold(
         appBar: AppBar(),
@@ -37,17 +39,24 @@ class ServicePage extends StatelessWidget {
                           print(controller.changed.value);
 
                           return ActionChip(
+                            shape: ContinuousRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  20,
+                                ),
+                                side: BorderSide(width: 1)),
                             backgroundColor: controller.servicesList[index]
                                         ["isSelected"] ==
                                     true
                                 ? Colors.teal
                                 : Colors.teal[300],
-                            avatar: Icon(
-                              controller.servicesList[index]["icons"]
-                                  as IconData,
-                              size: 20.sp,
-                              color: Colors
-                                  .white, //controller.servicesList[index]["isSelected"] ==true? Colors.white: Colors.white
+                            avatar: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                      image: AssetImage(controller
+                                          .servicesList[index]["icons"]
+                                          .toString()),
+                                      fit: BoxFit.cover)),
                             ),
                             label: Text(
                               controller.servicesList[index]["serviceName"]

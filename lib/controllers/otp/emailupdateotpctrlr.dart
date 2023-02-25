@@ -27,7 +27,7 @@ class EmailUpdateOTPCtrl extends GetxController {
         // it comes here if otp is successfully verified
         var isUpdated = await obj1.updateUserEmail(id, newemail);
         Loader.hideLoader();
-        if (isUpdated) {
+        if (isUpdated == true) {
           // it comes here if email is successfully updated on server side
           var res1 = await obj2.upDateUserEmail(newemail);
           if (res1 == true) {
@@ -41,6 +41,11 @@ class EmailUpdateOTPCtrl extends GetxController {
                   "Something Unexpected Occured", Icons.close, Colors.red);
             }).whenComplete(() => Get.offAndToNamed("/profile"));
           }
+        } else if (isUpdated is String) {
+          Future.delayed(Duration(seconds: 0), () {
+            SnackBars.customsnack(
+                "User With Same Email Exists", Icons.close, Colors.red);
+          }).whenComplete(() => Get.offAndToNamed("/profile"));
         } else {
           Future.delayed(Duration(seconds: 0), () {
             SnackBars.customsnack(
