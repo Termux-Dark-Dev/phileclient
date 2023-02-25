@@ -284,24 +284,31 @@ class SelectDateAndTime extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            Icon(
-                                              DateFormat('h:mm a')
-                                                      .format(controller
-                                                              .timings[index]
-                                                          ["date"] as DateTime)
-                                                      .toString()
-                                                      .contains("AM")
-                                                  ? Icons.sunny
-                                                  : int.parse(controller
-                                                              .timings[index]
-                                                                  ["date"]
-                                                              .toString()
-                                                              .substring(
-                                                                  0, 1)) >
-                                                          6
-                                                      ? Icons.nightlight
-                                                      : Icons.sunny,
-                                              color: Colors.white,
+                                            Container(
+                                              height: 25.h,
+                                              width: 25.w,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: AssetImage(DateFormat('h:mm a')
+                                                            .format(controller.timings[index]
+                                                                    ["date"]
+                                                                as DateTime)
+                                                            .toString()
+                                                            .contains("AM")
+                                                        ? 'assets/img/morning.png'
+                                                        : int.parse(DateFormat('h:mm a')
+                                                                    .format(controller.timings[index]["date"]
+                                                                        as DateTime)
+                                                                    .toString()
+                                                                    .substring(
+                                                                        0, 1)) <
+                                                                4
+                                                            ? 'assets/img/afternoon.png'
+                                                            : int.parse(DateFormat('h:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 1)) >= 4 &&
+                                                                    int.parse(DateFormat('h:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 1)) <= 6
+                                                                ? 'assets/img/evening.png'
+                                                                : 'assets/img/night.png')),
+                                              ),
                                             ),
                                             SizedBox(
                                               width: 3.w,
@@ -417,27 +424,31 @@ class SelectDateAndTime extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              Icon(
-                                                DateFormat('h:mm a')
-                                                        .format(controller
-                                                                .timings[index][
-                                                            "date"] as DateTime)
-                                                        .toString()
-                                                        .contains("AM")
-                                                    ? Icons.sunny
-                                                    : int.parse(DateFormat(
-                                                                    'h:mm a')
-                                                                .format(controller
-                                                                            .timings[index]
-                                                                        ["date"]
-                                                                    as DateTime)
-                                                                .toString()
-                                                                .substring(
-                                                                    0, 1)) >
-                                                            6
-                                                        ? Icons.nightlight
-                                                        : Icons.sunny,
-                                                color: Colors.white,
+                                              Container(
+                                                height: 25.h,
+                                                width: 25.w,
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(DateFormat('h:mm a')
+                                                              .format(controller.timings[index]
+                                                                      ["date"]
+                                                                  as DateTime)
+                                                              .toString()
+                                                              .contains("AM")
+                                                          ? 'assets/img/morning.png'
+                                                          : int.parse(DateFormat('h:mm a')
+                                                                      .format(controller.timings[index]["date"]
+                                                                          as DateTime)
+                                                                      .toString()
+                                                                      .substring(
+                                                                          0, 1)) <
+                                                                  4
+                                                              ? 'assets/img/afternoon.png'
+                                                              : int.parse(DateFormat('h:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 1)) >= 4 &&
+                                                                      int.parse(DateFormat('h:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 1)) <= 6
+                                                                  ? 'assets/img/evening.png'
+                                                                  : 'assets/img/night.png')),
+                                                ),
                                               ),
                                               Text(
                                                 DateFormat('h:mm a').format(
@@ -461,7 +472,7 @@ class SelectDateAndTime extends StatelessWidget {
                     );
                   }),
                   SizedBox(
-                    height: 30.h,
+                    height: 50.h,
                   ),
                 ],
               ),
