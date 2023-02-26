@@ -31,9 +31,10 @@ class ProfilePage extends StatelessWidget {
                               color: Colors.teal,
                               child: Center(
                                 child: Text(
-                                  "Phile",
+                                  "ChopChop",
                                   style: TextStyle(
-                                      letterSpacing: 4,
+                                      letterSpacing: 3,
+                                      wordSpacing: 4,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                       fontSize: 55.sp),
@@ -41,20 +42,20 @@ class ProfilePage extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                                top: 140.w,
+                                top: 140.h,
                                 child: CircleAvatar(
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: Colors.teal,
                                   radius: 45.w,
                                   child: CircleAvatar(
-                                    radius: 42.w,
-                                    backgroundImage: NetworkImage(
-                                        "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
-                                  ),
+                                      radius: 48.w,
+                                      backgroundImage: AssetImage(
+                                        'assets/chopchopicon.jpeg',
+                                      )),
                                 ))
                           ],
                         ),
                         SizedBox(
-                          height: 120.w,
+                          height: 120.h,
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w),
@@ -63,11 +64,14 @@ class ProfilePage extends StatelessWidget {
                           child: Row(
                             children: [
                               Container(
-                                width: 60.w,
-                                child: Icon(
-                                  Icons.person,
-                                  color: Colors.teal,
-                                  size: 35.sp,
+                                width: 50.w,
+                                child: Card(
+                                  elevation: 3,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: Colors.teal,
+                                    size: 35.sp,
+                                  ),
                                 ),
                               ),
                               SizedBox(
@@ -105,11 +109,14 @@ class ProfilePage extends StatelessWidget {
                           child: Row(
                             children: [
                               Container(
-                                width: 60.w,
-                                child: Icon(
-                                  Icons.email_sharp,
-                                  color: Colors.teal,
-                                  size: 35.sp,
+                                width: 50.w,
+                                child: Card(
+                                  elevation: 3,
+                                  child: Icon(
+                                    Icons.email_sharp,
+                                    color: Colors.teal,
+                                    size: 35.sp,
+                                  ),
                                 ),
                               ),
                               SizedBox(
@@ -151,11 +158,14 @@ class ProfilePage extends StatelessWidget {
                           child: Row(
                             children: [
                               Container(
-                                width: 60.w,
-                                child: Icon(
-                                  Icons.phone,
-                                  color: Colors.teal,
-                                  size: 35.sp,
+                                width: 50.w,
+                                child: Card(
+                                  elevation: 3,
+                                  child: Icon(
+                                    Icons.phone,
+                                    color: Colors.teal,
+                                    size: 35.sp,
+                                  ),
                                 ),
                               ),
                               SizedBox(
@@ -197,11 +207,14 @@ class ProfilePage extends StatelessWidget {
                           child: Row(
                             children: [
                               Container(
-                                width: 60.w,
-                                child: Icon(
-                                  Icons.security,
-                                  color: Colors.teal,
-                                  size: 35.sp,
+                                width: 50.w,
+                                child: Card(
+                                  elevation: 3,
+                                  child: Icon(
+                                    Icons.security,
+                                    color: Colors.teal,
+                                    size: 35.sp,
+                                  ),
                                 ),
                               ),
                               SizedBox(

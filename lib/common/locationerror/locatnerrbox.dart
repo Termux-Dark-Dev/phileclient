@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,7 @@ class LocationErrur {
               Flexible(
                   child: ElevatedButton(
                 onPressed: () {
+                  AppSettings.openLocationSettings();
                   SystemNavigator.pop();
                 },
                 child: Text("Close"),
@@ -52,6 +54,7 @@ class LocationErrur {
               Flexible(
                   child: ElevatedButton(
                 onPressed: () {
+                  AppSettings.openLocationSettings();
                   SystemNavigator.pop();
                 },
                 child: Text("Close"),

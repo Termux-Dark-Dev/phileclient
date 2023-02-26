@@ -30,7 +30,7 @@ class DashBoard extends GetView {
               // color: Colors.amber,
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   FutureBuilder(
                       future: controller.sobj.getUserName(),
@@ -63,6 +63,14 @@ class DashBoard extends GetView {
                   //   foregroundImage: NetworkImage(
                   //       "https://img.icons8.com/material-two-tone/256/search.png"),
                   // )
+                  Padding(
+                    padding: EdgeInsets.only(right: 10.w),
+                    child: CircleAvatar(
+                      radius: 25,
+                      backgroundColor: Colors.teal,
+                      foregroundImage: AssetImage('assets/chopchopicon.jpeg'),
+                    ),
+                  ),
 
                   //search bar
                   // Expanded(
@@ -166,7 +174,7 @@ class DashBoard extends GetView {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: 3.h, horizontal: 8.w),
+                                vertical: 5.h, horizontal: 8.w),
                             child: GestureDetector(
                               onTap: () {
                                 var storeid = controller.listofstores[index].id;
@@ -198,7 +206,7 @@ class DashBoard extends GetView {
                                               top: 5.0,
                                               bottom: 5.0,
                                               right: 8),
-                                          height: 200.0,
+                                          height: 250.0,
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
@@ -229,8 +237,8 @@ class DashBoard extends GetView {
                                       children: [
                                         Expanded(
                                           child: Container(
-                                            height: 80,
-                                            width: 100,
+                                            height: 40.h,
+                                            width: 100.w,
                                             child: Center(
                                               child: Text(
                                                 controller

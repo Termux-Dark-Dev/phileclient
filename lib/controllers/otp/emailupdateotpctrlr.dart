@@ -34,7 +34,7 @@ class EmailUpdateOTPCtrl extends GetxController {
             Future.delayed(Duration(seconds: 0), () {
               SnackBars.customsnack(
                   "Updated Successfully", Icons.done, Colors.teal);
-            }).whenComplete(() => Get.offAndToNamed("/profile"));
+            }).whenComplete(() => Get.offAllNamed("/home"));
           } else {
             Future.delayed(Duration(seconds: 0), () {
               SnackBars.customsnack(

@@ -222,29 +222,34 @@ class ProfilePageController extends GetxController {
                       onPressed: () async {
                         SystemChannels.textInput.invokeMethod('TextInput.hide');
                         var newphonenum = phonenumctrlr.text;
-                        var isProper = phoneValidator(newphonenum);
-                        if (isProper == null) {
-                          phonenumctrlr.clear();
-                          Get.back();
-
-                          var isOtpSent = await sendOtpToNewMail(email);
-                          if (isOtpSent) {
-                            Get.offAllNamed('/phoneupdateotp', arguments: {
-                              "phonenum": newphonenum,
-                              "email": email
-                            });
-                          } else {
-                            emailctrlr.clear();
-                            Get.back();
-                            SnackBars.customsnack(
-                                "Something Unexpected Occured",
-                                Icons.close,
-                                Colors.red);
-                          }
+                        if (phone == newphonenum) {
+                          SnackBars.customsnack("Same Mobile No. Entered",
+                              Icons.close, Colors.red);
                         } else {
-                          phonenumctrlr.clear();
-                          SnackBars.customsnack(
-                              isProper, Icons.close, Colors.red);
+                          var isProper = phoneValidator(newphonenum);
+                          if (isProper == null) {
+                            phonenumctrlr.clear();
+                            Get.back();
+
+                            var isOtpSent = await sendOtpToNewMail(email);
+                            if (isOtpSent) {
+                              Get.toNamed('/phoneupdateotp', arguments: {
+                                "phonenum": newphonenum,
+                                "email": email
+                              });
+                            } else {
+                              emailctrlr.clear();
+                              Get.back();
+                              SnackBars.customsnack(
+                                  "Something Unexpected Occured",
+                                  Icons.close,
+                                  Colors.red);
+                            }
+                          } else {
+                            phonenumctrlr.clear();
+                            SnackBars.customsnack(
+                                isProper, Icons.close, Colors.red);
+                          }
                         }
                       },
                       icon: Icon(Icons.send),
@@ -323,7 +328,7 @@ class ProfilePageController extends GetxController {
                             emailctrlr.clear();
                             var isOtpSent = await sendOtpToNewMail(newemail);
                             if (isOtpSent) {
-                              Get.offAllNamed('/emailupdateotp', arguments: {
+                              Get.toNamed('/emailupdateotp', arguments: {
                                 "userid": id,
                                 "newemail": newemail
                               });

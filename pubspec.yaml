@@ -40,6 +40,9 @@ dependencies:
   expandable_bottom_sheet: ^1.1.1+1
   intl: ^0.18.0
   marquee: ^2.2.3
+  flutter_native_splash: ^2.2.18
+  double_back_to_close: ^2.0.0
+  app_settings: 4.2.0
   
 
 
@@ -57,6 +60,11 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.12.0
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/chopchopicon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -74,6 +82,8 @@ flutter:
     - assets/lottieefiles/
     - assets/icon/
     - assets/img/
+    - assets/chopchopicon.jpeg
+    - assets/chopchopspashscrn.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

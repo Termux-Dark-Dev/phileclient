@@ -21,7 +21,7 @@ class PhoneUpdateOTPCtrl extends GetxController {
       SARServices obj2 = SARServices();
       Loader.showLoader(
           animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
-          title: "Verifying And Updating Email");
+          title: "Verifying And Updating Phone No.");
       var res = await obj.verifyOTP(email, otp);
       if (res == true) {
         // it comes here if otp is successfully verified
@@ -34,7 +34,7 @@ class PhoneUpdateOTPCtrl extends GetxController {
             Future.delayed(Duration(seconds: 0), () {
               SnackBars.customsnack(
                   "Updated Successfully", Icons.done, Colors.teal);
-            }).whenComplete(() => Get.offAndToNamed("/profile"));
+            }).whenComplete(() => Get.offAllNamed("/home"));
           } else {
             Future.delayed(Duration(seconds: 0), () {
               SnackBars.customsnack(
