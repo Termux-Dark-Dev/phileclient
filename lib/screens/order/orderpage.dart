@@ -12,9 +12,16 @@ class OderHistoryPage extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal[600],
-        title: Text("Your Order"),
-      ),
+          backgroundColor: Colors.teal[600],
+          title: Text("Your Order"),
+          actions: [
+            IconButton(
+              onPressed: () async {
+                await controller.getOrdersWithPopUp();
+              },
+              icon: Icon(Icons.refresh),
+            ),
+          ]),
       body: RefreshIndicator(
         onRefresh: controller.getOrdersWithPopUp,
         child: Container(
@@ -30,7 +37,7 @@ class OderHistoryPage extends StatelessWidget {
                     height: 50.h,
                   ),
                   Text(
-                    "Getting Your Booked Order",
+                    "Getting Your Appointments",
                     style: TextStyle(color: Colors.black, fontSize: 25.sp),
                   )
                 ],
@@ -105,7 +112,7 @@ class MyOrders extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "Ordered On: ",
+                  "Booked On: ",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.sp,

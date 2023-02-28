@@ -55,7 +55,7 @@ class ProfilePage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: 120.h,
+                          height: 100.h,
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w),
@@ -70,7 +70,7 @@ class ProfilePage extends StatelessWidget {
                                   child: Icon(
                                     Icons.person,
                                     color: Colors.teal,
-                                    size: 35.sp,
+                                    size: 30.sp,
                                   ),
                                 ),
                               ),
@@ -83,7 +83,7 @@ class ProfilePage extends StatelessWidget {
                                   controller.usrname,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 25.sp,
+                                      fontSize: 19.sp,
                                       color: Colors.teal[800]),
                                 ),
                               ),
@@ -102,7 +102,7 @@ class ProfilePage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 25.h,
+                          height: 20.h,
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w),
@@ -115,7 +115,7 @@ class ProfilePage extends StatelessWidget {
                                   child: Icon(
                                     Icons.email_sharp,
                                     color: Colors.teal,
-                                    size: 35.sp,
+                                    size: 30.sp,
                                   ),
                                 ),
                               ),
@@ -128,7 +128,7 @@ class ProfilePage extends StatelessWidget {
                                   controller.email,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 25.sp,
+                                      fontSize: 19.sp,
                                       color: Colors.teal[800]),
                                 ),
                               ),
@@ -142,7 +142,7 @@ class ProfilePage extends StatelessWidget {
                                       controller.showEmailChangeDialog(),
                                   child: Icon(
                                     Icons.edit,
-                                    size: 30.sp,
+                                    size: 25.sp,
                                     color: Colors.teal,
                                   ),
                                 ),
@@ -151,7 +151,7 @@ class ProfilePage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 25.h,
+                          height: 20.h,
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w),
@@ -164,7 +164,7 @@ class ProfilePage extends StatelessWidget {
                                   child: Icon(
                                     Icons.phone,
                                     color: Colors.teal,
-                                    size: 35.sp,
+                                    size: 30.sp,
                                   ),
                                 ),
                               ),
@@ -177,7 +177,7 @@ class ProfilePage extends StatelessWidget {
                                   controller.phone,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 25.sp,
+                                      fontSize: 19.sp,
                                       color: Colors.teal[800]),
                                 ),
                               ),
@@ -191,7 +191,7 @@ class ProfilePage extends StatelessWidget {
                                       controller.showNumberChangeDialog(),
                                   child: Icon(
                                     Icons.edit,
-                                    size: 30.sp,
+                                    size: 25.sp,
                                     color: Colors.teal,
                                   ),
                                 ),
@@ -200,7 +200,7 @@ class ProfilePage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 25.h,
+                          height: 20.h,
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w),
@@ -213,7 +213,7 @@ class ProfilePage extends StatelessWidget {
                                   child: Icon(
                                     Icons.security,
                                     color: Colors.teal,
-                                    size: 35.sp,
+                                    size: 30.sp,
                                   ),
                                 ),
                               ),
@@ -226,7 +226,7 @@ class ProfilePage extends StatelessWidget {
                                   "Change Password",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 25.sp,
+                                      fontSize: 19.sp,
                                       color: Colors.teal[800]),
                                 ),
                               ),
@@ -241,7 +241,7 @@ class ProfilePage extends StatelessWidget {
                                   },
                                   child: Icon(
                                     Icons.edit,
-                                    size: 30.sp,
+                                    size: 25.sp,
                                     color: Colors.teal,
                                   ),
                                 ),
@@ -250,7 +250,138 @@ class ProfilePage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 196.h,
+                          height: 20.h,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 20.w),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 50.w,
+                                child: Card(
+                                  elevation: 3,
+                                  child: Icon(
+                                    Icons.contact_mail,
+                                    color: Colors.teal,
+                                    size: 30.sp,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20.w,
+                              ),
+                              Container(
+                                width: 260.w,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.showContactInfo();
+                                  },
+                                  child: Text(
+                                    "Contact Us",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 19.sp,
+                                        color: Colors.teal[800]),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 20.w),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 50.w,
+                                child: Card(
+                                  elevation: 3,
+                                  child: Icon(
+                                    Icons.question_answer,
+                                    color: Colors.teal,
+                                    size: 30.sp,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20.w,
+                              ),
+                              Container(
+                                width: 260.w,
+                                child: Text(
+                                  "Raise A Query",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 19.sp,
+                                      color: Colors.teal[800]),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Container(
+                                width: 45.w,
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    await controller.showQueryDialog();
+                                  },
+                                  child: Icon(
+                                    Icons.send,
+                                    size: 25.sp,
+                                    color: Colors.teal,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 20.w),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 50.w,
+                                child: Card(
+                                  elevation: 3,
+                                  child: Icon(
+                                    Icons.shopping_bag,
+                                    color: Colors.teal,
+                                    size: 30.sp,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20.w,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed("/orderhistory");
+                                },
+                                child: Container(
+                                  width: 260.w,
+                                  child: Text(
+                                    "Orders",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.sp,
+                                        color: Colors.teal[800]),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 80.h,
                         ),
                         RichText(
                           text: TextSpan(children: [

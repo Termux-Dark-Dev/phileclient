@@ -53,7 +53,7 @@ class OrderController extends GetxController {
     UserOrderService obj1 = UserOrderService();
     Loader.showLoader(
         animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
-        title: "Fetching Your Orders");
+        title: "Fetching Your Appointments");
     var res = await obj1.getOrderdetails(id);
     Loader.hideLoader();
     // print(res);

@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,8 @@ import 'package:phileclientapp/common/loader/loader.dart';
 import 'package:phileclientapp/common/snackbars/snackbars.dart';
 import 'package:phileclientapp/services/SAR/sarservices.dart';
 import 'package:phileclientapp/services/loginandsignup/sendotpsrvc.dart';
+import 'package:phileclientapp/services/query/querysrvc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../services/updates/passupdateservc.dart';
 
@@ -16,6 +19,7 @@ class ProfilePageController extends GetxController {
   TextEditingController newpassctrlr = TextEditingController();
   TextEditingController phonenumctrlr = TextEditingController();
   TextEditingController emailctrlr = TextEditingController();
+  TextEditingController queryctrlr = TextEditingController();
   Future getUserDetails() async {
     SARServices obj = SARServices();
     var userdetails = await obj.getUserDetails();
@@ -399,6 +403,190 @@ class ProfilePageController extends GetxController {
       // TODO
 
       return false;
+    }
+  }
+
+  void showContactInfo() {
+    Get.dialog(AlertDialog(
+        backgroundColor: Colors.teal,
+        content: Container(
+          height: 100.h,
+          width: 300.w,
+          color: Colors.teal,
+          child: Center(
+            child: RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                    text: "Please reach out to us at ",
+                    style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white)),
+                TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () async {
+                        final Uri launchUri = Uri(
+                          scheme: 'tel',
+                          path: "+918999523696",
+                        );
+                        if (!await launchUrl(launchUri)) {
+                          SnackBars.customsnack(
+                              "Something Unexpected Occured While Opening Phone Caller",
+                              Icons.close,
+                              Colors.red);
+                        }
+                      },
+                    text: "8999523696",
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white)),
+                TextSpan(
+                    text: " or email us at ",
+                    style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white)),
+                TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () async {
+                        final Uri launchUri = Uri(
+                            scheme: 'mailto',
+                            path: "sagarvishal85@gmail.com",
+                            query: encodeQueryParameters(<String, String>{
+                              'subject': 'Regarding Query On ChopChop App',
+                            }));
+                        if (!await launchUrl(launchUri)) {
+                          SnackBars.customsnack(
+                              "Something Unexpected Occured While Opening Phone Caller",
+                              Icons.close,
+                              Colors.red);
+                        }
+                      },
+                    text: " sagarvishal85@gmail.com ",
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white)),
+                TextSpan(
+                    text: " to get your query resolved",
+                    style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white)),
+              ]),
+            ),
+          ),
+        )));
+  }
+
+  Future showQueryDialog() async {
+    Get.dialog(WillPopScope(
+      onWillPop: () async => false,
+      child: AlertDialog(
+        content: Container(
+          height: 280.h,
+          width: 300.w,
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Please Enter Your Query",
+                style: TextStyle(
+                    color: Colors.teal[800],
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 60.h,
+              ),
+              TextFormField(
+                controller: queryctrlr,
+                decoration: InputDecoration(
+                  labelText: "Query",
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 50.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton.icon(
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                      onPressed: () {
+                        queryctrlr.clear();
+                        Get.back();
+                      },
+                      icon: Icon(Icons.close),
+                      label: Text(
+                        "Cancel",
+                      )),
+                  ElevatedButton.icon(
+                      onPressed: () async {
+                        var query = queryctrlr.text;
+                        if (query.length > 9) {
+                          queryctrlr.clear();
+                          var res = await sendQuery(query);
+                          if (res == true) {
+                            Get.back();
+                            SnackBars.customsnack(
+                                "We Got Your Query We Will Try To Reach Out You Soon",
+                                Icons.done,
+                                Colors.teal);
+                          } else {
+                            SnackBars.customsnack(
+                                "Something Unexpected Occured Please Try Again",
+                                Icons.refresh,
+                                Colors.red);
+                          }
+                        } else {
+                          SnackBars.customsnack(
+                              "Query Should Be Of Minimum 10 Characters",
+                              Icons.close,
+                              Colors.red);
+                        }
+                      },
+                      icon: Icon(Icons.send),
+                      label: Text("Submit")),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ));
+  }
+
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
+  }
+
+  Future sendQuery(String query) async {
+    QueryService obj = QueryService();
+    Loader.showLoader(
+        animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
+        title: "Submiting Your Query");
+    var response = await obj.querySrvc(id, query);
+    Loader.hideLoader();
+    if (response == true) {
+      return true;
+    } else if (response == false) {
+      return false;
+    } else {
+      return null;
     }
   }
 }

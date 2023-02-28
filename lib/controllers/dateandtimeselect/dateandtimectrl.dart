@@ -166,7 +166,7 @@ class DateAndTimeController extends GetxController {
     Loader.showLoader(
         animation: LottieBuilder.asset('assets/lottieefiles/loading.json'),
         title: "Fetching Available Times");
-    var result = await obj.getAvailableTimeOfDay(storeid, date);
+    var result = await obj.getAvailableTimeOfDay(userid, storeid, date);
     Loader.hideLoader();
 
     if (result == true) {

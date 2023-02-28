@@ -1,6 +1,6 @@
 class APIENDPOINTNAME {
-  // static String HOME = "https://philebackendapp.onrender.com/api/";
-  static String HOME = "http://192.168.0.103:8000/api/";
+  static String HOME = "https://philebackendapp.onrender.com/api/";
+  // static String HOME = "http://192.168.0.103:8000/api/";
   static String CREATEUSER = HOME + "adduser/";
   static String LOGINUSER = HOME + "verifyuser/";
   static String GENERATEOTP = HOME + "generateotp/";
@@ -14,4 +14,5 @@ class APIENDPOINTNAME {
   static String ORDERSERVICE = HOME + "addorder/";
   static String FORGOTPASSCHECKER = HOME + "forgotpasschecker/";
   static String FORGOTPASSCHANGE = HOME + "forgotpasschange/";
+  static String RAISEQUERY = HOME + "raisequery/";
 }

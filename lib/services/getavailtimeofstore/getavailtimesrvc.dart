@@ -6,10 +6,16 @@ import 'package:phileclientapp/apiname.dart';
 import '../../models/availtimemodel.dart';
 
 class Getavailtimeservice {
-  Future getAvailableTimeOfDay(String storeid, String date) async {
+  Future getAvailableTimeOfDay(
+      String userid, String storeid, String date) async {
     try {
-      var response = await http.get(
-          Uri.parse(APIENDPOINTNAME.GETAVAILTIME + storeid + "/" + date + "/"));
+      var response = await http.get(Uri.parse(APIENDPOINTNAME.GETAVAILTIME +
+          userid +
+          "/" +
+          storeid +
+          "/" +
+          date +
+          "/"));
       if (response.statusCode == 200) {
         if (response.body == "[]") {
           return true;
