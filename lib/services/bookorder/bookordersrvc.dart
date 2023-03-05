@@ -5,12 +5,13 @@ import 'package:phileclientapp/apiname.dart';
 
 class BookOrderService {
   Future bookService(List listofsrvc, String selectedtime, String selecteddate,
-      String userid, String storeid) async {
+      String userid, String storeid, String orderdate) async {
     try {
       var data = {
         "servicesopted": listofsrvc,
         "selecteddate": selecteddate,
-        "selectedtime": selectedtime
+        "selectedtime": selectedtime,
+        "orderdate": orderdate
       };
       var datatobesent = jsonEncode(data);
       var response = await http.post(

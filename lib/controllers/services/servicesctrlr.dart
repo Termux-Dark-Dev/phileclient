@@ -112,7 +112,12 @@ class ServicesController extends GetxController {
         title: "Booking Your Special Order");
 
     var res = await obj.bookService(
-        bookedlistservice, selectedtime, selecteddate, userid, storeid);
+        bookedlistservice,
+        selectedtime,
+        selecteddate,
+        userid,
+        storeid,
+        DateTime.now().toString().substring(0, 19));
     Loader.hideLoader();
 
     if (res == true) {
