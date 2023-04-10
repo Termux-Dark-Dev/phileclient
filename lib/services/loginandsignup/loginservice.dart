@@ -8,8 +8,11 @@ import 'package:phileclientapp/services/SAR/sarservices.dart';
 class LoginService {
   Future Login(String email, String pass) async {
     try {
+      var body = {"useremail": email, "password": pass};
       var response = await http
-          .get(Uri.parse(APIENDPOINTNAME.LOGINUSER + email + '/' + pass + '/'));
+          .post(Uri.parse(APIENDPOINTNAME.LOGINUSER), body: body, headers: {
+        HttpHeaders.contentTypeHeader: 'application/x-www-form-urlencoded',
+      });
       if (response.statusCode == 200) {
         var usrid = jsonDecode(response.body)["id"].toString();
         var phonenumber = jsonDecode(response.body)["phonenumber"].toString();
