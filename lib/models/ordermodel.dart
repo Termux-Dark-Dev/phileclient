@@ -5,7 +5,8 @@ class OrderModel {
       servicedate,
       servicetime,
       servicesopted,
-      orderdate;
+      orderdate,
+      shopimage;
 
   OrderModel(
       {required this.storename,
@@ -14,7 +15,8 @@ class OrderModel {
       required this.servicedate,
       required this.servicetime,
       required this.servicesopted,
-      required this.orderdate});
+      required this.orderdate,
+      required this.shopimage});
 
   static List<OrderModel> tojson(List<dynamic> data) {
     List<OrderModel> ordermodelobjlist = [];
@@ -27,7 +29,8 @@ class OrderModel {
           servicedate: item["ServiceDate"].toString(),
           servicetime: item["ServiceTime"].toString(),
           servicesopted: item["ServicesOpted"].toString(),
-          orderdate: item["DateOfOrder"].toString()));
+          orderdate: item["DateOfOrder"].toString(),
+          shopimage: item["StoreFrontImagePath"].toString()));
     }
 
     return ordermodelobjlist;

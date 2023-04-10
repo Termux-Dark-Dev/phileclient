@@ -18,6 +18,7 @@ class SelectDateAndTime extends StatelessWidget {
     controller.userid = args["userid"];
     controller.storename = args["storename"];
     controller.storeaddr = args["addr"];
+    controller.shopimage = args["shopimage"];
 
     return SafeArea(
       child: Scaffold(
@@ -33,10 +34,14 @@ class SelectDateAndTime extends StatelessWidget {
                   Container(
                     height: 300.h,
                     width: size.width,
-                    child: Image.network(
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU",
-                      fit: BoxFit.cover,
-                    ),
+                    child: controller.shopimage == ""
+                        ? Image.asset("assets/storeimage.png")
+                        : Image.network(
+                            controller.shopimage,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Image.asset("assets/storeimage.png");
+                            },
+                          ),
                   ),
                   Container(
                     height: 100.h,
@@ -45,7 +50,6 @@ class SelectDateAndTime extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                       
                         Expanded(
                           child: Card(
                             color: Colors.teal,
@@ -125,7 +129,8 @@ class SelectDateAndTime extends StatelessWidget {
                     height: 40.h,
                     width: size.width,
                     child: Text("Select Date Of Appointment",
-                        style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 20.sp, fontWeight: FontWeight.bold)),
                   ),
                   Container(
                     // color: Colors.amber,

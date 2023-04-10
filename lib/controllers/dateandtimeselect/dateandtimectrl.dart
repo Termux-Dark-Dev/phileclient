@@ -12,6 +12,7 @@ import '../../common/snackbars/snackbars.dart';
 import '../../services/getavailtimeofstore/getavailtimesrvc.dart';
 
 class DateAndTimeController extends GetxController {
+  late String shopimage;
   var timings = [
     {
       "date": DateTime(

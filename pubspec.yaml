@@ -40,10 +40,10 @@ dependencies:
   expandable_bottom_sheet: ^1.1.1+1
   intl: ^0.18.0
   marquee: ^2.2.3
-  flutter_native_splash: ^2.2.18
   double_back_to_close: ^2.0.0
   app_settings: 4.2.0
   url_launcher: ^6.1.10
+  flutter_native_splash: ^2.2.18
   
 
 
@@ -65,7 +65,9 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/chopchopicon.png"
+  image_path: "assets/looksicon.png"
+  adaptive_icon_foreground: "assets/looksicon.png"
+  adaptive_icon_background: "#ffffff"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -83,8 +85,9 @@ flutter:
     - assets/lottieefiles/
     - assets/icon/
     - assets/img/
-    - assets/chopchopicon.jpeg
-    - assets/chopchopspashscrn.png
+    - assets/storeimage.png
+    - assets/looks_splash_scrn.png
+    - assets/looksicon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

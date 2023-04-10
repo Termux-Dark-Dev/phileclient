@@ -84,6 +84,8 @@ class DashBoardController extends GetxController {
 
       SnackBars.customsnack(
           "Something Unexpected Occured", Icons.close, Colors.red[800]!);
+    } else if (res is Map<String, String>) {
+      listofstores.value = [res["status"]];
     } else {
       listofstores.value = res!;
     }

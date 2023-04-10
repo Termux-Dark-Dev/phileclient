@@ -13,7 +13,14 @@ class GetStoreDetails {
 
       if (response.statusCode == 200) {
         var storedata = StoreModel.tojson(json.decode(response.body));
-        return storedata;
+        if (storedata.length == 0) {
+          return {
+            "status":
+                "We are currently not serviceable in your area , We will be live very soon. Please expect a notification/message from us"
+          };
+        } else {
+          return storedata;
+        }
       } else {
         return null;
       }

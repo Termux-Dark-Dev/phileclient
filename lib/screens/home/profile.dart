@@ -31,7 +31,7 @@ class ProfilePage extends StatelessWidget {
                               color: Colors.teal,
                               child: Center(
                                 child: Text(
-                                  "ChopChop",
+                                  "Looks",
                                   style: TextStyle(
                                       letterSpacing: 3,
                                       wordSpacing: 4,
@@ -49,7 +49,7 @@ class ProfilePage extends StatelessWidget {
                                   child: CircleAvatar(
                                       radius: 48.w,
                                       backgroundImage: AssetImage(
-                                        'assets/chopchopicon.jpeg',
+                                        'assets/looksicon.png',
                                       )),
                                 ))
                           ],

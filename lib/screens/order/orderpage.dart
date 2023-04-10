@@ -75,6 +75,7 @@ class OderHistoryPage extends StatelessWidget {
                     serviceopted: controller.listoforder[index].servicesopted,
                     srvctime: controller.listoforder[index].servicetime,
                     address: controller.listoforder[index].address,
+                    shopimage: controller.listoforder[index].shopimage,
                   );
                 });
           }),
@@ -86,14 +87,21 @@ class OderHistoryPage extends StatelessWidget {
 }
 
 class MyOrders extends StatelessWidget {
-  late String date, serviceopted, shopname, orderdate, srvctime, address;
+  late String date,
+      serviceopted,
+      shopname,
+      orderdate,
+      srvctime,
+      address,
+      shopimage;
   MyOrders(
       {required this.date,
       required this.orderdate,
       required this.shopname,
       required this.serviceopted,
       required this.srvctime,
-      required this.address});
+      required this.address,
+      required this.shopimage});
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -148,11 +156,22 @@ class MyOrders extends StatelessWidget {
                         Container(
                           height: 220.h,
                           width: 150.w,
-                          color: Colors.teal,
-                          child: Image.network(
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU",
-                            fit: BoxFit.fill,
-                          ),
+                          color: Colors.white,
+                          child: shopimage == ""
+                              ? Image.asset(
+                                  "assets/storeimage.png",
+                                  fit: BoxFit.fill,
+                                )
+                              : Image.network(
+                                  shopimage,
+                                  fit: BoxFit.fill,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Image.asset(
+                                      "assets/storeimage.png",
+                                      fit: BoxFit.fill,
+                                    );
+                                  },
+                                ),
                         ),
                         SizedBox(
                           width: 20.w,
@@ -336,10 +355,11 @@ class MyOrders extends StatelessWidget {
                               minimumSize: Size(110.w, 35.h),
                               backgroundColor: Colors.teal),
                         ),
-                        VerticalDivider(width: 60.w),
+                        VerticalDivider(width: 40.w),
                         Text(
                           'Hope you enjoyed the Service!',
-                          style: TextStyle(color: Color(0xff666666)),
+                          style: TextStyle(
+                              color: Color(0xff666666), fontSize: 15.sp),
                         ),
                       ],
                     ),

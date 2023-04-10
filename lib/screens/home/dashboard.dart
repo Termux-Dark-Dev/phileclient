@@ -66,9 +66,8 @@ class DashBoard extends GetView {
                   Padding(
                     padding: EdgeInsets.only(right: 10.w),
                     child: CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Colors.teal,
-                      foregroundImage: AssetImage('assets/chopchopicon.jpeg'),
+                      radius: 30.sp,
+                      foregroundImage: AssetImage('assets/looksicon.png'),
                     ),
                   ),
 
@@ -148,6 +147,19 @@ class DashBoard extends GetView {
                         ),
                       );
                     }
+
+                    if (controller.listofstores[0] ==
+                        "We are currently not serviceable in your area , We will be live very soon. Please expect a notification/message from us") {
+                      return Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(controller.listofstores[0].toString()),
+                          ],
+                        ),
+                      );
+                    }
+
                     if (controller.listofstores.length == 1) {
                       return Container(
                         child: Column(
@@ -183,7 +195,10 @@ class DashBoard extends GetView {
                                   "storeid": storeid,
                                   "storename":
                                       controller.listofstores[index].name,
-                                  "addr": controller.listofstores[index].address
+                                  "addr":
+                                      controller.listofstores[index].address,
+                                  "shopimage":
+                                      controller.listofstores[index].storeimage
                                 });
                               },
                               child: Card(
@@ -212,22 +227,30 @@ class DashBoard extends GetView {
                                                   .width *
                                               0.83,
                                           decoration: BoxDecoration(
+                                            color: Colors.white,
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
-                                            image: DecorationImage(
-                                              image: NetworkImage(controller
-                                                          .listofstores[index]
-                                                          .storeimage ==
-                                                      ""
-                                                  ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC-qHziJmOHAuee-hMNj8FoQKSrk3a3_xFiA&usqp=CAU'
-                                                  : controller
-                                                      .listofstores[index]
-                                                      .storeimage),
-                                              fit: BoxFit.cover,
-                                            ),
                                           ),
+                                          child: controller.listofstores[index]
+                                                      .storeimage ==
+                                                  ""
+                                              ? Image.asset(
+                                                  "assets/storeimage.png",
+                                                  fit: BoxFit.fill,
+                                                )
+                                              : Image.network(
+                                                  controller.listofstores[index]
+                                                      .storeimage,
+                                                  errorBuilder: (context, error,
+                                                      stackTrace) {
+                                                    print(error);
+                                                    return Image.asset(
+                                                      "assets/storeimage.png",
+                                                      fit: BoxFit.fill,
+                                                    );
+                                                  },
+                                                  fit: BoxFit.fill,
+                                                ),
                                         ),
                                       ],
                                     ),

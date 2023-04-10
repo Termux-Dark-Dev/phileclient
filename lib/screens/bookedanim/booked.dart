@@ -117,6 +117,7 @@ class OrderDonePage extends StatelessWidget {
               Container(
                 height: 200.h,
                 width: size.width,
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
