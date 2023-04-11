@@ -1,11 +1,17 @@
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:phileclientapp/apiname.dart';
 
 class UpdateEmailService {
   Future updateUserEmail(String id, String email) async {
     try {
-      var res = await http.put(
-          Uri.parse(APIENDPOINTNAME.UPDATEUSEREMAIL + id + "/" + email + "/"));
+      var body = {"id": id, "email": email};
+      var res = await http.put(Uri.parse(APIENDPOINTNAME.UPDATEUSEREMAIL),
+          body: body,
+          headers: {
+            HttpHeaders.contentTypeHeader: 'application/x-www-form-urlencoded',
+          });
 
       if (res.statusCode == 200) {
         return true;

@@ -29,15 +29,15 @@ class ProfilePageController extends GetxController {
       email = userdetails["email"];
       id = userdetails["id"];
 
-      var x = usrname;
-      var s = "";
-      for (var i in x.split(" ")) {
-        var z = i.trim();
-        if (z.length > 1) {
-          s = s + z + " ";
-        }
-      }
-      usrname = s;
+      // var x = usrname;
+      // var s = "";
+      // for (var i in x.split(" ")) {
+      //   var z = i.trim();
+      //   if (z.length > 1) {
+      //     s = s + z + " ";
+      //   }
+      // }
+      // usrname = s;
       return true;
     } else {
       return false;

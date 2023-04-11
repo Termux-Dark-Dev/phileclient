@@ -35,9 +35,6 @@ class SignupControl extends GetxController {
   void onClose() {
     // TODO: implement onClose
     super.onClose();
-    emailcontroller.dispose();
-    passcontroller.dispose();
-    phonecontroller.dispose();
   }
 
   String? emailValidator(String? value) {

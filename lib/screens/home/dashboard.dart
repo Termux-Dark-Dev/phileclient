@@ -27,7 +27,6 @@ class DashBoard extends GetView {
             Container(
               height: 80.h,
               width: size.width,
-              // color: Colors.amber,
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,26 +36,42 @@ class DashBoard extends GetView {
                       builder: (ctx, snp) {
                         if (snp.hasData) {
                           var x = snp.data as String;
-                          var username = "";
-                          for (var i in x.split(" ")) {
-                            var z = i.trim();
-                            if (z.length > 1) {
-                              username = username + i;
-                              break;
-                            }
-                          }
-                          return Text(
-                            "Hello, $username",
-                            style: TextStyle(
-                                fontSize: 25.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
+                          // var username = "";
+                          // for (var i in x.split(" ")) {
+                          //   var z = i.trim();
+                          //   if (z.length > 1) {
+                          //     username = username + i;
+                          //     break;
+                          //   }
+                          // }
+                          return Container(
+                            height: 50.h,
+                            width: size.width * 0.70,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Hello, $x",
+                                    style: TextStyle(
+                                        fontSize: 20.sp,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
                         } else {
                           return CircularProgressIndicator();
                         }
                       }),
 
+                  SizedBox(
+                    width: 30.w,
+                  ),
                   // CircleAvatar(
                   //   radius: 25,
                   //   backgroundColor: Colors.teal,

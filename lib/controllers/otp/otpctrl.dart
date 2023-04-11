@@ -65,7 +65,7 @@ class OTPController extends GetxController {
         Loader.hideLoader();
         Future.delayed(Duration(seconds: 0), () {
           SnackBars.customsnack("Otp Expired", Icons.close, Colors.red[800]!);
-        }).whenComplete(() => Get.toNamed('/signup'));
+        }).whenComplete(() => Get.offAllNamed('/signup'));
       } else if (res == "Otp Mismatch") {
         Loader.hideLoader();
         SnackBars.customsnack("Otp Mismatch", Icons.close, Colors.red[800]!);
