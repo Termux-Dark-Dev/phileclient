@@ -22,7 +22,10 @@ class SelectDateAndTime extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("Select Date And Time"),
+          centerTitle: true,
+        ),
         body: Stack(alignment: Alignment.bottomCenter, children: [
           Container(
             height: size.height,
@@ -58,10 +61,10 @@ class SelectDateAndTime extends StatelessWidget {
                                 children: [
                                   Container(
                                     height: 80.h,
-                                    width: 100.h,
+                                    width: 160.w,
                                     child: Center(
                                       child: Text(
-                                        "Name : ",
+                                        " Store Name      :",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,
@@ -76,7 +79,9 @@ class SelectDateAndTime extends StatelessWidget {
                                           child: Text(
                                               style: TextStyle(
                                                   color: Colors.white),
-                                              controller.storename.toString())),
+                                              "  " +
+                                                  controller.storename
+                                                      .toString())),
                                     ),
                                   )
                                 ],
@@ -92,10 +97,10 @@ class SelectDateAndTime extends StatelessWidget {
                                 children: [
                                   Container(
                                     height: 80.h,
-                                    width: 100.h,
+                                    width: 160.w,
                                     child: Center(
                                       child: Text(
-                                        "Address : ",
+                                        " Store Address  :",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,
@@ -111,7 +116,9 @@ class SelectDateAndTime extends StatelessWidget {
                                               style: TextStyle(
                                                 color: Colors.white,
                                               ),
-                                              controller.storeaddr.toString())),
+                                              " " +
+                                                  controller.storeaddr
+                                                      .toString())),
                                     ),
                                   )
                                 ],
@@ -130,10 +137,11 @@ class SelectDateAndTime extends StatelessWidget {
                     width: size.width,
                     child: Text("Select Date Of Appointment",
                         style: TextStyle(
-                            fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.teal[800])),
                   ),
                   Container(
-                    // color: Colors.amber,
                     height: 100.h,
                     width: size.width,
                     child: Row(
@@ -213,15 +221,19 @@ class SelectDateAndTime extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
+                  // To show timings when no previous time is opted by user
                   Obx(() => Visibility(
                         visible: controller.isVisible.value,
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          padding: EdgeInsets.symmetric(horizontal: 10.w),
                           height: 50.h,
                           width: size.width,
                           child: Text(
-                            "Select Your Preffered Time Slot : ",
-                            style: TextStyle(fontSize: 20.sp),
+                            "Select Your Preferred Time Slot : ",
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.teal[700]),
                           ),
                         ),
                       )),
@@ -303,23 +315,24 @@ class SelectDateAndTime extends StatelessWidget {
                                               width: 25.w,
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
-                                                    image: AssetImage(DateFormat('h:mm a')
-                                                            .format(controller.timings[index]
+                                                    image: AssetImage(DateFormat(
+                                                                'hh:mm a')
+                                                            .format(controller
+                                                                        .timings[index]
                                                                     ["date"]
                                                                 as DateTime)
                                                             .toString()
                                                             .contains("AM")
                                                         ? 'assets/img/morning.png'
-                                                        : int.parse(DateFormat('h:mm a')
-                                                                    .format(controller.timings[index]["date"]
-                                                                        as DateTime)
-                                                                    .toString()
-                                                                    .substring(
-                                                                        0, 1)) <
-                                                                4
+                                                        : int.parse(DateFormat('hh:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 2)) <
+                                                                    4 ||
+                                                                int.parse(DateFormat('hh:mm a')
+                                                                        .format(controller.timings[index]["date"] as DateTime)
+                                                                        .toString()
+                                                                        .substring(0, 2)) ==
+                                                                    12
                                                             ? 'assets/img/afternoon.png'
-                                                            : int.parse(DateFormat('h:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 1)) >= 4 &&
-                                                                    int.parse(DateFormat('h:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 1)) <= 6
+                                                            : int.parse(DateFormat('hh:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 2)) >= 4 && int.parse(DateFormat('hh:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 2)) <= 6
                                                                 ? 'assets/img/evening.png'
                                                                 : 'assets/img/night.png')),
                                               ),
@@ -328,7 +341,7 @@ class SelectDateAndTime extends StatelessWidget {
                                               width: 3.w,
                                             ),
                                             Text(
-                                              DateFormat('h:mm a')
+                                              DateFormat('hh:mm a')
                                                   .format(
                                                       controller.timings[index]
                                                           ["date"] as DateTime)
@@ -443,29 +456,30 @@ class SelectDateAndTime extends StatelessWidget {
                                                 width: 25.w,
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
-                                                      image: AssetImage(DateFormat('h:mm a')
-                                                              .format(controller.timings[index]
+                                                      image: AssetImage(DateFormat(
+                                                                  'hh:mm a')
+                                                              .format(controller
+                                                                          .timings[index]
                                                                       ["date"]
                                                                   as DateTime)
                                                               .toString()
                                                               .contains("AM")
                                                           ? 'assets/img/morning.png'
-                                                          : int.parse(DateFormat('h:mm a')
-                                                                      .format(controller.timings[index]["date"]
-                                                                          as DateTime)
-                                                                      .toString()
-                                                                      .substring(
-                                                                          0, 1)) <
-                                                                  4
+                                                          : int.parse(DateFormat('hh:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 2)) <
+                                                                      4 ||
+                                                                  int.parse(DateFormat('hh:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 2)) ==
+                                                                      12
                                                               ? 'assets/img/afternoon.png'
-                                                              : int.parse(DateFormat('h:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 1)) >= 4 &&
-                                                                      int.parse(DateFormat('h:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 1)) <= 6
+                                                              : int.parse(DateFormat('hh:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 2)) >=
+                                                                          4 &&
+                                                                      int.parse(DateFormat('hh:mm a').format(controller.timings[index]["date"] as DateTime).toString().substring(0, 2)) <=
+                                                                          6
                                                                   ? 'assets/img/evening.png'
                                                                   : 'assets/img/night.png')),
                                                 ),
                                               ),
                                               Text(
-                                                DateFormat('h:mm a').format(
+                                                DateFormat('hh:mm a').format(
                                                     controller.timings[index]
                                                         ["date"] as DateTime),
                                                 style: TextStyle(

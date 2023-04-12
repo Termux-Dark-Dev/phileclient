@@ -26,16 +26,22 @@ class ProfilePage extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Container(
+                              decoration: BoxDecoration(color: Colors.teal),
                               height: 180.h,
                               width: size.width,
-                              color: Colors.teal,
                               child: Center(
                                 child: Text(
-                                  "Looks",
+                                  "LOOKS",
                                   style: TextStyle(
-                                      letterSpacing: 3,
+                                      shadows: [
+                                        Shadow(
+                                            color: Colors.black,
+                                            offset:
+                                                Offset.fromDirection(-70, 5))
+                                      ],
+                                      letterSpacing: 4,
                                       wordSpacing: 4,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w800,
                                       color: Colors.white,
                                       fontSize: 55.sp),
                                 ),
@@ -84,7 +90,7 @@ class ProfilePage extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 19.sp,
-                                      color: Colors.teal[800]),
+                                      color: Colors.black),
                                 ),
                               ),
                               SizedBox(
@@ -129,7 +135,7 @@ class ProfilePage extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 19.sp,
-                                      color: Colors.teal[800]),
+                                      color: Colors.black),
                                 ),
                               ),
                               SizedBox(
@@ -178,7 +184,7 @@ class ProfilePage extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 19.sp,
-                                      color: Colors.teal[800]),
+                                      color: Colors.black),
                                 ),
                               ),
                               SizedBox(
@@ -227,7 +233,7 @@ class ProfilePage extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 19.sp,
-                                      color: Colors.teal[800]),
+                                      color: Colors.black),
                                 ),
                               ),
                               SizedBox(
@@ -281,7 +287,7 @@ class ProfilePage extends StatelessWidget {
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 19.sp,
-                                        color: Colors.teal[800]),
+                                        color: Colors.black),
                                   ),
                                 ),
                               ),
@@ -316,7 +322,7 @@ class ProfilePage extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 19.sp,
-                                      color: Colors.teal[800]),
+                                      color: Colors.black),
                                 ),
                               ),
                               SizedBox(
@@ -366,11 +372,11 @@ class ProfilePage extends StatelessWidget {
                                 child: Container(
                                   width: 260.w,
                                   child: Text(
-                                    "Orders",
+                                    "My Bookings",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20.sp,
-                                        color: Colors.teal[800]),
+                                        color: Colors.black),
                                   ),
                                 ),
                               ),

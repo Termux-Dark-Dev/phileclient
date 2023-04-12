@@ -54,11 +54,18 @@ class DashBoard extends GetView {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Hello, $username",
+                                    "Hello, ",
+                                    style: TextStyle(
+                                        fontSize: 20.sp,
+                                        color: Colors.teal[700],
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  Text(
+                                    "$username",
                                     style: TextStyle(
                                         fontSize: 20.sp,
                                         color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.w800),
                                   ),
                                 ],
                               ),
@@ -106,11 +113,11 @@ class DashBoard extends GetView {
               padding: EdgeInsets.only(left: 10),
               height: 40.h,
               width: size.width,
-              child: Text("Please select the store for booking",
+              child: Text("Please select store for appointment booking",
                   style: TextStyle(
-                      fontSize: 20.sp,
-                      color: Colors.grey[800],
-                      fontWeight: FontWeight.normal)),
+                      fontSize: 17.sp,
+                      color: Colors.teal[600],
+                      fontWeight: FontWeight.w700)),
             ),
             SizedBox(
               height: 5.h,
@@ -150,9 +157,9 @@ class DashBoard extends GetView {
                               Text(
                                 "Searching Stores Near You",
                                 style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.teal[700],
                                     fontSize: 20.sp,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.w700),
                               ),
                               SizedBox(
                                 height: 20.h,
@@ -169,7 +176,12 @@ class DashBoard extends GetView {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(controller.listofstores[0].toString()),
+                            Text(
+                              controller.listofstores[0].toString(),
+                              style: TextStyle(
+                                  color: Colors.teal[700],
+                                  fontWeight: FontWeight.w700),
+                            ),
                           ],
                         ),
                       );
@@ -304,7 +316,7 @@ class DashBoard extends GetView {
                                                 children: [
                                                   Container(
                                                     alignment: Alignment.center,
-                                                    width: 62.w,
+                                                    width: 80.w,
                                                     child: Text(
                                                       "Address:",
                                                       style: TextStyle(

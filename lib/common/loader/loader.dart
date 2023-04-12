@@ -15,7 +15,10 @@ class Loader {
               color: Colors.white,
               child: Text(
                 title!,
-                style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    color: Colors.teal[700],
+                    fontWeight: FontWeight.w700),
               )),
         ),
         content: Container(

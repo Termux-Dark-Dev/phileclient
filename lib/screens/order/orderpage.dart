@@ -13,7 +13,7 @@ class OderHistoryPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.teal[600],
-          title: Text("Your Order"),
+          title: Text("My Bookings"),
           actions: [
             IconButton(
               onPressed: () async {
@@ -38,7 +38,10 @@ class OderHistoryPage extends StatelessWidget {
                   ),
                   Text(
                     "Getting Your Appointments",
-                    style: TextStyle(color: Colors.black, fontSize: 25.sp),
+                    style: TextStyle(
+                        color: Colors.teal[700],
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.w700),
                   )
                 ],
               ));
@@ -183,7 +186,7 @@ class MyOrders extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    "Shop Name : ",
+                                    "Store Name        :",
                                     style: TextStyle(
                                         color: Colors.teal[700],
                                         fontWeight: FontWeight.bold,
@@ -206,39 +209,6 @@ class MyOrders extends StatelessWidget {
                               height: 15.h,
                             ),
                             Container(
-                                width: 380.w, //
-
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Service Address :",
-                                      style: TextStyle(
-                                          color: Colors.teal[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14.sp),
-                                      maxLines: 4,
-                                    ),
-                                    SizedBox(
-                                      width: 15.w,
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        child: Text(
-                                          "$address",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 14.sp),
-                                          maxLines: 4,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Container(
                               height: 30.h,
                               width: 265.w,
                               child: SingleChildScrollView(
@@ -246,38 +216,7 @@ class MyOrders extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      "Service date : ",
-                                      style: TextStyle(
-                                          color: Colors.teal[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14.sp),
-                                    ),
-                                    SizedBox(
-                                      width: 8.w,
-                                    ),
-                                    Text(
-                                      "$date",
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Container(
-                              height: 30.h,
-                              width: 265.w,
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Service time : ",
+                                      "Service Time      :",
                                       style: TextStyle(
                                           color: Colors.teal[700],
                                           fontWeight: FontWeight.bold,
@@ -301,12 +240,43 @@ class MyOrders extends StatelessWidget {
                               height: 15.h,
                             ),
                             Container(
+                              height: 30.h,
+                              width: 265.w,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Service Date       :",
+                                      style: TextStyle(
+                                          color: Colors.teal[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14.sp),
+                                    ),
+                                    SizedBox(
+                                      width: 8.w,
+                                    ),
+                                    Text(
+                                      "$date",
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Container(
                                 width: 380.w, //
 
                                 child: Row(
                                   children: [
                                     Text(
-                                      "Service Asked :",
+                                      "Store Address    :",
                                       style: TextStyle(
                                           color: Colors.teal[700],
                                           fontWeight: FontWeight.bold,
@@ -314,7 +284,40 @@ class MyOrders extends StatelessWidget {
                                       maxLines: 4,
                                     ),
                                     SizedBox(
-                                      width: 15.w,
+                                      width: 8.w,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        child: Text(
+                                          "$address",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 14.sp),
+                                          maxLines: 4,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Container(
+                                width: 380.w, //
+
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Services Opted  :",
+                                      style: TextStyle(
+                                          color: Colors.teal[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14.sp),
+                                      maxLines: 4,
+                                    ),
+                                    SizedBox(
+                                      width: 8.w,
                                     ),
                                     Expanded(
                                       child: Container(

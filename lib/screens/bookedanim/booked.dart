@@ -31,7 +31,7 @@ class OrderDonePage extends StatelessWidget {
                                 repeat: true)),
                         Container(
                           child: Text(
-                            "Booking Succesful",
+                            "Booking Successful",
                             style: TextStyle(
                                 fontSize: 25.sp, fontWeight: FontWeight.bold),
                           ),
@@ -74,14 +74,29 @@ class OrderDonePage extends StatelessWidget {
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 15),
-                            alignment: Alignment.center,
+                            alignment: Alignment.centerLeft,
                             color: Colors.teal[400],
-                            child: Text(
-                              "Store Name : ${storename.toString()}",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                  fontSize: 14.sp),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Store Name : ",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        fontSize: 14.sp),
+                                  ),
+                                  Text(
+                                    "${storename.toString()}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        fontSize: 14.sp),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -93,13 +108,28 @@ class OrderDonePage extends StatelessWidget {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 15),
                             color: Colors.teal[400],
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Store Address : ${storeaddr.toString()}",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                  fontSize: 14.sp),
+                            alignment: Alignment.centerLeft,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Store Address : ",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        fontSize: 14.sp),
+                                  ),
+                                  Text(
+                                    "${storeaddr.toString()}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        fontSize: 14.sp),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -129,7 +159,7 @@ class OrderDonePage extends StatelessWidget {
                           Get.offAllNamed("/home");
                         },
                         child: Text(
-                          "Go To HomePage",
+                          "HomePage  ",
                           style: TextStyle(
                             wordSpacing: 1,
                           ),
@@ -141,7 +171,7 @@ class OrderDonePage extends StatelessWidget {
                           Get.offAndToNamed("/orderhistory");
                         },
                         child: Text(
-                          "See Booked Orders",
+                          "View Appointments",
                           style: TextStyle(
                             wordSpacing: 1,
                           ),

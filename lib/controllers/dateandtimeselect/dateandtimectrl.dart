@@ -16,6 +16,26 @@ class DateAndTimeController extends GetxController {
   var timings = [
     {
       "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 6, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 6, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 7, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 7, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
           DateTime.now().year, DateTime.now().month, DateTime.now().day, 8, 0),
       "isselected": false
     },
@@ -152,6 +172,26 @@ class DateAndTimeController extends GetxController {
     {
       "date": DateTime(DateTime.now().year, DateTime.now().month,
           DateTime.now().day, 21, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 22, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 22, 30),
+      "isselected": false
+    },
+    {
+      "date": DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day, 23, 0),
+      "isselected": false
+    },
+    {
+      "date": DateTime(DateTime.now().year, DateTime.now().month,
+          DateTime.now().day, 23, 30),
       "isselected": false
     },
   ];
