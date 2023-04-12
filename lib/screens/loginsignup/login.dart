@@ -88,19 +88,27 @@ class Login extends StatelessWidget {
                         constraints: BoxConstraints(
                             minHeight: 50.h,
                             minWidth: MediaQuery.of(context).size.width * 0.90),
-                        child: ElevatedButton(
-                          child: Text(
-                            "Continue",
-                            style:
-                                TextStyle(fontSize: 18.sp, color: Colors.white),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.teal[800],
-                              onPrimary: Colors.teal,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.sp))),
-                          onPressed: () => controller.login(),
-                        )),
+                        child: Obx(() => ElevatedButton(
+                              child: Text(
+                                "Continue",
+                                style: TextStyle(
+                                    fontSize: 18.sp, color: Colors.white),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                  primary:
+                                      controller.isloginbtntapped.value == true
+                                          ? Colors.blueGrey
+                                          : Colors.teal[800],
+                                  onPrimary: Colors.teal,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(8.sp))),
+                              onPressed: () {
+                                if (controller.isloginbtntapped.value != true) {
+                                  controller.login();
+                                }
+                              },
+                            ))),
                     Container(
                       height: 70.h,
                       width: size.width,

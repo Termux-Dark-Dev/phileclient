@@ -353,7 +353,10 @@ class DashBoard extends GetView {
                                                           .name,
                                                       "addr": controller
                                                           .listofstores[index]
-                                                          .address
+                                                          .address,
+                                                      "shopimage": controller
+                                                          .listofstores[index]
+                                                          .storeimage
                                                     });
                                               },
                                               icon: Icon(Icons.ads_click),

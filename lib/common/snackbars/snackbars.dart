@@ -6,7 +6,7 @@ class SnackBars {
   static void customsnack(String msg, IconData uploadicon, Color colur) {
     Get.showSnackbar(GetSnackBar(
       padding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 18.sp),
-      duration: Duration(seconds: 6),
+      duration: Duration(seconds: 3),
       backgroundColor: colur,
       message: msg,
       margin: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.h),

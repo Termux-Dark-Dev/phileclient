@@ -11,6 +11,7 @@ import 'package:phileclientapp/services/loginandsignup/loginservice.dart';
 import 'package:phileclientapp/services/loginandsignup/sendotpsrvc.dart';
 
 class LoginCtrl extends GetxController {
+  var isloginbtntapped = false.obs;
   var ispassHidden = true.obs;
   GlobalKey<FormState> loginformkey = GlobalKey<FormState>();
   late String email, password;
@@ -78,14 +79,23 @@ class LoginCtrl extends GetxController {
               "Login Successful", Icons.done, Colors.teal[800]!);
         }).whenComplete(() => Get.offAllNamed("/home"));
       } else if (res == false) {
+        isloginbtntapped.value = true;
         SnackBars.customsnack(
             "Wrong Email Or Password", Icons.close, Colors.red[800]!);
+        Future.delayed(Duration(seconds: 4))
+            .whenComplete(() => isloginbtntapped.value = false);
       } else if (res == null) {
+        isloginbtntapped.value = true;
         SnackBars.customsnack(
             "Internal Server Error", Icons.close, Colors.red[800]!);
+        Future.delayed(Duration(seconds: 4))
+            .whenComplete(() => isloginbtntapped.value = false);
       } else {
+        isloginbtntapped.value = true;
         SnackBars.customsnack(
             "Something Unexpected Occured", Icons.close, Colors.red[800]!);
+        Future.delayed(Duration(seconds: 4))
+            .whenComplete(() => isloginbtntapped.value = false);
       }
     }
   }
@@ -152,9 +162,11 @@ class LoginCtrl extends GetxController {
                             Get.toNamed("/forgotpassotp",
                                 arguments: {"useremail": newmail});
                           } else if (result == false) {
+                            forgotpassemailctrlr.clear();
                             SnackBars.customsnack(
                                 "User Not Exists", Icons.close, Colors.red);
                           } else {
+                            forgotpassemailctrlr.clear();
                             SnackBars.customsnack(
                                 "Something Unexpected Occured",
                                 Icons.close,
