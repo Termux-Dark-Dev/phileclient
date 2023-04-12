@@ -124,24 +124,24 @@ class OrderDonePage extends StatelessWidget {
                   children: [
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size(size.width * 0.4, 60.h)),
+                            minimumSize: Size(size.width * 0.1, 60.h)),
                         onPressed: () {
                           Get.offAllNamed("/home");
                         },
                         child: Text(
-                          "Go Back To HomePage",
+                          "Go To HomePage",
                           style: TextStyle(
                             wordSpacing: 1,
                           ),
                         )),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size(size.width * 0.36, 60.h)),
+                            minimumSize: Size(size.width * 0.1, 60.h)),
                         onPressed: () {
                           Get.offAndToNamed("/orderhistory");
                         },
                         child: Text(
-                          "Go To Your Booked Orders",
+                          "See Booked Orders",
                           style: TextStyle(
                             wordSpacing: 1,
                           ),

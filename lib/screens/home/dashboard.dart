@@ -36,14 +36,14 @@ class DashBoard extends GetView {
                       builder: (ctx, snp) {
                         if (snp.hasData) {
                           var x = snp.data as String;
-                          // var username = "";
-                          // for (var i in x.split(" ")) {
-                          //   var z = i.trim();
-                          //   if (z.length > 1) {
-                          //     username = username + i;
-                          //     break;
-                          //   }
-                          // }
+                          var username = "";
+                          for (var i in x.split(" ")) {
+                            var z = i.trim();
+                            if (z.length > 1) {
+                              username = username + i;
+                              break;
+                            }
+                          }
                           return Container(
                             height: 50.h,
                             width: size.width * 0.70,
@@ -54,7 +54,7 @@ class DashBoard extends GetView {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Hello, $x",
+                                    "Hello, $username",
                                     style: TextStyle(
                                         fontSize: 20.sp,
                                         color: Colors.black,
@@ -175,7 +175,9 @@ class DashBoard extends GetView {
                       );
                     }
 
-                    if (controller.listofstores.length == 1) {
+                    if (controller.listofstores[0] == "Internal Server Error" ||
+                        controller.listofstores[0] ==
+                            "Something Unexpected Occured") {
                       return Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
