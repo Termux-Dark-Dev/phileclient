@@ -90,6 +90,7 @@ class OderHistoryPage extends StatelessWidget {
 }
 
 class MyOrders extends StatelessWidget {
+  ScrollController scrlctrl = ScrollController(initialScrollOffset: 1.w);
   late String date,
       serviceopted,
       shopname,
@@ -97,14 +98,15 @@ class MyOrders extends StatelessWidget {
       srvctime,
       address,
       shopimage;
-  MyOrders(
-      {required this.date,
-      required this.orderdate,
-      required this.shopname,
-      required this.serviceopted,
-      required this.srvctime,
-      required this.address,
-      required this.shopimage});
+  MyOrders({
+    required this.date,
+    required this.orderdate,
+    required this.shopname,
+    required this.serviceopted,
+    required this.srvctime,
+    required this.address,
+    required this.shopimage,
+  });
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -151,194 +153,209 @@ class MyOrders extends StatelessWidget {
                   EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
               child: Column(
                 children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 220.h,
-                          width: 150.w,
-                          color: Colors.white,
-                          child: shopimage == ""
-                              ? Image.asset(
-                                  "assets/storeimage.png",
-                                  fit: BoxFit.fill,
-                                )
-                              : Image.network(
-                                  shopimage,
-                                  fit: BoxFit.fill,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Image.asset(
-                                      "assets/storeimage.png",
-                                      fit: BoxFit.fill,
-                                    );
-                                  },
-                                ),
-                        ),
-                        SizedBox(
-                          width: 20.w,
-                        ),
-                        Column(
+                  RawScrollbar(
+                    trackRadius: Radius.circular(15),
+                    trackVisibility: true,
+                    trackColor: Colors.grey[300],
+                    thumbColor: Colors.teal[700],
+                    thickness: 5.sp,
+                    radius: Radius.circular(15),
+                    thumbVisibility: true,
+                    controller: scrlctrl,
+                    child: SingleChildScrollView(
+                      controller: scrlctrl,
+                      scrollDirection: Axis.horizontal,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Store Name        :",
-                                    style: TextStyle(
-                                        color: Colors.teal[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14.sp),
-                                  ),
-                                  SizedBox(
-                                    width: 8.w,
-                                  ),
-                                  Text(
-                                    "$shopname",
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500,
+                              height: 220.h,
+                              width: 150.w,
+                              color: Colors.white,
+                              child: shopimage == ""
+                                  ? Image.asset(
+                                      "assets/storeimage.png",
+                                      fit: BoxFit.fill,
+                                    )
+                                  : Image.network(
+                                      shopimage,
+                                      fit: BoxFit.fill,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Image.asset(
+                                          "assets/storeimage.png",
+                                          fit: BoxFit.fill,
+                                        );
+                                      },
                                     ),
-                                  ),
-                                ],
-                              ),
                             ),
                             SizedBox(
-                              height: 15.h,
+                              width: 20.w,
                             ),
-                            Container(
-                              height: 30.h,
-                              width: 265.w,
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Service Time      :",
-                                      style: TextStyle(
-                                          color: Colors.teal[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14.sp),
-                                    ),
-                                    SizedBox(
-                                      width: 8.w,
-                                    ),
-                                    Text(
-                                      "$srvctime",
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Store Name        :",
+                                        style: TextStyle(
+                                            color: Colors.teal[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.sp),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Container(
-                              height: 30.h,
-                              width: 265.w,
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Service Date       :",
-                                      style: TextStyle(
-                                          color: Colors.teal[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14.sp),
-                                    ),
-                                    SizedBox(
-                                      width: 8.w,
-                                    ),
-                                    Text(
-                                      "$date",
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500,
+                                      SizedBox(
+                                        width: 8.w,
                                       ),
-                                    ),
-                                  ],
+                                      Text(
+                                        "$shopname",
+                                        style: TextStyle(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Container(
-                                width: 380.w, //
-
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Store Address    :",
-                                      style: TextStyle(
-                                          color: Colors.teal[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14.sp),
-                                      maxLines: 4,
-                                    ),
-                                    SizedBox(
-                                      width: 8.w,
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        child: Text(
-                                          "$address",
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Container(
+                                  height: 30.h,
+                                  width: 265.w,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "Service Time      :",
                                           style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500,
+                                              color: Colors.teal[700],
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14.sp),
+                                        ),
+                                        SizedBox(
+                                          width: 8.w,
+                                        ),
+                                        Text(
+                                          "$srvctime",
+                                          style: TextStyle(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Container(
+                                  height: 30.h,
+                                  width: 265.w,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "Service Date       :",
+                                          style: TextStyle(
+                                              color: Colors.teal[700],
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14.sp),
+                                        ),
+                                        SizedBox(
+                                          width: 8.w,
+                                        ),
+                                        Text(
+                                          "$date",
+                                          style: TextStyle(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Container(
+                                    width: 380.w, //
+
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "Store Address    :",
+                                          style: TextStyle(
+                                              color: Colors.teal[700],
+                                              fontWeight: FontWeight.bold,
                                               fontSize: 14.sp),
                                           maxLines: 4,
                                         ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Container(
-                                width: 380.w, //
+                                        SizedBox(
+                                          width: 8.w,
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            child: Text(
+                                              "$address",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14.sp),
+                                              maxLines: 4,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Container(
+                                    width: 380.w, //
 
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Services Opted  :",
-                                      style: TextStyle(
-                                          color: Colors.teal[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14.sp),
-                                      maxLines: 4,
-                                    ),
-                                    SizedBox(
-                                      width: 8.w,
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        child: Text(
-                                          "$serviceopted",
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "Services Opted  :",
                                           style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500,
+                                              color: Colors.teal[700],
+                                              fontWeight: FontWeight.bold,
                                               fontSize: 14.sp),
                                           maxLines: 4,
                                         ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            SizedBox(
-                              height: 10.h,
+                                        SizedBox(
+                                          width: 8.w,
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            child: Text(
+                                              "$serviceopted",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14.sp),
+                                              maxLines: 4,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                                SizedBox(
+                                  height: 10.h,
+                                )
+                              ],
                             )
                           ],
-                        )
-                      ],
+                        ),
+                      ),
                     ),
                   ),
                   Divider(),

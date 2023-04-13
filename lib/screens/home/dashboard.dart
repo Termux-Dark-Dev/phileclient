@@ -21,13 +21,14 @@ class DashBoard extends GetView {
         color: Colors.white,
         child: Column(
           children: [
-            SizedBox(
-              height: 20.h,
-            ),
+            // SizedBox(
+            //   height: 20.h,
+            // ),
             Container(
+              color: Colors.teal,
               height: 80.h,
               width: size.width,
-              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -57,14 +58,14 @@ class DashBoard extends GetView {
                                     "Hello, ",
                                     style: TextStyle(
                                         fontSize: 20.sp,
-                                        color: Colors.teal[700],
+                                        color: Colors.white,
                                         fontWeight: FontWeight.w800),
                                   ),
                                   Text(
                                     "$username",
                                     style: TextStyle(
                                         fontSize: 20.sp,
-                                        color: Colors.black,
+                                        color: Colors.white,
                                         fontWeight: FontWeight.w800),
                                   ),
                                 ],
@@ -110,13 +111,14 @@ class DashBoard extends GetView {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 10),
+              color: Colors.teal,
+              padding: EdgeInsets.only(left: 10.w),
               height: 40.h,
               width: size.width,
               child: Text("Please select store for appointment booking",
                   style: TextStyle(
                       fontSize: 17.sp,
-                      color: Colors.teal[600],
+                      color: Colors.white,
                       fontWeight: FontWeight.w700)),
             ),
             SizedBox(

@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
           ),
           home: CheckConnectivityComponent()),
       designSize: Size(428, 926),
+      // designSize: Size(360, 640),
     );
   }
 }

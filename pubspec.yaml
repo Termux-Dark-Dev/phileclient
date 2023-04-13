@@ -45,6 +45,7 @@ dependencies:
   url_launcher: ^6.1.10
   flutter_native_splash: ^2.2.18
   connectivity_plus: ^3.0.4
+  cross_scroll: ^0.0.75
   
 
 

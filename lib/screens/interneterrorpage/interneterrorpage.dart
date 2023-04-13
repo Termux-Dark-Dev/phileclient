@@ -11,12 +11,17 @@ class InternetErrorPage extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.teal[300],
       body: Container(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 200.h,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+            height: 250.h,
             width: size.width,
             alignment: Alignment.center,
             child:
@@ -38,7 +43,7 @@ class InternetErrorPage extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w700,
-                        color: Colors.teal[800]),
+                        color: Colors.white),
                   ),
                   SizedBox(
                     height: 6.h,
@@ -48,18 +53,18 @@ class InternetErrorPage extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
-                        color: Colors.teal[600]),
+                        color: Colors.white),
                   ),
                   Text("Please check your wifi setting or mobile data",
                       style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
-                          color: Colors.teal[600])),
+                          color: Colors.white)),
                   Text("connection",
                       style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
-                          color: Colors.teal[600]))
+                          color: Colors.white))
                 ],
               ))
         ],

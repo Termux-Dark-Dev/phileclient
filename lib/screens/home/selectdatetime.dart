@@ -68,7 +68,7 @@ class SelectDateAndTime extends StatelessWidget {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,
-                                            fontSize: 20.sp),
+                                            fontSize: 17.sp),
                                       ),
                                     ),
                                   ),
@@ -104,7 +104,7 @@ class SelectDateAndTime extends StatelessWidget {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,
-                                            fontSize: 20.sp),
+                                            fontSize: 17.sp),
                                       ),
                                     ),
                                   ),
