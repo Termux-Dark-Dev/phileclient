@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import 'package:phileclientapp/checkingpages/checkhomepageconnectivity.dart';
+import 'package:phileclientapp/checkingpages/checkloginpageconnectivity.dart';
 import 'package:phileclientapp/controllers/order/orderctrlr.dart';
+import 'package:phileclientapp/screens/contact/contactuspage.dart';
 import 'package:phileclientapp/screens/interneterrorpage/interneterrorpage.dart';
 import 'package:phileclientapp/screens/bookedanim/booked.dart';
 import 'package:phileclientapp/screens/forgotpass/ForgotPassPage.dart';
@@ -34,5 +37,12 @@ class RouterClass {
     GetPage(name: '/forgotpasspage', page: () => ForgotPassPage()),
     GetPage(name: '/orderdone', page: () => OrderDonePage()),
     GetPage(name: '/interneterror', page: () => InternetErrorPage()),
+    GetPage(
+        name: '/chkhomepageconnectivity',
+        page: () => CheckHomePageConnectivity()),
+    GetPage(
+        name: '/chkloginpageconnectivity',
+        page: () => CheckLoginPageConnectivity()),
+    GetPage(name: '/contactus', page: () => ContactUsPage()),
   ];
 }

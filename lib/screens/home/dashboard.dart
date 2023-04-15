@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee/marquee.dart';
+import 'package:phileclientapp/controllers/homepage/HomePageController.dart';
 import 'package:phileclientapp/controllers/homepage/dashBoardctrl.dart';
 import 'package:phileclientapp/screens/home/dashboardcomponent/dateandtimesheet.dart';
 
@@ -88,9 +89,14 @@ class DashBoard extends GetView {
                   // )
                   Padding(
                     padding: EdgeInsets.only(right: 10.w),
-                    child: CircleAvatar(
-                      radius: 30.sp,
-                      foregroundImage: AssetImage('assets/looksicon.png'),
+                    child: GestureDetector(
+                      onTap: () {
+                        // Get.toNamed('/profile');
+                      },
+                      child: CircleAvatar(
+                        radius: 30.sp,
+                        foregroundImage: AssetImage('assets/looksicon.png'),
+                      ),
                     ),
                   ),
 

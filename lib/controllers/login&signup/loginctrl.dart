@@ -77,7 +77,10 @@ class LoginCtrl extends GetxController {
         Future.delayed(Duration(seconds: 0), () {
           SnackBars.customsnack(
               "Login Successful", Icons.done, Colors.teal[800]!);
-        }).whenComplete(() => Get.offAllNamed("/home"));
+        }).whenComplete(() {
+          // Get.offAllNamed("/home");
+          Get.offAllNamed("/chkhomepageconnectivity");
+        });
       } else if (res == false) {
         isloginbtntapped.value = true;
         SnackBars.customsnack(

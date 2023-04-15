@@ -35,7 +35,8 @@ class MyApp extends StatelessWidget {
             // is not restarted.
             primarySwatch: Colors.teal,
           ),
-          home: CheckConnectivityComponent()),
+          // home: CheckConnectivityComponent()
+          home: CheckLoggedInWidget()),
       designSize: Size(428, 926),
       // designSize: Size(360, 640),
     );

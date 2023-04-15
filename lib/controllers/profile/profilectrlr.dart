@@ -48,7 +48,8 @@ class ProfilePageController extends GetxController {
     SARServices obj = SARServices();
     var res = await obj.logoutUser();
     if (res == true) {
-      Get.offAllNamed("/login");
+      // Get.offAllNamed("/login");
+      Get.offAllNamed("/chkloginpageconnectivity");
     }
   }
 
@@ -406,166 +407,166 @@ class ProfilePageController extends GetxController {
     }
   }
 
-  void showContactInfo() {
-    Get.dialog(AlertDialog(
-        backgroundColor: Colors.teal,
-        content: Container(
-          height: 100.h,
-          width: 300.w,
-          color: Colors.teal,
-          child: Center(
-            child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                    text: "Please reach out to us at ",
-                    style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white)),
-                TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () async {
-                        final Uri launchUri = Uri(
-                          scheme: 'tel',
-                          path: "+918999523696",
-                        );
-                        if (!await launchUrl(launchUri)) {
-                          SnackBars.customsnack(
-                              "Something Unexpected Occured While Opening Phone Caller",
-                              Icons.close,
-                              Colors.red);
-                        }
-                      },
-                    text: "8999523696",
-                    style: TextStyle(
-                        fontSize: 20.sp,
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-                TextSpan(
-                    text: " or email us at ",
-                    style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white)),
-                TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () async {
-                        final Uri launchUri = Uri(
-                            scheme: 'mailto',
-                            path: "sagarvishal85@gmail.com",
-                            query: encodeQueryParameters(<String, String>{
-                              'subject': 'Regarding Query On ChopChop App',
-                            }));
-                        if (!await launchUrl(launchUri)) {
-                          SnackBars.customsnack(
-                              "Something Unexpected Occured While Opening Phone Caller",
-                              Icons.close,
-                              Colors.red);
-                        }
-                      },
-                    text: " sagarvishal85@gmail.com ",
-                    style: TextStyle(
-                        fontSize: 20.sp,
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-                TextSpan(
-                    text: " to get your query resolved",
-                    style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white)),
-              ]),
-            ),
-          ),
-        )));
-  }
+  // void showContactInfo() {
+  //   Get.dialog(AlertDialog(
+  //       backgroundColor: Colors.teal,
+  //       content: Container(
+  //         height: 100.h,
+  //         width: 300.w,
+  //         color: Colors.teal,
+  //         child: Center(
+  //           child: RichText(
+  //             text: TextSpan(children: [
+  //               TextSpan(
+  //                   text: "Please reach out to us at ",
+  //                   style: TextStyle(
+  //                       fontSize: 18.sp,
+  //                       fontWeight: FontWeight.w500,
+  //                       color: Colors.white)),
+  //               TextSpan(
+  //                   recognizer: TapGestureRecognizer()
+  //                     ..onTap = () async {
+  //                       final Uri launchUri = Uri(
+  //                         scheme: 'tel',
+  //                         path: "+918999523696",
+  //                       );
+  //                       if (!await launchUrl(launchUri)) {
+  //                         SnackBars.customsnack(
+  //                             "Something Unexpected Occured While Opening Phone Caller",
+  //                             Icons.close,
+  //                             Colors.red);
+  //                       }
+  //                     },
+  //                   text: "8999523696",
+  //                   style: TextStyle(
+  //                       fontSize: 20.sp,
+  //                       decoration: TextDecoration.underline,
+  //                       fontWeight: FontWeight.bold,
+  //                       color: Colors.white)),
+  //               TextSpan(
+  //                   text: " or email us at ",
+  //                   style: TextStyle(
+  //                       fontSize: 18.sp,
+  //                       fontWeight: FontWeight.w700,
+  //                       color: Colors.white)),
+  //               TextSpan(
+  //                   recognizer: TapGestureRecognizer()
+  //                     ..onTap = () async {
+  //                       final Uri launchUri = Uri(
+  //                           scheme: 'mailto',
+  //                           path: "sagarvishal85@gmail.com",
+  //                           query: encodeQueryParameters(<String, String>{
+  //                             'subject': 'Regarding Query On ChopChop App',
+  //                           }));
+  //                       if (!await launchUrl(launchUri)) {
+  //                         SnackBars.customsnack(
+  //                             "Something Unexpected Occured While Opening Phone Caller",
+  //                             Icons.close,
+  //                             Colors.red);
+  //                       }
+  //                     },
+  //                   text: " sagarvishal85@gmail.com ",
+  //                   style: TextStyle(
+  //                       fontSize: 20.sp,
+  //                       decoration: TextDecoration.underline,
+  //                       fontWeight: FontWeight.bold,
+  //                       color: Colors.white)),
+  //               TextSpan(
+  //                   text: " to get your query resolved",
+  //                   style: TextStyle(
+  //                       fontSize: 18.sp,
+  //                       fontWeight: FontWeight.w700,
+  //                       color: Colors.white)),
+  //             ]),
+  //           ),
+  //         ),
+  //       )));
+  // }
 
-  Future showQueryDialog() async {
-    Get.dialog(WillPopScope(
-      onWillPop: () async => false,
-      child: AlertDialog(
-        content: Container(
-          height: 280.h,
-          width: 300.w,
-          color: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Please Enter Your Query",
-                style: TextStyle(
-                    color: Colors.teal[800],
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 60.h,
-              ),
-              TextFormField(
-                controller: queryctrlr,
-                decoration: InputDecoration(
-                  labelText: "Query",
-                  labelStyle: TextStyle(color: Colors.black),
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 50.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton.icon(
-                      style:
-                          ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                      onPressed: () {
-                        queryctrlr.clear();
-                        Get.back();
-                      },
-                      icon: Icon(Icons.close),
-                      label: Text(
-                        "Cancel",
-                      )),
-                  ElevatedButton.icon(
-                      onPressed: () async {
-                        var query = queryctrlr.text;
-                        if (query.length > 9) {
-                          queryctrlr.clear();
-                          var res = await sendQuery(query);
-                          if (res == true) {
-                            Get.back();
-                            SnackBars.customsnack(
-                                "We Got Your Query We Will Try To Reach Out You Soon",
-                                Icons.done,
-                                Colors.teal);
-                          } else {
-                            SnackBars.customsnack(
-                                "Something Unexpected Occured Please Try Again",
-                                Icons.refresh,
-                                Colors.red);
-                          }
-                        } else {
-                          SnackBars.customsnack(
-                              "Query Should Be Of Minimum 10 Characters",
-                              Icons.close,
-                              Colors.red);
-                        }
-                      },
-                      icon: Icon(Icons.send),
-                      label: Text("Submit")),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    ));
-  }
+  // Future showQueryDialog() async {
+  //   Get.dialog(WillPopScope(
+  //     onWillPop: () async => false,
+  //     child: AlertDialog(
+  //       content: Container(
+  //         height: 280.h,
+  //         width: 300.w,
+  //         color: Colors.white,
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: [
+  //             Text(
+  //               "Please Enter Your Query",
+  //               style: TextStyle(
+  //                   color: Colors.teal[800],
+  //                   fontSize: 20.sp,
+  //                   fontWeight: FontWeight.bold),
+  //             ),
+  //             SizedBox(
+  //               height: 60.h,
+  //             ),
+  //             TextFormField(
+  //               controller: queryctrlr,
+  //               decoration: InputDecoration(
+  //                 labelText: "Query",
+  //                 labelStyle: TextStyle(color: Colors.black),
+  //                 border: OutlineInputBorder(),
+  //                 focusedBorder: OutlineInputBorder(
+  //                   borderSide: BorderSide(color: Colors.black),
+  //                 ),
+  //               ),
+  //             ),
+  //             SizedBox(
+  //               height: 50.h,
+  //             ),
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //               children: [
+  //                 ElevatedButton.icon(
+  //                     style:
+  //                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
+  //                     onPressed: () {
+  //                       queryctrlr.clear();
+  //                       Get.back();
+  //                     },
+  //                     icon: Icon(Icons.close),
+  //                     label: Text(
+  //                       "Cancel",
+  //                     )),
+  //                 ElevatedButton.icon(
+  //                     onPressed: () async {
+  //                       var query = queryctrlr.text;
+  //                       if (query.length > 50) {
+  //                         queryctrlr.clear();
+  //                         var res = await sendQuery(query);
+  //                         if (res == true) {
+  //                           Get.back();
+  //                           SnackBars.customsnack(
+  //                               "We Got Your Query We Will Try To Reach Out You Soon",
+  //                               Icons.done,
+  //                               Colors.teal);
+  //                         } else {
+  //                           SnackBars.customsnack(
+  //                               "Something Unexpected Occured Please Try Again",
+  //                               Icons.refresh,
+  //                               Colors.red);
+  //                         }
+  //                       } else {
+  //                         SnackBars.customsnack(
+  //                             "Query Should Be Of Minimum 50 Characters",
+  //                             Icons.close,
+  //                             Colors.red);
+  //                       }
+  //                     },
+  //                     icon: Icon(Icons.send),
+  //                     label: Text("Submit")),
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   ));
+  // }
 
   String? encodeQueryParameters(Map<String, String> params) {
     return params.entries

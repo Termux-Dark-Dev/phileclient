@@ -280,7 +280,9 @@ class ProfilePage extends StatelessWidget {
                                 width: 260.w,
                                 child: GestureDetector(
                                   onTap: () {
-                                    controller.showContactInfo();
+                                    // controller.showContactInfo();
+                                    Get.toNamed('/contactus',
+                                        arguments: {"controller": controller});
                                   },
                                   child: Text(
                                     "Contact Us",
@@ -297,56 +299,56 @@ class ProfilePage extends StatelessWidget {
                         SizedBox(
                           height: 20.h,
                         ),
-                        Container(
-                          margin: EdgeInsets.only(left: 20.w),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 50.w,
-                                child: Card(
-                                  elevation: 3,
-                                  child: Icon(
-                                    Icons.question_answer,
-                                    color: Colors.teal,
-                                    size: 30.sp,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 20.w,
-                              ),
-                              Container(
-                                width: 260.w,
-                                child: Text(
-                                  "Raise A Query",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 19.sp,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Container(
-                                width: 45.w,
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    await controller.showQueryDialog();
-                                  },
-                                  child: Icon(
-                                    Icons.send,
-                                    size: 25.sp,
-                                    color: Colors.teal,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20.h,
-                        ),
+                        // Container(
+                        //   margin: EdgeInsets.only(left: 20.w),
+                        //   child: Row(
+                        //     children: [
+                        //       Container(
+                        //         width: 50.w,
+                        //         child: Card(
+                        //           elevation: 3,
+                        //           child: Icon(
+                        //             Icons.question_answer,
+                        //             color: Colors.teal,
+                        //             size: 30.sp,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       SizedBox(
+                        //         width: 20.w,
+                        //       ),
+                        //       Container(
+                        //         width: 260.w,
+                        //         child: Text(
+                        //           "Raise A Query",
+                        //           style: TextStyle(
+                        //               fontWeight: FontWeight.bold,
+                        //               fontSize: 19.sp,
+                        //               color: Colors.black),
+                        //         ),
+                        //       ),
+                        //       SizedBox(
+                        //         width: 10.w,
+                        //       ),
+                        //       Container(
+                        //         width: 45.w,
+                        //         child: GestureDetector(
+                        //           onTap: () async {
+                        //             await controller.showQueryDialog();
+                        //           },
+                        //           child: Icon(
+                        //             Icons.send,
+                        //             size: 25.sp,
+                        //             color: Colors.teal,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: 20.h,
+                        // ),
                         Container(
                           margin: EdgeInsets.only(left: 20.w),
                           child: Row(

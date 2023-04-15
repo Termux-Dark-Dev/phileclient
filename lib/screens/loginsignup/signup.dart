@@ -150,7 +150,8 @@ class SignupPage extends StatelessWidget {
                                 color: Colors.black, fontSize: 18.sp)),
                         TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => Get.offAllNamed('/login'),
+                              ..onTap = () =>
+                                  Get.offAllNamed('/chkloginpageconnectivity'),
                             text: "Login",
                             style: TextStyle(
                               fontSize: 20.sp,
