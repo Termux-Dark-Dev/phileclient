@@ -30,7 +30,7 @@ class DetailContainerWidget extends StatelessWidget {
                 SizedBox(
                     width: 280.w,
                     child: Text(
-                      "sagarvishal85@gmail.com",
+                      "looks@phile.in",
                       style: TextStyle(
                           color: Colors.black,
                           fontFamily: "Roboto",

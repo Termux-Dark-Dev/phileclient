@@ -16,6 +16,8 @@ class UpdatePhoneNumService {
         return true;
       } else if (res.statusCode == 400) {
         return false;
+      } else if (res.statusCode == 401) {
+        return "mobile number already taken";
       } else {
         return null;
       }

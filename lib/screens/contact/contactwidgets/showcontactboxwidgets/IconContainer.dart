@@ -32,7 +32,7 @@ class IconContainer extends StatelessWidget {
                   onPressed: () async {
                     final Uri emailUri = Uri(
                         scheme: 'mailto',
-                        path: "sagarvishal85@gmail.com",
+                        path: "looks@phile.in",
                         query: encodeQueryParameters(<String, String>{
                           'subject': 'Regarding Query On Looks App',
                         }));

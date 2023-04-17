@@ -27,7 +27,7 @@ class PhoneUpdateOTPCtrl extends GetxController {
         // it comes here if otp is successfully verified
         var isUpdated = await obj1.updateUserPhoneNum(newphonenum, email);
         Loader.hideLoader();
-        if (isUpdated) {
+        if (isUpdated == true) {
           // it comes here if email is successfully updated on server side
           var res1 = await obj2.upDateUserPhone(newphonenum);
           if (res1 == true) {
@@ -41,6 +41,10 @@ class PhoneUpdateOTPCtrl extends GetxController {
                   "Something Unexpected Occured", Icons.close, Colors.red);
             }).whenComplete(() => Get.offAndToNamed("/profile"));
           }
+        } else if (isUpdated is String) {
+          Future.delayed(Duration(seconds: 0), () {
+            SnackBars.customsnack(isUpdated, Icons.close, Colors.red);
+          }).whenComplete(() => Get.offAndToNamed("/profile"));
         } else {
           Future.delayed(Duration(seconds: 0), () {
             SnackBars.customsnack(

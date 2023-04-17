@@ -11,6 +11,7 @@ import 'package:phileclientapp/services/loginandsignup/loginservice.dart';
 import 'package:phileclientapp/services/loginandsignup/sendotpsrvc.dart';
 
 class LoginCtrl extends GetxController {
+  var isforgotbtntapped = false.obs;
   var isloginbtntapped = false.obs;
   var ispassHidden = true.obs;
   GlobalKey<FormState> loginformkey = GlobalKey<FormState>();
@@ -151,37 +152,54 @@ class LoginCtrl extends GetxController {
                       label: Text(
                         "Cancel",
                       )),
-                  ElevatedButton.icon(
-                      onPressed: () async {
-                        SystemChannels.textInput.invokeMethod('TextInput.hide');
-                        var newmail = forgotpassemailctrlr.text;
-                        var res = emailValidator(newmail);
-                        if (res == null) {
-                          var result =
-                              await checkUserExistsToForgotPass(newmail);
-                          if (result == true) {
-                            forgotpassemailctrlr.clear();
-                            Get.back();
-                            Get.toNamed("/forgotpassotp",
-                                arguments: {"useremail": newmail});
-                          } else if (result == false) {
-                            forgotpassemailctrlr.clear();
-                            SnackBars.customsnack(
-                                "User Not Exists", Icons.close, Colors.red);
-                          } else {
-                            forgotpassemailctrlr.clear();
-                            SnackBars.customsnack(
-                                "Something Unexpected Occured",
-                                Icons.close,
-                                Colors.red);
+                  Obx(() {
+                    return ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: isforgotbtntapped.value == false
+                                ? Colors.teal
+                                : Colors.blueGrey),
+                        onPressed: () async {
+                          if (isforgotbtntapped.value == false) {
+                            SystemChannels.textInput
+                                .invokeMethod('TextInput.hide');
+                            var newmail = forgotpassemailctrlr.text;
+                            var res = emailValidator(newmail);
+                            if (res == null) {
+                              var result =
+                                  await checkUserExistsToForgotPass(newmail);
+                              if (result == true) {
+                                forgotpassemailctrlr.clear();
+                                Get.back();
+                                Get.toNamed("/forgotpassotp",
+                                    arguments: {"useremail": newmail});
+                              } else if (result == false) {
+                                isforgotbtntapped.value = true;
+                                Future.delayed(Duration(seconds: 4))
+                                    .whenComplete(
+                                        () => isforgotbtntapped.value = false);
+                                forgotpassemailctrlr.clear();
+                                SnackBars.customsnack(
+                                    "User Not Exists", Icons.close, Colors.red);
+                              } else {
+                                isforgotbtntapped.value = true;
+                                Future.delayed(Duration(seconds: 4))
+                                    .whenComplete(
+                                        () => isforgotbtntapped.value = false);
+                                forgotpassemailctrlr.clear();
+                                SnackBars.customsnack(
+                                    "Something Unexpected Occured",
+                                    Icons.close,
+                                    Colors.red);
+                              }
+                            } else {
+                              SnackBars.customsnack("Please Enter Valid Mail",
+                                  Icons.close, Colors.red);
+                            }
                           }
-                        } else {
-                          SnackBars.customsnack("Please Enter Valid Mail",
-                              Icons.close, Colors.red);
-                        }
-                      },
-                      icon: Icon(Icons.send),
-                      label: Text("Submit")),
+                        },
+                        icon: Icon(Icons.send),
+                        label: Text("Submit"));
+                  })
                 ],
               ),
             ],
