@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:phileclientapp/common/snackbars/snackbars.dart';
+import 'package:phileclientapp/services/schedulenotification/schedulenotfsvc.dart';
 
 import '../../common/loader/loader.dart';
 import '../../services/bookorder/bookordersrvc.dart';
@@ -121,6 +122,9 @@ class ServicesController extends GetxController {
     Loader.hideLoader();
 
     if (res == true) {
+      ScheduleNotificationForOrderSvc _obj = ScheduleNotificationForOrderSvc();
+      await _obj.initalizeNotification();
+      await _obj.scheduleNotification(selecteddate, selectedtime);
       // Future.delayed(Duration(seconds: 0), () {
       //   SnackBars.customsnack("Ordered Successfully", Icons.done, Colors.teal);
       // }).whenComplete(() => Get.offAllNamed('/home'));
