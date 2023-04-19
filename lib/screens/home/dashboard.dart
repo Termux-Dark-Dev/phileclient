@@ -278,6 +278,35 @@ class DashBoard extends GetView {
                                               : Image.network(
                                                   controller.listofstores[index]
                                                       .storeimage,
+                                                  loadingBuilder:
+                                                      (BuildContext context,
+                                                          Widget child,
+                                                          ImageChunkEvent?
+                                                              loadingProgress) {
+                                                    if (loadingProgress == null)
+                                                      return child;
+                                                    return Center(
+                                                      child:
+                                                          LinearProgressIndicator(
+                                                        minHeight:
+                                                            double.infinity,
+                                                        backgroundColor:
+                                                            Colors.white,
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                                Colors.teal),
+                                                        value: loadingProgress
+                                                                    .expectedTotalBytes !=
+                                                                null
+                                                            ? loadingProgress
+                                                                    .cumulativeBytesLoaded /
+                                                                loadingProgress
+                                                                    .expectedTotalBytes!
+                                                            : null,
+                                                      ),
+                                                    );
+                                                  },
                                                   errorBuilder: (context, error,
                                                       stackTrace) {
                                                     print(error);

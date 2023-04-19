@@ -192,6 +192,9 @@ class LoginCtrl extends GetxController {
                                     Colors.red);
                               }
                             } else {
+                              isforgotbtntapped.value = true;
+                              Future.delayed(Duration(seconds: 4)).whenComplete(
+                                  () => isforgotbtntapped.value = false);
                               SnackBars.customsnack("Please Enter Valid Mail",
                                   Icons.close, Colors.red);
                             }

@@ -35,8 +35,12 @@ class EmailUpdateOTP extends StatelessWidget {
               SizedBox(
                 height: 5.h,
               ),
-              Text(
-                  'Enter OTP You Recieved On Your Email ${controller.newemail.toString().substring(0, 4) + "******" + controller.newemail.toString().substring(controller.newemail.toString().length - 3, controller.newemail.toString().length)}'),
+              Center(
+                child: Text(
+                  'Enter OTP You Received On Your Email ${controller.newemail.toString().substring(0, 4) + "******" + controller.newemail.toString().substring(controller.newemail.toString().length - 3, controller.newemail.toString().length)}',
+                  style: TextStyle(fontSize: 14.sp),
+                ),
+              ),
               SizedBox(
                 height: 50.h,
               ),

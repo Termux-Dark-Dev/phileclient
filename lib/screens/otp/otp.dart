@@ -40,7 +40,8 @@ class OTPPAGE extends StatelessWidget {
               ),
               Center(
                 child: Text(
-                    'Please enter OTP recieved on your email ${email.toString().substring(0, 4) + "******" + email.toString().substring(email.toString().length - 3, email.toString().length)}'),
+                    style: TextStyle(fontSize: 14.sp),
+                    'Please enter OTP received on your email ${email.toString().substring(0, 4) + "******" + email.toString().substring(email.toString().length - 3, email.toString().length)}'),
               ),
               SizedBox(
                 height: 50.h,

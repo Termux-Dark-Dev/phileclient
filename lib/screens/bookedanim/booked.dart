@@ -59,6 +59,8 @@ class OrderDonePage extends StatelessWidget {
                         height: 20.h,
                       ),
                       Container(
+                        width: double.infinity,
+                        alignment: Alignment.center,
                         child: Text(
                           "Please Visit Below Store To Avail Your Service",
                           style: TextStyle(
